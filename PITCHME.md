@@ -1,119 +1,221 @@
-### Java Web Apps
+### Spring JDBC
 
 ---
 
-### How the Web Works
+### JDBC
 
-- browser sends request to server
-- server checks data in DB
-- server sends response to browser
+- Java Database Connectivity
+- Allow connecting to the database from Java
+
+---
+
+### Set Up
 
 +++
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    participant D as Database
+### DB Setup
 
+- ensure you database is set up properly
+- TCP/IP ports 
+- username/password
+- user-DB permission mapping (if not admin)
+- database schema is set up properly
 
-    C->>S: GET /users
-    S->>D: SELECT * FROM users
-    D-->>S: user rows
-    S-->>C: HTML/JSON data
++++ 
+
+### Spring Setup
+
+- add JDBC to list of Maven dependencies
+- add DB config to application.properties
+
+```
+spring.datasource.driver-class-name=
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password= 1
 ```
 
 ---
 
-### Spring Framework
+### AirBnB Schema
 
-- Framework for building apps in Java
-- Powerful ecosystem with many extensions/libraries
-
-+++
-
-### Why use a Framework
-
-- follow established conventions
-- reusue existing code
-- speed up development
-
-+++
-
-### Example
-- receive request/send response using Spring Web
-- connect to SQL Server using SQL Server Adapter
-- interface with database using JDBC/Hibernate
-- generate HTML using Thymeleaf
-- interface with third party services via SDKs, e.g. Paypal
+- users
+- properties
+- bookings
+- payments
+- reviews
+- tags
 
 ---
 
-### Exercise: Nextagram V1
-
-- HTML -> homepage displaying all images
-- JSON -> list of users
-- JSON -> list of images for a user
-- no database, all data is hardcoded
-
----
-
-### Phase 1: Homepage
-
-- initialize in Spring Tools Suite
-- hardcode images data 
-- create GET endpoint returning HTML
-- create HTML template for homepage
+### JDBC Concepts
 
 +++
 
-### Initialization
+### Entities
 
-- Spring Web
-- Spring Dev Tools
-- ThymeleafT
-
-+++
-
-### Harcode Images Data
-
-- create `Image` class
-- properties: `id`, `url`
-- hardcode 12 images
-
-+++
-
-### GET endpoint
-
-- create controller
-- add required annotations
-- import hardcoded images
+- beans representing objects in the DB
+- 1 class per table
+- each bean much have correct getters/setters
 
 +++
 
 ```java
+class User {
+    private name;
+
+    String getName() {
+        return this.name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+}
 ```
 
 +++
 
-### HTML Template
+### Data Access Object (DAO)
 
-- create .html file
-- add mappings in controller
-- use mappings in html file
+- connector between DB and Java
+- similar to `Repository`, used interchangeably
 
++++
+
+```java
+@Transactional
+@Repository
+public class UserDAO {
+    private final JdbcTemplate jdbcTemplate;
+    @Autowired
+    public UserDAO(JdbcTemplate jdbcTemplate) {
+	  this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<User> getAllUsers() {
+        String sql = "SELECT id, name FROM users";
+        RowMapper<User> rowMapper = new UserRowMapper();
+        return this.jdbcTemplate.query(sql, rowMapper);
+    } 
+}
+```
+
++++
+
+### RowMapper 
+
+- converts SQL data to Java Objects
+- checks SQL column name
+- matches to Java class property name
+
++++
+
+
+```java
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper; 
+
+public class UserRowMapper implements RowMapper<User> {
+   @Override
+   public User mapRow(ResultSet row, int rowNum) throws SQLException {
+	User user = new User();
+	user.setId(row.getInt("id"));
+	user.setName(row.getString("name"));
+	return user;
+   }
+}
+```
+
++++
+
+### BeanRowMapper
+
+- automatically maps Sql to Java 
+- can only be used if column names and Java property names match
+
++++
+
+```java
+public List<User> getAllUsers() {
+    String sql = "SELECT id, name FROM users";
+    RowMapper<User> rowMapper = new BeanPropertyRowMapper();
+    return this.jdbcTemplate.query(sql, rowMapper);
+} 
+```
 ---
 
-### Phase 2: JSON -> List of users
+### CRUD
 
-- hardcode users data 
-- create GET endpoint returning JSON
-- process users data into JSON
++++
 
----
+### Create
 
-### Phase 3: JSON -> List of images for a user
+```java
+public void addArticle(Article article) {
+    //Add article
+    String sql = "INSERT INTO articles (articleId, title, category) values (?, ?, ?)";
+    jdbcTemplate.update(sql, article.getArticleId(), article.getTitle(), article.getCategory());
+    
+    //Fetch article id
+    sql = "SELECT articleId FROM articles WHERE title = ? and category=?";
+    int articleId = jdbcTemplate.queryForObject(sql, Integer.class, article.getTitle(), article.getCategory());
+    
+    //Set article id 
+    article.setArticleId(articleId);
+}
+```
 
-- hardcode users -> images data
-- create GET endpoint returning JSON
-- process user ID to get correct list of images
++++
+
+### Read
+
+```java
+public Article getArticleById(int articleId) {
+    String sql = "SELECT articleId, title, category FROM articles WHERE articleId = ?";
+    RowMapper<Article> rowMapper = new BeanPropertyRowMapper<Article>(Article.class);
+    Article article = jdbcTemplate.queryForObject(sql, rowMapper, articleId);
+    return article;
+}
+
+
+public List<Article> getAllArticles() {
+    String sql = "SELECT articleId, title, category FROM articles";
+            //RowMapper<Article> rowMapper = new BeanPropertyRowMapper<Article>(Article.class);
+    RowMapper<Article> rowMapper = new ArticleRowMapper();
+    return this.jdbcTemplate.query(sql, rowMapper);
+}
+```
+
++++
+
+### Update
+
+```java
+public void updateArticle(Article article) {
+    String sql = "UPDATE articles SET title=?, category=? WHERE articleId=?";
+    jdbcTemplate.update(sql, article.getTitle(), article.getCategory(), article.getArticleId());
+}
+```
+
++++
+
+### Delete
+
+```java
+public boolean articleExists(String title, String category) {
+    String sql = "SELECT count(*) FROM articles WHERE title = ? and category=?";
+    int count = jdbcTemplate.queryForObject(sql, Integer.class, title, category);
+    if(count == 0) {
+                return false;
+    } else {
+        return true;
+    }
+}
+```
+
+
+
+
+
