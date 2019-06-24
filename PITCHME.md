@@ -1,119 +1,222 @@
-### Java Web Apps
+### SQL
+
+- Structured Query Language
+- a language for dealing with relational databases
 
 ---
 
-### How the Web Works
+#### CRUD
 
-- browser sends request to server
-- server checks data in DB
-- server sends response to browser
-
-+++
-
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    participant D as Database
-
-
-    C->>S: GET /users
-    S->>D: SELECT * FROM users
-    D-->>S: user rows
-    S-->>C: HTML/JSON data
-```
+- Create
+- Read
+- Update
+- Delete
 
 ---
 
-### Spring Framework
+### Keyword Hierarchy
 
-- Framework for building apps in Java
-- Powerful ecosystem with many extensions/libraries
-
-+++
-
-### Why use a Framework
-
-- follow established conventions
-- reusue existing code
-- speed up development
+- SELECT
+- FROM
+- JOIN  ... ON
+- WHERE
+- GROUP BY
+- HAVING
+- ORDER BY
 
 +++
 
-### Example
-- receive request/send response using Spring Web
-- connect to SQL Server using SQL Server Adapter
-- interface with database using JDBC/Hibernate
-- generate HTML using Thymeleaf
-- interface with third party services via SDKs, e.g. Paypal
+Have to follow this exact order
 
 ---
 
-### Exercise: Nextagram V1
+### SELECT
 
-- HTML -> homepage displaying all images
-- JSON -> list of users
-- JSON -> list of images for a user
-- no database, all data is hardcoded
+- specifies the column names in the final result
 
----
-
-### Phase 1: Homepage
-
-- initialize in Spring Tools Suite
-- hardcode images data 
-- create GET endpoint returning HTML
-- create HTML template for homepage
-
-+++
-
-### Initialization
-
-- Spring Web
-- Spring Dev Tools
-- ThymeleafT
-
-+++
-
-### Harcode Images Data
-
-- create `Image` class
-- properties: `id`, `url`
-- hardcode 12 images
-
-+++
-
-### GET endpoint
-
-- create controller
-- add required annotations
-- import hardcoded images
-
-+++
-
-```java
+```sql
+SELECT id, name, email
+FROM users
 ```
 
 +++
 
-### HTML Template
+### FROM
 
-- create .html file
-- add mappings in controller
-- use mappings in html file
+- specifies source of the data
+
+```sql
+SELECT id, name, email
+FROM users
+```
+
++++
+
+### JOIN ... ON
+
+- joins multiple data sources based on a criteria
+- refer to different data source by table name
+
+```sql
+SELECT users.id, users.name, permissions.name
+FROM users
+JOIN permissions ON users.id = permissions.user_id
+```
+
++++
+
+### WHERE
+
+- filters data according to condition
+- can add `ON` or `AND`
+- can check equality etc.
+
+```sql
+SELECT id, name, email
+FROM users
+WHERE email LIKE '%gmail%'
+```
+
++++
+
+### GROUP BY
+
+- aggregrates rows into grouped rows based on condition
+
+```sql
+SELECT role, COUNT(*) 
+FROM users
+GROUP BY role
+```
+
++++
+
+### HAVING
+
+- WHERE filter but on the grouped conditions
+- can only be used together with GROUP BY
+- e.g. filter by sum of rows
+
+```sql
+SELECT role, COUNT(*) 
+FROM users
+GROUP BY role
+HAVING email LIKE '%gmail%'
+```
+
++++
+
+### ORDER BY
+
+- sort the final data in a particular order
+
+```sql
+SELECT id, name, email
+FROM users
+ORDER BY name
+```
 
 ---
 
-### Phase 2: JSON -> List of users
-
-- hardcode users data 
-- create GET endpoint returning JSON
-- process users data into JSON
+### Complex JOINS
 
 ---
 
-### Phase 3: JSON -> List of images for a user
+Default JOIN is INNER JOIN
 
-- hardcode users -> images data
-- create GET endpoint returning JSON
-- process user ID to get correct list of images
+---
+
+### LEFT JOIN
+
+- allow right side to be NULL
+
++++
+
+
+### LEFT JOIN
+
+![left-join](./left-join.png)
+
+
+---
+
+### RIGHT JOIN
+
+- allow left side to be NULL
+
++++
+
+### RIGHT JOIN
+
+![right-join](./right-join.png)
+
+---
+
+### FULL OUTER JOIN
+
+- allow either side to be null
+
++++
+
+### FULL OUTER JOIN
+
+![outer-join](./outer-join.png)
+
+---
+
+### JOIN Exercises
+
++++
+
+##### Employee Table
+
+| id | name     | department_id |
+|----|----------|---------------|
+|  1 |   John   |       1       |
+|  2 |   Jane   |       2       |
+|  3 |   Kevin  |       3       |
+|  4 | Nicholas |       5       |
+|  5 |   Lily   |       2       |
+|  6 |   Riley  |       1       |
+
++++
+
+##### Department Table
+
+| id | name          | manager_id |
+|----|---------------|------------|
+|  1 |    Finance    |      1     |
+|  2 | Manufacturing |      2     |
+|  3 |     Sales     |      3     |
+
++++
+
+### Exercises
+
+- JOIN ON employee.department_id = department.id
+- JOIN ON department.manager_id = employee.id
+- LEFT JOIN ON employee.department_id = department.id
+
+---
+
+## Many To Many Exercise
+
++++
+
+### Exercise
+
+- teachers
+    - id, name
+- students
+    - id, name
+- teachers_students
+    - teacher_id
+    - student_id
+
++++
+
+1. Create 3 teachers, John, Jane, Ken
+2. Create 3 students, Ryan, Chris, Kelly
+3. Kelly's teachers: John, Jane
+4. Ryan's teachers: John, Ken
+5. Chris' teachers: Jane, Ken
