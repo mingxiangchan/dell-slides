@@ -239,6 +239,42 @@ public boolean articleExists(String title, String category) {
 }
 ```
 
+---
+
+### Handling User Submitted Data
+
+---
+
+### As Raw String
+
+```java
+@PostMapping(value="/properties", produces="application/json")
+public String create(@RequestBody String payload) {
+    System.out.println(payload);
+    return "{}";
+}
+```
+
++++ 
+
+### With Structure
+
+```java
+@PostMapping(value="/properties", produces="application/json")
+public String create(@RequestBody User payload) {
+    System.out.println(payload);
+    return "{}";
+}
+```
+
+```java
+@PostMapping(value="/properties", produces="application/json")
+public String create(@RequestBody Booking payload) {
+    System.out.println(payload);
+    return "{}";
+}
+```
+
 
 
 
