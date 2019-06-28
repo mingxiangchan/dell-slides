@@ -110,7 +110,7 @@ public class UserDAO {
 
 @[1-3,15](DAO wrapper)
 @[4-8](Constructor)
-@[5-14](Method)
+@[9-14](Method)
 
 +++
 
@@ -138,6 +138,10 @@ public class UserRowMapper implements RowMapper<User> {
    }
 }
 ```
+
+@[1-5,15](RowMapper wrapper)
+@[6-7, 14](Endpoint)
+@[8-13](Map Rows to Properties)
 
 +++
 
@@ -177,6 +181,11 @@ public void addArticle(Article article) {
     article.setArticleId(articleId);
 }
 ```
+
+@[1,13](addArticle function)
+@[1-4,13](Add one article)
+@[1, 5-9, 13](Get the saved article)
+@[1, 5-13](Set the Article id from database data)
 
 +++
 
