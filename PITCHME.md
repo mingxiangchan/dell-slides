@@ -35,6 +35,13 @@ spring.datasource.username=
 spring.datasource.password= 1
 ```
 
++++
+
+### .gitignore
+
+- tells `git` to avoid pushing a particular folder/file to git
+- avoid uploading sensitive info (e.g. emails/passwords)
+
 ---
 
 ### AirBnB Schema
@@ -100,6 +107,10 @@ public class UserDAO {
     } 
 }
 ```
+
+@[1-3,15](DAO wrapper)
+@[4-8](Constructor)
+@[5-14](Method)
 
 +++
 
