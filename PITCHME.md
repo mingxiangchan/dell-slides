@@ -7,6 +7,10 @@
 - Java Database Connectivity
 - Allow connecting to the database from Java
 
++++
+
+![graph](https://kroki.io/mermaid/svg/eNpljE0OgjAQRvecYpZqwgVYsLDFRYMxih5gxJE0gRang-e31J_EMMv33nyBHhO5lrTFjnHIIN6ILLa1IzoBBRhAeSfs-5544c3sjd6qhdGz0Sh4xUBZ0iovS1NAR3IJxCExE5kuoKnqSp1hA7vTYQ_TT-v8_ZMI3OIcrJpjDXfPA8r6MxEb9d8YfOI3egGnkESR)
+
 ---
 
 ### Set Up
