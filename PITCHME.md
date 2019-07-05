@@ -142,13 +142,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findStudents();
 
     // with variables
-    @Query("SELECT u FROM User u WHERE u.role = 'student' AND u.name = :name'")
-    List<User> findStudentWithName(@Param("name") String name);
+    @Query("SELECT u FROM User u WHERE u.name = ?1 AND u.email = ?2")
+    List<User> findByNameAndEmail(String name, String email);
 
-    // sortable
-    // example usage: userRepository.findStudentsSorted(new Sort("name"));
-    @Query("SELECT u FROM User u WHERE u.role = 'student'")
-    List<User> findStudentsSorted(Sort sort);
+    // with named variables
+    @Query("SELECT u FROM User u WHERE u.name = :name'")
+    List<User> findWithName(@Param("name") String name);
 }
 ```
 
