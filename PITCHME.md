@@ -31,7 +31,7 @@ sequenceDiagram
 - implementation of JPA spec
 - full ORM
 
-----
+---
 
 ## Spring Data JPA
 
@@ -131,7 +131,7 @@ repository.findById()
 repository.existsById()
 ```
 
-++
++++
 
 Adding Additional Queries
 
