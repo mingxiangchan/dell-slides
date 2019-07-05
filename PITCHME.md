@@ -3,18 +3,7 @@
 ---
 
 ```mermaid
-sequenceDiagram
-    participant C as Controller
-    participant J as Spring Data JPA
-    participant H as Hibernate
-    participant D as Database
-
-    C->>J: findAll
-    J->>H: findAll (auto-generated)
-    H->>D: SELECT * FROM users;
-    D-->>H: users data (SQL)
-    H-->>J: users data (Java)
-    J-->>C: users data (Java)
+![diagram](https://kroki.io/mermaid/svg/eNptzk0OgjAQBeC9p5glmHABTEhIiyENxh-8wAAjaYIF2-L5bYsaE-zyfW9maugxk2qJS-w13jfg3oTaylZOqCwwQANsVFaPw0B65cJ7PWmpeuBoEcQpX5VKXyplQ1qhpRVzz364QUObwCzJMpHCTaouH4YQCReV3wginO2Y9KRIu51dHDql6_AU6qIq2BW2sL8cDzAb0mYXnCfLkhBB5_8b1efqM7wc_UWBT4zf552yP_oClq9gFA==)
 ```
 
 ---
