@@ -2,9 +2,7 @@
 
 ---
 
-```mermaid
 ![diagram](https://kroki.io/mermaid/svg/eNptzk0OgjAQBeC9p5glmHABTEhIiyENxh-8wAAjaYIF2-L5bYsaE-zyfW9maugxk2qJS-w13jfg3oTaylZOqCwwQANsVFaPw0B65cJ7PWmpeuBoEcQpX5VKXyplQ1qhpRVzz364QUObwCzJMpHCTaouH4YQCReV3wginO2Y9KRIu51dHDql6_AU6qIq2BW2sL8cDzAb0mYXnCfLkhBB5_8b1efqM7wc_UWBT4zf552yP_oClq9gFA==)
-```
 
 ---
 
@@ -69,10 +67,6 @@ public class Department {
   
   public String getName() {
 	return name;
-  }
-
-  public void setName(String name) {
-	this.name = name;
   }
 }
 ```
@@ -155,6 +149,55 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // example usage: userRepository.findStudentsSorted(new Sort("name"));
     @Query("SELECT u FROM User u WHERE u.role = 'student'")
     List<User> findStudentsSorted(Sort sort);
+}
+```
+
+---
+
+### Query Exercise
+
++++
+
+1. search by totalPrice more than x
+    ```
+    /api/bookings?minTotalPrice=200
+    ```
+
+2. search by totalPrice less than x
+    ```
+    /api/bookings?maxTotalPrice=200
+    ```
+
+3. search by totalPrice more than x and less than y
+    ```
+    /api/bookings?minTotalPrice=200&maxTotalPrice=300
+    ```
+
++++
+
+#### Property Show
+
+```
+/api/property/{id}
+```
+
+```json
+{
+  "property": {
+    "id": int,
+    "address": string,
+    "price": int
+  },
+  "goodReviews": {
+    "id": int,
+    "remark": string,
+    "rating": int
+  },
+  "badReviews": {
+    "id": int,
+    "remark": string,
+    "rating": int
+  }
 }
 ```
 
