@@ -185,9 +185,15 @@ public String users(@RequestParam(name = "age") int age) {
 
 ---
 
+@snap[text-left]
+
 ### Adding CSS/JS
 
 Add your css/js under `resources/static/{css | js}`
+
+@snapend
+
++++
 
 ```html
 <link href="css/main.css" rel="stylesheet" type="text/css">
