@@ -112,8 +112,6 @@ public class PublicController {
 
 ---
 
-@snap[text-left]
-
 ### Exercise
 
 - /users
@@ -123,7 +121,6 @@ public class PublicController {
 - /about-us
 - /contact-us
 
-@snapend
 
 ---
 
@@ -189,17 +186,12 @@ public String users(@RequestParam(name = "age") int age) {
 
 ---
 
-@snap[text-left]
-
 ### Adding CSS/JS
 
 Add your css/js under 
 
-```
-resources/static/{css | js}
-```
+`resources/static/{css | js}`
 
-@snapend
 
 +++
 
