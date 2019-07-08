@@ -92,6 +92,22 @@ sequenceDiagram
 +++
 
 ```java
+// UserController.java
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class UserController {
+    @GetMapping(path="/")
+    public String home() {
+        return "home";
+    }
+}
+```
+
+```html
+// resources/templates/home.html
+<h1>This is the Homepage</h1>
 ```
 
 +++
@@ -101,6 +117,61 @@ sequenceDiagram
 - create .html file
 - add mappings in controller
 - use mappings in html file
+
++++
+
+Map Java variables to Thymeleaf Variables
+
+```java
+@GetMapping(path="/users")
+public String users(Model model) {
+    String[] users = {"John", "Jane"};
+    model.addAttribute("users", users);
+    return "users";
+}
+```
+
++++
+
+Use Thymeleaf variables in HTML
+
+```html
+<ul th:each="user : ${users}">
+    <li th:text="${user}">1</li>
+</ul>
+```
+
+---
+
+### Rendering Different Pages
+
+- based on URL (e.g. /uses/1)
+- based on URL params (e.g. /users?name=mingxiang)
+
++++
+
+### Based on URL Path
+
+```java
+@GetMapping(path="/user/{name}")
+public String user(@PathVariable("name") String name) {
+    model.addAttribute("name", name);
+    return "user";
+}
+```
+
++++
+
+### Based on URL Params
+
+```java
+@GetMapping(path="/users")
+public String users(@RequestParam(name = "age") int age) {
+    model.addAttribute("age", age);
+    return "users";
+}
+```
+
 
 ---
 
