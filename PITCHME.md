@@ -114,8 +114,10 @@ public class PublicController {
 
 ### Exercise
 
-- /users  -> list of users
-- /users/1 -> 1 user
+- /users
+- /users/mingxiang
+- /images
+- /images/1
 - /about-us
 - /contact-us
 
@@ -169,18 +171,6 @@ public String user(@PathVariable("name") String name) {
 }
 ```
 
----
-
-### Adding CSS/JS
-
-Add your css/js under `resources/static/{css | js}`
-
-```html
-<link href="css/main.css" rel="stylesheet" type="text/css">
-<script src="js/main.js">
-```
-
-
 +++
 
 ### Based on URL Params
@@ -191,6 +181,17 @@ public String users(@RequestParam(name = "age") int age) {
     model.addAttribute("age", age);
     return "users";
 }
+```
+
+---
+
+### Adding CSS/JS
+
+Add your css/js under `resources/static/{css | js}`
+
+```html
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script src="js/main.js">
 ```
 
 
