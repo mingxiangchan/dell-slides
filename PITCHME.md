@@ -75,7 +75,7 @@ sequenceDiagram
 
 +++
 
-### Harcode Images Data
+### Hardcode Images Data
 
 - create `Image` class
 - properties: `id`, `url`
@@ -92,12 +92,12 @@ sequenceDiagram
 +++
 
 ```java
-// UserController.java
+// PublicController.java
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class UserController {
+public class PublicController {
     @GetMapping(path="/")
     public String home() {
         return "home";
@@ -110,7 +110,16 @@ public class UserController {
 <h1>This is the Homepage</h1>
 ```
 
-+++
+---
+
+### Exercise
+
+- /users  -> list of users
+- /users/1 -> 1 user
+- /about-us
+- /contact-us
+
+---
 
 ### HTML Template
 
@@ -159,6 +168,18 @@ public String user(@PathVariable("name") String name) {
     return "user";
 }
 ```
+
+---
+
+### Adding CSS/JS
+
+Add your css/js under `resources/static/{css | js}`
+
+```html
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script src="js/main.js">
+```
+
 
 +++
 
