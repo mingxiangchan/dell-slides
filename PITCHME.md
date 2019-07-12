@@ -27,6 +27,14 @@ Team Size: 3-4 people
 
 +++
 
+### Components
+
+- TypeORM -> Migration
+- Java Spring -> Backend
+- Angular -> Frontend
+
++++
+
 ### Brainstorm!
 
 ---
@@ -39,7 +47,7 @@ Team Size: 3-4 people
 1 person -> Java Backend
 1 person -> TypeORM
 
-++++
++++
 
 https://trello.com
 
@@ -50,6 +58,16 @@ https://trello.com
 - admin can view list of transactions
 - admin can create a new transaction
 - admin can delete a question
+
++++
+
+### API Discussion
+
+- Frontend: I need this data
+- Backend: I will send in *this* format
+
+- Frontend: I need to send this data
+- Backend: Please send in *this* format
 
 ---
 
