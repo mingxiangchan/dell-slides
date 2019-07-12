@@ -60,7 +60,12 @@ Team Size: 3-4 people
 
 +++
 
-https://trello.com
+Site: https://trello.com
+
+- create a new project
+- invite me and minghao
+    - mingxiang@nextacademy.com
+    - minghao@nextacademy.com
 
 +++
 
