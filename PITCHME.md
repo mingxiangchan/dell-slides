@@ -43,9 +43,20 @@ Team Size: 3-4 people
 
 +++
 
-1 person -> HTML/CSS/Angular
-1 person -> Java Backend
-1 person -> TypeORM
+* 1 person -> HTML/CSS/Angular
+* 1 person -> Java Backend
+* 1 person -> TypeORM
+
++++
+
+### Wireframe
+
+- draw out each page (low res)
+- highlight the important interactive elements
+    - buttons
+    - forms
+    - links
+- link different pages together
 
 +++
 
@@ -63,11 +74,10 @@ https://trello.com
 
 ### API Discussion
 
-- Frontend: I need this data
-- Backend: I will send in *this* format
-
-- Frontend: I need to send this data
-- Backend: Please send in *this* format
+- What endpoints?
+- What JSON format?
+- Send what data?
+- Receive what data?
 
 ---
 
