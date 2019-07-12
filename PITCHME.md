@@ -1,69 +1,65 @@
-### Spring Session and Security
+### Project
 
 ---
 
-Recap:
+### Instructions
 
-1. render HTML
-2. render JSON
-3. query database using JDBC
-4. query database using Spring Data/Hibernate
++++
+
+Team Size: 3-4 people
+
++++
+
+### Pick a Theme
+
+1. Automation
+2. Utility
+3. Performance
+4. Business Continuity
+
++++
+
+### Guidelines
+
+1. 10 minute presentation
+2. 3-6 pages per app
+3. 3-4 tables in DB
+
++++
+
+### Brainstorm!
 
 ---
 
-How do we differentiate logged in / non logged in users?
+### Project Planning
+
++++
+
+1 person -> HTML/CSS/Angular
+1 person -> Java Backend
+1 person -> TypeORM
+
+++++
+
+https://trello.com
+
++++
+
+### User story format
+
+- admin can view list of transactions
+- admin can create a new transaction
+- admin can delete a question
 
 ---
 
-### HTTP Request structure
+### Hints and Tips
 
-1. Header <- Auth Data Here
-2. Body
+- Frontend > Backend
+- Presentation > Functionality
+- No one needs to see the login process
+- Get the concept across
+- Hardcode Hardcode Hardcode!
 
-+++
 
-### Formats
 
-1. client-side session
-2. server-side session
-3. client-side cookie
-4. authorization header
-
-+++
-
-Usually the authorization format just stores an identifier string
-
-1. user_id
-2. generated token unique to the user
-
-+++
-
-We will be focusing on:
-
-1. authorization header
-2. generated token unique to the user (JWT format)
-
-+++
-
-### Why only JWT?
-
-1. focus on building API endpoints
-2. sessions/cookies not applicable
-
----
-
-### Dependencies
-
-Install `spring-boot-starter-security`
-
-```xml
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-jwt</artifactId>
-</dependency>
-```
-
-### Authorization Flow
-
-```mermaid
-```
