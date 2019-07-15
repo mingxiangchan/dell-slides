@@ -32,11 +32,13 @@
 - add JDBC to list of Maven dependencies
 - add DB config to application.properties
 
++++
+
 ```
-spring.datasource.driver-class-name=
-spring.datasource.url=
-spring.datasource.username=
-spring.datasource.password= 1
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.datasource.url=jdbc:sqlserver://localhost;databaseName=employees
+spring.datasource.username=testing
+spring.datasource.password= testing
 ```
 
 +++
@@ -63,6 +65,14 @@ spring.datasource.password= 1
 
 +++
 
+### Key Concepts
+
+- use `Entity` to represent SQL table
+- use `RowMapper` to convert SQL row to Java object
+- use `Repository` or `DAO` to trigger SQL queries
+
+---
+
 ### Entities
 
 - beans representing objects in the DB
@@ -73,7 +83,12 @@ spring.datasource.password= 1
 
 ```java
 class User {
-    private name;
+    private int id;
+    private String name;
+
+    String getId() {
+        return this.id;
+    }
 
     String getName() {
         return this.name;
@@ -85,7 +100,7 @@ class User {
 }
 ```
 
-+++
+---
 
 ### Data Access Object (DAO)
 
@@ -116,7 +131,7 @@ public class UserDAO {
 @[4-8](Constructor)
 @[9-14](Method)
 
-+++
+---
 
 ### RowMapper 
 
