@@ -290,7 +290,40 @@ public String create(@RequestBody Booking payload) {
 }
 ```
 
+---
 
+### Exercise
+
++++
+
+
+```bash
+# search by email
+GET /users?email=mingxiangchan@gmail.com
+```
+
+```bash
+# get payments for booking with ID
+GET /bookings/{id}/payments
+```
+
+```bash
+# get properties ordered by price
+GET /orderedProperties
+```
+
++++
+
+```bash
+# search by address, numRooms, or price
+GET /properties?address=x
+
+# get properties that have at least 1 booking
+GET /bookedProperties
+
+# search for reviews with rating greater than x
+GET /reviews?rating=x
+```
 
 
 
