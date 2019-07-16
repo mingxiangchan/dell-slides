@@ -11,12 +11,21 @@ Get it [here](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare
 
 ### Download Template Code
 
-1. open powershell
-2. copy this [url](https://github.com/mingxiangchan/ts-node-boilerplate)
-3. `git clone <url>`
-4. change the folder name
-5. `cd folder_name`
-6. `npm install`
+```bash
+# open powershell
+cd <your-learning-folder>
+
+git clone https://github.com/mingxiangchan/ts-node-boilerplate
+
+# rename the downloaded folder
+Rename-Item ./ts-node-boilerplate <new-folder-name>
+
+cd <new-folder-name>
+
+# install javascript dependencies
+npm install
+```
+
 
 ---
 
