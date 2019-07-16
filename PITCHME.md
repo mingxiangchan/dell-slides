@@ -44,11 +44,14 @@ npm install
 
 ### Pseudocode
 
-1. for each category
+1. For each category
     - show the user a question: Please select your <something>
     - show the user the possible selections
     - ask them to select one
     - move on to next question
-2. at the end
+
++++
+
+2. At the end
     - show them which components they selected previously
     - show them to total price of all the selected components
