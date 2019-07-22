@@ -1,4 +1,4 @@
-### Spring Data JPA and Hibernate
+## Spring Data JPA<br>and Hibernate
 
 ---
 
