@@ -36,6 +36,18 @@
 </dependency>
 ```
 
++++
+
+### application.properties Set Up
+
+```
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.datasource.url=jdbc:sqlserver://localhost;databaseName=employee_demo
+spring.datasource.username=mingxiangchan
+spring.datasource.password=123123
+```
+
 ---
 
 ### Usage
@@ -53,21 +65,17 @@
 @Entity
 public class Department {
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
   private String name;
-  
-  public Department(String name) {
-	this.name = name;
-  } 
 
-  public Long getId() {
-	return id;
-  }
+  @Column(name = "name")
+  private String name;
+
+  @Column(name = "address")
+  private String address;
   
-  public String getName() {
-	return name;
-  }
+  // ...getters and setters
 }
 ```
 
@@ -90,7 +98,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 @RestController
 @RequestMapping(path="/")
 public class DepartmentController {
-    @Autowired
+  @Autowired
 	private DepartmentRepository departmentRepository;
 	
 	@GetMapping(path="/departments", produces="application/json")
@@ -155,22 +163,57 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 ### Query Exercise
 
+```bash
+/bookings
+/properties
+/reviews
+/bookings/{id}
+/properties/{id}
+/reviews/{id}
+```
+
 +++
 
-1. search by totalPrice more than x
-    ```
-    /api/bookings?minTotalPrice=200
-    ```
+### Query Exercises
 
-2. search by totalPrice less than x
-    ```
-    /api/bookings?maxTotalPrice=200
-    ```
+```bash
+# search by total price more than x
+/bookings?minTotalPrice=200
 
-3. search by totalPrice more than x and less than y
-    ```
-    /api/bookings?minTotalPrice=200&maxTotalPrice=300
-    ```
+# search by total price less than y
+/bookings?maxTotalPrice=200
+
+# search by total price between x and y
+/bookings?minTotalPrice=200&maxTotalPrice=300
+```
+
++++
+
+### Custom Query Exercises
+
+```bash
+# search by price more than x
+/properties?minPrice=200
+
+# search by price less than y
+/properties?maxPrice=200
+
+# search by price between x and y
+/properties?minPrice=200&maxTotalPrice=300
+```
++++
+
+### JOIN Exercises
+
+```bash
+# list reviews for property with id
+/properties/{id}/reviews
+
+# list properties with tags
+/properties?tag=pets_allowed
+```
+
+
 
 +++
 
