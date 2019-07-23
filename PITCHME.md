@@ -36,11 +36,115 @@
 
 ### Links:
 
-[Background](https://devdocs.io/css/background)
-[Border](https://devdocs.io/css/border)
-[Font Styling](https://devdocs.io/css/font)
-[Font Color](https://devdocs.io/css/color)
-[Text Styling](https://devdocs.io/css-text/)
+- [Background](https://devdocs.io/css/background)
+- [Border](https://devdocs.io/css/border)
+- [Font Styling](https://devdocs.io/css/font)
+- [Font Color](https://devdocs.io/css/color)
+- [Text Styling](https://devdocs.io/css-text/)
+
+---
+
+### CSS Selectors
+
+- Using HTML element tag
+- Using `class`
+- Using `id`
+
++++
+
+### Based on HTML element
+
+```html
+<body>
+    Haha
+    <p>Hello</p>
+</body>
+```
+
+
+```css
+body {
+    color: red;
+}
+
+p {
+    color: green;
+}
+```
+
++++
+
+### Based on HTML class
+
+```html
+<div class="haha">
+    Haha
+</div>
+<div class="hoho">
+    Hoho
+</div>
+```
+
+
+```css
+.haha {
+    color: red;
+}
+
+.hoho {
+    color: green;
+}
+```
+
++++
+
+### Based on HTML id
+
+```html
+<div id="haha">
+    Haha
+</div>
+<div id="hoho">
+    Hoho
+</div>
+```
+
+
+```css
+#haha {
+    color: red;
+}
+
+#hoho {
+    color: green;
+}
+```
+
++++
+
+### Combined
+
+```html
+<div id="haha">
+    Haha
+</div>
+<div class="hoho">
+    Hoho
+</div>
+<p class="hoho">
+    Hoho
+</p>
+```
+
+```css
+div#haha {
+    color: red;
+}
+
+div.hoho {
+    color: green;
+}
+```
 
 ---
 
