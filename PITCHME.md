@@ -1,218 +1,247 @@
-### Java Web Apps
+### Intro to Java
 
 ---
 
-### How the Web Works
+#### Instructions
 
-- browser sends request to server
-- server checks data in DB
-- server sends response to browser
+1. Install Java (check school)
+2. Create a folder for today's java projects
+
+---
+
+#### Basics
+
+1. create a file ending with `.java`
+2. use the `class` snippet to auto create the class
+3. ensure there is a `main` function with `public static void` before it
+4. every line MUST end with semicolon `;`
+
+---
+
+#### Printing to Terminal
+
+```java
+String x  = "abc"
+System.out.println(x)
+```
+
+Running file
+
+```bash
+java <filename>
+```
 
 +++
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    participant D as Database
+#### Variables
 
+requires type declaration
 
-    C->>S: GET /users
-    S->>D: SELECT * FROM users
-    D-->>S: user rows
-    S-->>C: HTML/JSON data
+```java
+int x = 123
+char y = 'a'
+boolean z = true
+```
+
++++
+
+#### Strings vs Chars
+
+```java
+char x = 'a'
+String name = "abc"
+```
+
++++
+
+#### Arrays
+
+```java
+int[] x = {1,2,3}
+Array<String> y = {"abc", "def"}
+```
+
++++
+
+#### Maps
+
+```java
+Map<String, Integer> pokemon = Map.ofEntries(
+    entry("charmander", 50),
+    entry("squirtle", 20)
+);
 ```
 
 ---
 
-### Spring Framework
-
-- Framework for building apps in Java
-- Powerful ecosystem with many extensions/libraries
-
-+++
-
-### Why use a Framework
-
-- follow established conventions
-- reusue existing code
-- speed up development
-
-+++
-
-### Example
-- receive request/send response using Spring Web
-- connect to SQL Server using SQL Server Adapter
-- interface with database using JDBC/Hibernate
-- generate HTML using Thymeleaf
-- interface with third party services via SDKs, e.g. Paypal
+### Advanced
 
 ---
 
-### Exercise: Nextagram V1
+#### Primitives vs Non Primitives
 
-- HTML -> homepage displaying all images
-- JSON -> list of users
-- JSON -> list of images for a user
-- no database, all data is hardcoded
+```java
+// primitives
+int x = 123;
+char y = 'a';
+boolean z = true;
+
+// not primitives
+Integer x = 123;
+Character y = 'a';
+Boolean z = true;
+String name = "John";
+```
+
++++
+
+#### Array vs ArrayList
+
+```java
+import java.util.ArrayList;
+
+// can contain primitives
+int[] x = {1,2,3};
+Array<char> y = {'a', 'b'};
+
+// cannot contain primitives
+ArrayList<int> x = {1,2,3}; // will raise error
+ArrayList<Integer> x = Arrays.asList(1,2,3);
+
+// or
+Array<Integer> x = {1,2,3};
+ArrayList<Integer> y = Arrays.asList(x);
+```
+
++++
+
+`ArrayList` allows you to modify the array
+
+```java
+ArrayList<Character> x = Arrays.asList('a','b','c');
+x.add('d'); // => {'a', 'b', 'c', 'd'}
+x.get(2); // => 'c'
+x.size(); // => 3
+x.clear(); // => {}
+x.remove(1); // => {'a', 'c'}
+x.isEmpty(); // => false
+```
+
++++
+
+#### Nested Arrays
+
+```java
+int[][] x = {{1,2},{3,4}};
+Array<Array<int>> x = {{1,2},{3,4}};
+
+// it can get a little complicated
+char[] x = {'a','b'};
+char[] y = {'c','d'};
+ArrayList<char[]> z = new ArrayList<char[]>() // create empty array list;
+z.add(x);
+z.add(y);
+```
 
 ---
 
-### Phase 1: Homepage
+### Map vs HashMap
 
-- initialize in Spring Tools Suite
-- hardcode images data 
-- create GET endpoint returning HTML
-- create HTML template for homepage
+```java
+import java.util.HashMap;
 
-+++
+HashMap<String, Integer> x = new HashMap<String, Integer>()
+x.put("age", 28)
+x.put("height", 183)
+```
 
-### Initialization
+---
 
-- Spring Web
-- Spring Dev Tools
-- ThymeleafT
+### Control Flow
 
-+++
+---
 
-### Hardcode Images Data
+#### If / Else
 
-- create `Image` class
-- properties: `id`, `url`
-- hardcode 12 images
-
-+++
-
-### GET endpoint
-
-- create controller
-- add required annotations
-- import hardcoded images
+```java
+if (x == y) {
+  // do something
+} else {
+  // do something else
+}
+```
 
 +++
 
 ```java
-// PublicController.java
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+if (123) { } // this will fail
 
-@Controller
-public class PublicController {
-    @GetMapping(path="/")
-    public String home() {
-        return "home";
-    }
-}
-```
+if (true) { } // this will succeed
+if (x == y) { } // this will succeed
 
-```html
-// resources/templates/home.html
-<h1>This is the Homepage</h1>
+// string equality
+if ("abc".equals("abc")) { } // this is correct
+if ("abc" == "abc") { } // this is incorrect
 ```
 
 ---
 
-### Exercise
-
-- /users
-- /users/mingxiang
-- /images
-- /images/1
-- /about-us
-- /contact-us
-
-
----
-
-### HTML Template
-
-- create .html file
-- add mappings in controller
-- use mappings in html file
-
-+++
-
-Map Java variables to Thymeleaf Variables
+#### For / While Loops
 
 ```java
-@GetMapping(path="/users")
-public String users(Model model) {
-    String[] users = {"John", "Jane"};
-    model.addAttribute("users", users);
-    return "users";
+while (true) {
+  // do something
 }
 ```
-
-+++
-
-Use Thymeleaf variables in HTML
-
-```html
-<ul th:each="user : ${users}">
-    <li th:text="${user}">1</li>
-</ul>
-```
-
----
-
-### Rendering Different Pages
-
-- based on URL (e.g. /uses/1)
-- based on URL params (e.g. /users?name=mingxiang)
-
-+++
-
-### Based on URL Path
 
 ```java
-@GetMapping(path="/user/{name}")
-public String user(@PathVariable("name") String name) {
-    model.addAttribute("name", name);
-    return "user";
+for (int i = 0; i < array.length(); i++) {
+  // do something
 }
 ```
 
-+++
+---
 
-### Based on URL Params
+#### Functions
 
 ```java
-@GetMapping(path="/users")
-public String users(@RequestParam(name = "age") int age) {
-    model.addAttribute("age", age);
-    return "users";
+int sum(x int, y int) {
+  return x + y;
+}
+```
+
+is the same as
+
+```ts
+function sum(x: number, y: number): number {
+  return x + y
 }
 ```
 
 ---
 
-### Adding CSS/JS
-
-Add your css/js under 
-
-`resources/static/{css | js}`
-
+### Exercises
 
 +++
 
-```html
-<link href="css/main.css" rel="stylesheet" type="text/css">
-<script src="js/main.js">
-```
+#### Todo List
 
+1. print a list of todos
+2. for each todo, show whether it is completed or not
 
----
++++
 
-### Phase 2: JSON -> List of users
+#### Tic Tac Toe
 
-- hardcode users data 
-- create GET endpoint returning JSON
-- process users data into JSON
+1. print a tic tac toe board (pre filled)
+2. no user input
+3. check whether there is a winner/loser/draw
+4. print message saying who won / its a draw
 
----
++++
 
-### Phase 3: JSON -> List of images for a user
+#### Pokemon
 
-- hardcode users -> images data
-- create GET endpoint returning JSON
-- process user ID to get correct list of images
+1. 2 pokemon are sent out
+2. they take turns attacking each other
+3. use user input to select move
