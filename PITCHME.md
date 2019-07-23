@@ -2,6 +2,19 @@
 
 ---
 
+### Web Boilerplate
+
+[Github Repo](https://github.com/mingxiangchan/ts-web-boilerplate)
+
+```bash
+cd <training-folder>
+git clone https://github.com/mingxiangchan/ts-web-boilerplate
+Rename-Item "ts-web-boilerplate" "css-exercises"
+cd "css-exercises"
+```
+
+---
+
 ### Webpage Building Blocks
 
 - HTML: content
