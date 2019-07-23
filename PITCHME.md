@@ -189,4 +189,128 @@ div.hoho {
 
 ---
 
+### Positioning
+
+- Start from top-left
+- Child starts from parent `content`
+- Use margin/padding/width/height to position
+
+---
+
+### Centering Elements
+
+- text-align
+- margin / padding
+- flex
+- position absolute
+
+---
+
+### Text-Align
+
+```css
+p {
+    text-align: center;
+}
+```
+
++++
+
+- only works for horizontal centering
+- only reliable for text
+- requires element `width` to be set correctly
+
+---
+
+### Margin / Padding
+
+```html
+<div id="parent">
+    <div id="child"></div>
+</div>
+```
+
+```css
+#parent {
+    width: 500px;
+    height: 100px;
+}
+
+#child {
+    /* horizontal-centering */
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+
+    /* vertical-centering */
+    height: 40%;
+    margin-top: 30%;
+    margin-bottom: 30%;
+}
+```
+
++++
+
+- works on the box level
+- have to manually adjust if there are multiple child elements
+    - e.g. child 1 is 20%, child 2 is 20%, margin left/right is 30%
+
+---
+
+### Flex
+
+```html
+<div id="parent">
+    <div id="child"></div>
+</div>
+```
+
+```css
+#parent {
+    display: flex;
+
+    /* horizontal-centering */
+    justify-content: center;
+
+    /* vertical-centering */
+    align-items: center;
+}
+```
+
++++
+
+- all alignment properties set on parent
+- very powerful centering abilities
+- able to handle spacing between child elements
+- may not be supported on older browsers
+
+---
+
+### Position Absolute
+
+```html
+<div id="parent">
+    <div id="child"></div>
+</div>
+```
+
+```css
+#parent {
+    position: relative;
+}
+
+#child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+```
+
++++
+
+- most powerful positioning method
+- will break all other alignment
+- last resort
+
 
