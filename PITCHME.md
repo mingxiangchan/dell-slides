@@ -190,7 +190,7 @@ div#haha {
 
 ### Exercise
 
-![Click Here](https://flukeout.github.io/)
+[Click Here](https://flukeout.github.io/)
 
 ---
 
