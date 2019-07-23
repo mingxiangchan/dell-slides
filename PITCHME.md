@@ -146,6 +146,32 @@ div.hoho {
 }
 ```
 
++++
+
+### Combined
+
+```html
+<div id="haha">
+    Haha
+    <p> Hoho </p>
+    <div> Hehe </div>
+</div>
+```
+
+```css
+div#haha {
+    color: red;
+}
+
+#haha p {
+    color: green;
+}
+
+#haha div {
+    color: yellow;
+}
+```
+
 ---
 
 ### Exercise
