@@ -150,7 +150,7 @@ div.hoho {
 
 ### Exercise
 
-![resume-site](./resume.jpg)
+![Click Here](https://flukeout.github.io/)
 
 ---
 
