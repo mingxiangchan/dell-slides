@@ -15,55 +15,60 @@ How do we differentiate logged in / non logged in users?
 
 ---
 
-### HTTP Request structure
-
-1. Header <- Auth Data Here
-2. Body
+### HTTP is Stateless
 
 +++
 
-### Formats
+#### Each HTTP Request is:
 
-1. client-side session
-2. server-side session
-3. client-side cookie
-4. authorization header
+- completely separate from the previous ones
+- must prove it is authorized
+
++++?color=linear-gradient(90deg, white 50%, black 50%)
+
+@snap[north-west span-40 text-white text-09]
+@box[bg-green](Step 1. # Check in at hotel)
+@snapend
+
+@snap[west span-40 text-white text-09]
+@box[bg-blue](Step 2. # Get room key)
+@snapend
+
+@snap[south-west span-40 text-white text-09]
+@box[bg-gold](Step 3. # Every time you enter the room, tap key)
+@snapend
+
+@snap[north-east span-40 text-white text-09]
+@box[bg-green](Step 1. # Login with username/password)
+@snapend
+
+@snap[east span-40 text-white text-09]
+@box[bg-blue](Step 2. # Get authorization token)
+@snapend
+
+@snap[south-east span-40 text-white text-09]
+@box[bg-gold](Step 3. # Attach token in HTTP headers for every request)
+@snapend
 
 +++
 
-Usually the authorization format just stores an identifier string
+@snap[north span-100]
+#### Authorization Storage Mechanisms
+@snapend
 
-1. user_id
-2. generated token unique to the user
+
+@snap[east span-40 text-white text-09]
+@box[bg-green](# sessions)
+@snapend
+
+@snap[midpoint span-40 text-white text-09]
+@box[bg-blue](# cookies)
+@snapend
+
+@snap[west span-40 text-white text-09]
+@box[bg-gold](# tokens)
+@snapend
 
 +++
 
-We will be focusing on:
-
-1. authorization header
-2. generated token unique to the user (JWT format)
-
-+++
-
-### Why only JWT?
-
-1. focus on building API endpoints
-2. sessions/cookies not applicable
-
----
-
-### Dependencies
-
-Install `spring-boot-starter-security`
-
-```xml
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-jwt</artifactId>
-</dependency>
-```
-
-### Authorization Flow
-
-```mermaid
-```
+### T
