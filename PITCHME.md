@@ -124,28 +124,106 @@ graph LR
 ```
 ---
 
-### Auth In Spring
+### Auth Libs In Spring
 
 - Spring Security
 - JWT Token Auth
 
++++
+
+### Create a New Spring Project
+
+- name: jwt
+- add usual dependencies
+
++++
+
+#### Add Maven Dependencies
+
+1. jjwt-jackson
+2. jjwt-impl
+3. jjwt-api
+4. spring-boot-starter-security
+
 ---
 
-1. Sign Up or Login
-2. Get a JWT Token
-3. Attach JWT Token in subsequent requests
-4. Access Restricted endpoints
+### Example Repo
 
+[Clone it Here](https://github.com/mingxiangchan/spring-jwt)
 
++++
 
+#### Explore it...
 
+Then import it to your own repo!
 
+---
 
+### Endpoints
 
+```bash
+# unsecured endpoint
+/public
 
+# secured endpint
+/restricted
 
+# sign up endpoint
+/signup
 
+# log in endpoint
+/authenticate
 
+# check current user info endpoint
+/currentUser
+```
 
++++
 
+### Interesting Files
 
+```
+configuration/SecurityConfiguration.java
+constants/SecurityConstants.java
+security/JwtUtils.java
+security/JwtAuthorizationFilter.java
+security/JwtAuthenticationFilter.java
+security/CustomUserDetailsService.java
+```
+
+---
+
+#### Secured vs Non Secured Endpoints
+
+- check `configuration/SecurityConfiguration.java`
+- restrict all endpoints by default
+- selectively enable certain endpoints to be insecure
+
+---
+
+### Signing Up
+
+- check `controllers/SignupController.java`
+- send username, password
+- create user in DB
+- generate JWT token
+- return JWT token in response
+
+---
+
+### Logging In
+
+- check `security/JwtAuthenticationFilter.java`
+- send username, password
+- check login credentials for match
+- return JWT token in response if success
+- a lot of internal workings hidden by Spring Security
+
+---
+
+### Accessing Restricted Endpoints
+
+- check `security/JwtAuthorizationFilter.java`
+- send JWT token under `Authorization` HTTP Header
+- check userId contained inside JWT `subject`
+- get currentUser from the userId
