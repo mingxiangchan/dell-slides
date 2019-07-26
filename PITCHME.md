@@ -336,5 +336,6 @@ Response Header
 ### Final Exercise
 
 1. Add email to <span class="text-blue">users</span> table (migration)
+2. Log in with <span class="text-blue">email</span> and password
 2. Store email inside JWT instead of <span class="text-blue">users.id</span>
 3. Change code to use <span class="text-blue">users.email</span> to identify current user
