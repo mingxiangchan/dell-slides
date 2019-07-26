@@ -113,15 +113,15 @@ Note:
 
 +++
 
-```mermaid
-graph LR
-  su[Sign Up] --> gt[Get Token]
-  lg[Log In] --> gt
-  gt --> getLottery
-  gt --> resetPassword
-  gt --> deleteAcc
+![graph](https://kroki.io/mermaid/svg/eNpLL0osyFDwCeJSUCgujQ7OTM9TCC2IVdDVtVNIL4l2Ty1RCMnPTs2LBcrnpEf75KcreObBpIFi6SUQdmqJT35JSWpRJUKsKLU4tSQgsbi4PL8oBQBfMyAB)
 
-```
+---
+
+### Create a Auth Test DB
+
+- users table
+  - username: string
+  - password: string
 ---
 
 ### Auth Libs In Spring
@@ -156,6 +156,14 @@ graph LR
 #### Explore it...
 
 Then import it to your own repo!
+
++++
+
+#### Don't Roll Your Own
+
+- Auth is too complicated
+- learn how to configure it
+- no need to write from scratch
 
 ---
 
@@ -195,35 +203,138 @@ security/CustomUserDetailsService.java
 
 #### Secured vs Non Secured Endpoints
 
-- check `configuration/SecurityConfiguration.java`
+- check <span class="text-blue">configuration/SecurityConfiguration.java</span>
 - restrict all endpoints by default
 - selectively enable certain endpoints to be insecure
+
++++
+
+### How does it check?
+
+- parses response header for "Authorization" header
+- processes it as JWT if present
+- check if user_id is present in JWT
+
++++
+
+### Why Authorization Header
+
+- the standard header for sensitive authorization data
+- automatically filtered by logging/browsers etc.
+
++++
+
+### Exercise
+
+1. create a new endpoint <span class="text-blue">/testing</span>
+2. make your endpoint restricted
+3. create a new endpoint <span class="text-blue">/testing2</span>
+4. make your endpoint public
 
 ---
 
 ### Signing Up
 
-- check `controllers/SignupController.java`
+- check <span class="text-blue">controllers/SignupController.java</span>
 - send username, password
 - create user in DB
 - generate JWT token
 - return JWT token in response
 
++++
+
+### Sign Up Endpoint
+
+```
+localhost:8080/signup
+```
+
+Request Body
+
+```json
+{
+  "username": "mingxiangchan",
+  "password": "123123"
+}
+```
+
+Response Body
+
+```json
+{
+  "token": <token>
+}
+```
+
++++
+
+### Using JWT
+
+- in Postman
+- send the signup request
+- get the token
+- send a request to the restricted endpoints using the token
+
++++
+
+### Password Encryption
+
+- check the password in DB
+- check the setPassword method on UserEntity
+
++++
+
+### Exercise
+
+- change the signup endpoint to <span class="text-blue">/api/signup</span>
+- sign up 3 times, save the token each time
+
 ---
 
 ### Logging In
 
-- check `security/JwtAuthenticationFilter.java`
+- check <span class="text-blue">security/JwtAuthenticationFilter.java</span>
 - send username, password
 - check login credentials for match
 - return JWT token in response if success
 - a lot of internal workings hidden by Spring Security
 
++++
+
+### Login Endpoint
+
+```
+localhost:8080/authenticate
+```
+
+Request Body
+
+```json
+{
+  "username": "mingxiangchan",
+  "password": "123123"
+}
+```
+
+Response Header
+
+```json
+{
+  "Authorization": <token>
+}
+```
+
++++
+
+### Exercise
+
+1. change login endpoint to <span class="text-blue">/api/authenticate</span>
+2. log in 3 times and store the tokens
+
 ---
 
-### Accessing Restricted Endpoints
+### Final Exercise
 
-- check `security/JwtAuthorizationFilter.java`
-- send JWT token under `Authorization` HTTP Header
-- check userId contained inside JWT `subject`
-- get currentUser from the userId
+1. Add email to <span class="text-blue">users</span> table (migration)
+2. Store email inside JWT instead of <span class="text-blue">users.id</span>
+3. Change code to use <span class="text-blue">users.email</span> to identify current user
