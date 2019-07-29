@@ -94,5 +94,28 @@ Site: https://trello.com
 - Get the concept across
 - Hardcode Hardcode Hardcode!
 
+---
 
+### Beginning a Project
+
+- create repo
+- invite collaborators
+
++++
+
+### Workflow
+
+- pick a card from the project board
+- create a branch for it
+- add code into it
+- commit and make pull request
+- merge into master
+
++++
+
+### Sensitive Files
+
+- create a shared DB login for all collaborators
+- use .gitignore to avoid upload passwords to github
+- share the sensitive files via other channels
 
