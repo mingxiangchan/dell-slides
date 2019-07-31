@@ -39,13 +39,14 @@
 +++
 
 ### Typical Web Flow
-<img src="https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gICAgaWQxW0Jyb3dzZXIgbG9hZHNdIC0tPiBpZDJbSFRNTCBhbmQgQ1NTXVxuICAgIGlkMi0tPiBpZDNbQWRkcyBKUyBldmVudCBsaXN0ZW5lcnMgYW5kIGZ1bmN0aW9uc11cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19">
+
+![https://mermaidjs.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7YW5kIFxuICAgIGlkMVtCcm93c2VyIGxvYWRzXSAtLT4gaWQyW0hUTUwgYW5kIENTU11cbiAgICBpZDItLT4gaWQzW0FkZHMgSlMgZXZlbnQgbGlzdGVuZXJzIGFuZCBmdW5jdGlvbnNdXG4iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ](https://kroki.io/mermaid/svg/eNpLL0osyFAIcbHmUgCCzBTDaKei_PLi1CKFnPzElOJYBV1dO6CwUbRHiK-PQmJeioJzcHAsVLERRNI42jElpVjBK1ghtSw1r0QhJ7O4JDUvtagYrD6tNC-5JDM_rziWCwANYiJA)
 
 +++
 
 ### Angular Flow
 
-<img src="https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gICAgaWQxW0Jyb3dzZXIgbG9hZHNdIC0tPiBpZDJbQmFyZWJvbmVzIEhUTUwgYW5kIENTU11cbiAgICBpZDItLT4gaWQzW1VzZSBKUyB0byBkeW5hbWljYWxseSByZW5kZXIgbmV3IEhUTUwgZWxlbWVudHMgdXNpbmcgZGF0YV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19">
+![https://mermaidjs.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gICAgaWQxW0Jyb3dzZXIgbG9hZHNdIC0tPiBpZDJbQmFyZWJvbmVzIEhUTUwgYW5kIENTU11cbiAgICBpZDItLT4gaWQzW1VzZSBKUyB0byBkeW5hbWljYWxseSByZW5kZXIgbmV3IEhUTUwgZWxlbWVudHMgdXNpbmcgZGF0YV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19](https://kroki.io/mermaid/svg/eNotjDEOwjAQBPu8Yj-QglAiUQQKhKByqCwXB3cKkZwz8hlF-T2WwpajmR0zfd4YzocGdRPvfJ_TYpIRE7EFtO2x4s73lOWZVAyX4X4DKePkXPhn3abt_cMEV4eSwKvSPL0oxhVZlOulyrLVEmUWLYavTTqCqVBoftRRLLE=)
 
 ---
 
@@ -193,6 +194,7 @@ class ComponentName {
     }
 }
 ```
++++
 
 ### Exercise 
 - toggle Highlight nav bar item on click 
