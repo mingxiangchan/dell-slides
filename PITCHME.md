@@ -1,340 +1,253 @@
-### Spring Session and Security
+### Assignment Review: Laptop Builder
+- Layout
+- Styles
+- Typescript
 
 ---
 
-Recap:
+### Dynamic VS Static
 
-1. render HTML
-2. render JSON
-3. query database using JDBC
-4. query database using Spring Data/Hibernate
++++
+
+### Static Websites
+- Used to show static information
+- Unchanging, typically for information display
+- e.g https://www.nextacademy.com/
+
++++
+
+### Dynamic Web Applications
+- Used to show dynamic information and functions
+- Changes based on information retrieved from an external source
+- e.g https://www.airbnb.com/
+
++++
+
+#### Think of dynamic web apps as a HTML template that can accept variable inputs to change what information is shown
 
 ---
 
-How do we differentiate logged in / non logged in users?
+### Introduction: Angular
+- A Javascript Framework to build dynamic web applications
+
++++
+
+### A Framework provides:
+- sets of tools used to build web applications
+- dictates the structure of your web application
+
++++
+
+### Typical Web Flow
+<img src="https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gICAgaWQxW0Jyb3dzZXIgbG9hZHNdIC0tPiBpZDJbSFRNTCBhbmQgQ1NTXVxuICAgIGlkMi0tPiBpZDNbQWRkcyBKUyBldmVudCBsaXN0ZW5lcnMgYW5kIGZ1bmN0aW9uc11cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19">
+
++++
+
+### Angular Flow
+
+<img src="https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gICAgaWQxW0Jyb3dzZXIgbG9hZHNdIC0tPiBpZDJbQmFyZWJvbmVzIEhUTUwgYW5kIENTU11cbiAgICBpZDItLT4gaWQzW1VzZSBKUyB0byBkeW5hbWljYWxseSByZW5kZXIgbmV3IEhUTUwgZWxlbWVudHMgdXNpbmcgZGF0YV1cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19">
 
 ---
 
-### HTTP is Stateless
+### Angular Setup
+- Node
+- npm
+- typescript
 
 +++
-
-#### Each HTTP Request is:
-
-- completely separate from the previous ones
-- must prove it is authorized
-
-+++?color=linear-gradient(90deg, white 50%, black 50%)
-
-@snap[north-west span-40 text-white text-09]
-@box[bg-green](Step 1. # Check in at hotel)
-@snapend
-
-@snap[west span-40 text-white text-09]
-@box[bg-blue](Step 2. # Get room key)
-@snapend
-
-@snap[south-west span-40 text-white text-09]
-@box[bg-gold](Step 3. # Every time you enter the room, tap key)
-@snapend
-
-@snap[north-east span-40 text-white text-09]
-@box[bg-green](Step 1. # Login with username/password)
-@snapend
-
-@snap[east span-40 text-white text-09]
-@box[bg-blue](Step 2. # Get authorization token)
-@snapend
-
-@snap[south-east span-40 text-white text-09]
-@box[bg-gold](Step 3. # Attach token in HTTP headers for every request)
-@snapend
-
-+++
-
-@snap[north span-100]
-#### Authorization Storage Mechanisms
-@snapend
-
-@snap[east span-40 text-white text-09]
-@box[bg-green](# sessions)
-@snapend
-
-@snap[midpoint span-40 text-white text-09]
-@box[bg-blue](# cookies)
-@snapend
-
-@snap[west span-40 text-white text-09]
-@box[bg-gold](# tokens)
-@snapend
-
-+++
-
-### In this course...
-
-- only teach token auth
-- sessions/cookies inapplicable to API auth
-- do you want to write Thymeleaf?
-
----
-
-### 4 Main Sections
-
-- Signing Up
-- Logging In
-- Authorized Requests
-- Logging Out
-
-+++
-
-#### Group Activity: Understanding Auth Flow
-
-Note:
-
-- 3 ppl manage sign up - record details
-- 2 ppl manage login - issue token
-- 2 ppl manage post-login(1) - get lottery number
-- 2 ppl manage post-login(2) - reset password
-- everyone else act as requesters
-
-- backend ppl share a google sheet of users
-- each signup requires a username and password, add a random lottery number
-- issue a 3 letter token
-- use token to check which user
-
-+++
-
-#### 4 Stations:
-
-- getLotteryNumber
-- signUp
-- login
-- resetPassword
-
-+++
-
-![graph](https://kroki.io/mermaid/svg/eNpLL0osyFDwCeJSUCgujQ7OTM9TCC2IVdDVtVNIL4l2Ty1RCMnPTs2LBcrnpEf75KcreObBpIFi6SUQdmqJT35JSWpRJUKsKLU4tSQgsbi4PL8oBQBfMyAB)
-
----
-
-### Create a Auth Test DB
-
-- users table
-  - username: string
-  - password: string
----
-
-### Auth Libs In Spring
-
-- Spring Security
-- JWT Token Auth
-
-+++
-
-### Create a New Spring Project
-
-- name: jwt
-- add usual dependencies
-
-+++
-
-#### Add Maven Dependencies
-
-1. jjwt-jackson
-2. jjwt-impl
-3. jjwt-api
-4. spring-boot-starter-security
-
----
-
-### Example Repo
-
-[Clone it Here](https://github.com/mingxiangchan/spring-jwt)
-
-+++
-
-#### Explore it...
-
-Then import it to your own repo!
-
-+++
-
-#### Don't Roll Your Own
-
-- Auth is too complicated
-- learn how to configure it
-- no need to write from scratch
-
----
-
-### Endpoints
-
-```bash
-# unsecured endpoint
-/public
-
-# secured endpint
-/restricted
-
-# sign up endpoint
-/signup
-
-# log in endpoint
-/authenticate
-
-# check current user info endpoint
-/currentUser
-```
-
-+++
-
-### Interesting Files
 
 ```
-configuration/SecurityConfiguration.java
-constants/SecurityConstants.java
-security/JwtUtils.java
-security/JwtAuthorizationFilter.java
-security/JwtAuthenticationFilter.java
-security/CustomUserDetailsService.java
+npm install -g @angular/cli
+
+```
+
+---
+### Angular Commands
+```cli
+// Creates the folder and files for a new Angular app
+ng new <app-name>
+
+// The following commands must be run within the created app folder
+// Starts the Angular Server on port 4200
+ng serve
+// Creates new folders/files based on a schematic eg: ng generate component ToDoList
+ng generate <schematic> <filename>
+// HELP
+ng <command-name> --help
 ```
 
 ---
 
-#### Secured vs Non Secured Endpoints
-
-- check <span class="text-blue">configuration/SecurityConfiguration.java</span>
-- restrict all endpoints by default
-- selectively enable certain endpoints to be insecure
+### Angular 101: Components
 
 +++
 
-### How does it check?
+### Components are
+- isolated sections of HTML and CSS controlled by JS
+- should only store required data and functions
+- repeatable
 
-- parses response header for "Authorization" header
-- processes it as JWT if present
-- check if user_id is present in JWT
++++
+
+### Components are made of:
+- a template (html & css)
+- state( JS )
 
 +++
 
-### Why Authorization Header
+### app.component.ts
+```js
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'test-app';
+  name = 'default-name'
 
-- the standard header for sensitive authorization data
-- automatically filtered by logging/browsers etc.
+  onClick(name){
+    this.name = name
+  }
+}
+```
+
+---
+
+### Step 1 : Initialize
+```
+ng generate component NavBarItem
+```
 
 +++
+
+This will generate a folder with 4 files
+- nav-bar-item.component.ts
+- nav-bar-item.component.html
+- nav-bar-item.component.css
+- nav-bar-item.component.spec.ts (ignore this)
+
++++
+
+### Step 2 : Create State
+```js
+class ComponentName {
+    stateKey = "State Value"
+}
+```
+
++++
+
+### Step 3 : Load Component to view
+- put the component element in the `app.component.html`
+```html
+<component-selector></component-selector>
+```
+
++++
+
+### Step 4 : Use State in template
+- use interpolation to load values into template
+```html
+<div>{{stateKey}}</div>
+```
+
+---
 
 ### Exercise
+- Create components for Resume page
 
-1. create a new endpoint <span class="text-blue">/testing</span>
-2. make your endpoint restricted
-3. create a new endpoint <span class="text-blue">/testing2</span>
-4. make your endpoint public
+![resume-site](./resume.jpg)
 
 ---
 
-### Signing Up
-
-- check <span class="text-blue">controllers/SignupController.java</span>
-- send username, password
-- create user in DB
-- generate JWT token
-- return JWT token in response
-
-+++
-
-### Sign Up Endpoint
-
-```
-localhost:8080/signup
-```
-
-Request Body
-
-```json
-{
-  "username": "mingxiangchan",
-  "password": "123123"
-}
-```
-
-Response Body
-
-```json
-{
-  "token": <token>
-}
-```
-
-+++
-
-### Using JWT
-
-- in Postman
-- send the signup request
-- get the token
-- send a request to the restricted endpoints using the token
-
-+++
-
-### Password Encryption
-
-- check the password in DB
-- check the setPassword method on UserEntity
-
-+++
-
-### Exercise
-
-- change the signup endpoint to <span class="text-blue">/api/signup</span>
-- sign up 3 times, save the token each time
+### Data Binding
+- Kinda like writing javascript code in your attributes
 
 ---
 
-### Logging In
+### Data Source => View Target
+```html
+<img [src]="imgSrc ? imgSrc: imgPlaceholder">
+<div [attr.aria-label]="help">Help</div>
+<div [class.highlighted]='isHighlighted'></div>
+<div [style.color]='hexColor'></div>
+```
 
-- check <span class="text-blue">security/JwtAuthenticationFilter.java</span>
-- send username, password
-- check login credentials for match
-- return JWT token in response if success
-- a lot of internal workings hidden by Spring Security
+---
+
+### View Target => Data Source
+`component-name.component.html`
+```html
+<div (click)="onClick()"></div>
+```
+
++++
+`component-name.component.ts`
+```js
+class ComponentName {
+    itemName = "Test"
+
+    onClick(){
+        this.itemName = "Hello World"
+    }
+}
+```
+
+### Exercise 
+- toggle Highlight nav bar item on click 
+- toggle text and color on edit resume button (edit resume | save changes)
+- trigger alert on click image
+- highlight section on hover
+
+---
+
+### Structural Directives
 
 +++
 
-### Login Endpoint
-
-```
-localhost:8080/authenticate
-```
-
-Request Body
-
-```json
-{
-  "username": "mingxiangchan",
-  "password": "123123"
-}
-```
-
-Response Header
-
-```json
-{
-  "Authorization": <token>
-}
+#### Repeating sections *ngFor
+```html
+<ul>
+    <li *ngFor="let task of tasks">
+        <p>{{task}}</p>
+    </li>
+</ul>
 ```
 
 +++
 
 ### Exercise
+- use ngFor to repeat repeated sections (i.e label and details)
+- highlight different label and values on hover by index
 
-1. change login endpoint to <span class="text-blue">/api/authenticate</span>
-2. log in 3 times and store the tokens
++++
+
+#### Conditional Rendering: *ngIf
+```html
+<div *ngIf="showText">
+    <p>Hello World</p>
+</div>
+```
+
++++
+
+### Exercise
+- render different pages on clicking different tabs
+- toggle rendering nav bar on clicking burger button
+- add a button to hide sections of the resume
+
+---
+### Exercise: To Do List
+- A web application that can:
+  - Display list of to do lists
+  - Select a to do list and hide selection list 
+  - show message if there are no items in list
+  - show list of to do items in each list
+  - toggle to do item as completed
+  - can deselect current list to show list selection
 
 ---
 
-### Final Exercise
-
-1. Add email to <span class="text-blue">users</span> table (migration)
-2. Store email inside JWT instead of <span class="text-blue">users.id</span>
-3. Change code to use <span class="text-blue">users.email</span> to identify current user
+### Assignment
+- Shopping Cart
