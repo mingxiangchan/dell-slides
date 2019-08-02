@@ -216,8 +216,60 @@ spring.datasource.password= = <username>
 - cloud foundry automatically sets url, username, password
 - avoid it, too much magic, very inflexible
 
+---
 
+### application.properties
 
+- global key value store
+- can use to store configs for different environents
+    - dev
+    - staging
+    - prod
+    - test
 
++++
+
+### application.properties Hierarchy
+
+- application.properties
+- application-{profile}.properties
+- direct override from env, e.g. `SPRING_PROFILES_ACTIVE`
+
++++
+
+Can reuse previously defined properties
+
+```
+haha.hehe = abc
+hoho.hehe = ${haha.hehe}def
+
+// hoho.hehe => abcdef
+```
+
++++
+
+Can use directly in Java code
+
+```java
+@Value("${help.me.message}")
+public String message;
+
+public void setup() {
+	System.out.println(message)
+}
+```
+
++++
+
+### Exercise
+
+- create a messages in your properties
+- display a different JSON message in dev and prod
+    - dev: Hello Me
+    - prod: Hello World
+- set a ENV directly in `manifest.yml` and override
+    - Hello Everyone
+
+---
 
 
