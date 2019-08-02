@@ -211,6 +211,25 @@ spring.datasource.password= = <username>
 
 +++
 
+Split application.properties so local and prod are separated
+
+```yml
+# application.properties
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.url = jdbc:postgresql://localhost:5432/book_db
+spring.datasource.username = postgres
+spring.datasource.password= = postgres
+```
+
+```yml
+# application-prod.properties
+spring.datasource.url = <url>
+spring.datasource.username = <username>
+spring.datasource.password= = <username>
+```
+
++++
+
 ### Cloud Auto-Reconfiguration
 
 - cloud foundry automatically sets url, username, password
@@ -234,6 +253,7 @@ spring.datasource.password= = <username>
 - application.properties
 - application-{profile}.properties
 - direct override from env, e.g. `SPRING_PROFILES_ACTIVE`
+- [list of commonly used properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
 
 +++
 
@@ -271,5 +291,121 @@ public void setup() {
     - Hello Everyone
 
 ---
+
+### Spring Profiles
+
+- default profile is <span style="text-blue">default</span>
+- can set profile using <span style="text-blue">spring.profiles.active</span>
+- can set multiple profile
+
++++
+
+### Using Profiles
+
+The below code is only loaded in the <span style="text-blue">dev</span> profile
+
+```java
+@Component
+@Profile("dev")
+public class DevDatasourceConfig implements DatasourceConfig {
+    public String paypalAccNo = "123";
+		public String paypalAccPw = "456";
+		public String paypalEndpoint = "https://sandbox.paypal.com";
+}
+```
+
++++
+
+### Shared interface
+
+```java
+public interface DatasourceConfig {
+    public String paypalAccNo;
+		public String paypalAccPw;
+		public String paypalEndpoint;
+}
+```
+
++++
+
+### Prod vs Dev Classes
+
+```java
+@Component
+@Profile("dev")
+public class DevDatasourceConfig implements DatasourceConfig {
+    public String paypalAccNo = "123";
+		public String paypalAccPw = "456";
+		public String paypalEndpoint = "https://sandbox.paypal.com";
+}
+
+@Component
+@Profile("prod")
+public class ProductionDatasourceConfig implements DatasourceConfig {
+    public String paypalAccNo = "887123213";
+		public String paypalAccPw = "7das712ekj";
+		public String paypalEndpoint = "https://api.paypal.com";
+}
+
+```
+
++++
+
+### Use via Autowired
+
+```java
+@Service
+public class PaypalService {
+	@Autowired
+	private DatasourceConfig config;
+
+	public void makePayment() {
+    System.out.println(config.paypalAccNo)
+		System.out.println(config.paypalAccPw )
+		System.out.println(config.paypalEndpoint )
+	}
+}
+```
+
++++
+
+### Exercise
+
+- Create a <span style="text-blue">DataConfig</span> interface
+    - maybank_acc_no: string
+    - maybank_acc_pw: string
+- Create a <span style="text-blue">DevDataConfig</span>
+    - fill in the values
+- Create a <span style="text-blue">ProdDataConfig</span>
+    - fill in the values
+
+---
+
+### Use ENV variables
+
+- best practice
+- use ENV variables for sensitive info
+- set from dashboard/CLI
+- can also set in <span style="text-blue">manifest.yml</span>
+
++++
+
+```java
+@Component
+@Profile("prod")
+public class ProductionDatasourceConfig implements DatasourceConfig {
+    public String paypalAccNo = System.getenv("PAYAL_ACC_NO");
+	public String paypalAccPw = System.getenv("PAYAL_ACC_PW");
+	public String paypalEndpoint = "https://api.paypal.com";
+}
+```
+
++++
+
+### Exercise
+
+- use <span style="text-blue">System.getenv</span> in controller to change endpoint output
+- use <span style="text-blue">System.getenv</span> in production config to change config setup
+
 
 
