@@ -40,7 +40,7 @@
 
 ### Typical Web Flow
 
-![https://mermaidjs.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gICAgaWQxW0Jyb3dzZXIgbG9hZHNdIC0tPiBpZDJbSFRNTCBhbmQgQ1NTXVxuICAgIGlkMi0tPiBpZDNbQWRkcyBKUyBldmVudCBsaXN0ZW5lcnMgYW5kIGZ1bmN0aW9uc11cbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19](https://kroki.io/mermaid/svg/eNpLL0osyFAIcbHmUgCCzBTDaKei_PLi1CKFnPzElOJYBV1dO6CwUbRHiK-PQmJeioJzcHAsVLERRNI42jElpVjBK1ghtSw1r0QhJ7O4JDUvtagYrD6tNC-5JDM_rziWCwANYiJA)
+<img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIcbHmUgCCzBTDaKei_PLi1CKFnPzElOJYBV1dO6CwUbRHiK-PQmJeioJzcHAsVLERRNI42jElpVjBK1ghtSw1r0QhJ7O4JDUvtagYrD6tNC-5JDM_rziWCwANYiJA" style="width: 80%;" />
 
 +++
 
