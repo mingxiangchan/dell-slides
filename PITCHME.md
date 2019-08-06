@@ -40,7 +40,7 @@
 
 ### Typical Web Flow
 
-<img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIcbHmUgCCzBTDaKei_PLi1CKFnPzElOJYBV1dO6CwUbRHiK-PQmJeioJzcHAsVLERRNI42jElpVjBK1ghtSw1r0QhJ7O4JDUvtagYrD6tNC-5JDM_rziWCwANYiJA" style="width: 80%;" />
+<img src="https://kroki.io/mermaid/svg/eNpLL0osyFAIcbHmUgCCzBTDaKei_PLi1CKFnPzElOJYBV1dO6CwUbRHiK-PQmJeioJzcHAsVLERRNI42jElpVjBK1ghtSw1r0QhJ7O4JDUvtagYrD6tNC-5JDM_rziWCwANYiJA" style="width: 70%; margin-left: 15%" />
 
 +++
 
