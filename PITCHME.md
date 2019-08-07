@@ -3,9 +3,8 @@
 ---
 
 #### Clone the following links and run npm install
-```js
-//Resume App
-//To Do List
+```
+https://github.com/mingxiangchan/angular-resume
 ```
 
 ---
@@ -122,7 +121,7 @@ class ParentComponent{
 2. Add a button to toggle navbar display as a child component of `AboutMe`
 3. On click NavBar Item, change the page displayed.
 
-+++
+---
 
 ### Services
 
