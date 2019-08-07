@@ -1,4 +1,17 @@
-## Recap
+## Assignment Review: Shopping Cart
+
+---
+
+#### Clone the following links and run npm install
+```js
+//Resume App
+//To Do List
+```
+
+---
+
+### Resume App
+![resume-site](./resume.jpg)
 
 ---
 
@@ -6,6 +19,7 @@
 
 +++
 
+#### Recap: Creating New Components
 ```bash
 ng generate component <name>
 ```
@@ -64,14 +78,51 @@ Can render multiple of the same component with for loops
 
 +++
 
-#### Exercise: Todo List
+#### Exercise
 
-1. Create a todo list similar to trello
-2. Have multiple stages (Backlog, WIP, Done, Archived)
-3. The overall container contains all the tasks to be done
-4. The overall container passes down a subset of tasks to each stage
+1. Convert the current app to multiple components
+2. Store the data at the highest parent
+3. Pass the data down to each child component
 
 ---
+
+### Passing Events From Child to Parent
+
++++
+
+```js
+class ChildComponent {
+  @Output eventName = new EventEmitter<type>()
+
+  // varName must be the same type specified in eventEmitter 
+  methodName(varName){
+    this.eventName.emit(varName)
+  }
+}
+```
+
++++
+```html
+<!-- Parent component template -->
+  <app-child (eventName)="eventHandler($event)"></app-child>
+```
+```js
+class ParentComponent{
+  eventHandler(varName){
+    // The varName received is what you send in child component
+  }
+}
+```
+
++++
+
+### Exercise
+
+1. On click `edit resume` (Which is a child component, change the information in for `About Me`)
+2. Add a button to toggle navbar display as a child component of `AboutMe`
+3. On click NavBar Item, change the page displayed.
+
++++
 
 ### Services
 
@@ -128,13 +179,11 @@ Can be injected into a component
 
 +++
 
-#### Exercise: Todo List + Service
-
-1. Create a service holding all the tasks in the todo list
-2. Attach the service to each todos stage
-3. Add a button on item that will shift the item rightwards
-      - will shift `backlog` to `wip`
-      - will shift `wip` to `completed`
+### Exercise
+1. Store the data specific to user in a UserService
+2. Inject the service in to components that use User data
+3. Access the User data in these components through service
+4. On click edit resume, change User data in the service
 
 ---
 
@@ -179,10 +228,16 @@ ngOnInit() {
 
 +++
 
-#### Exercise: Todo List + Routes
+### Exercise 
 
-1. Create a page specifically for 1 item
-2. Clicking an item from the overall view will lead to this page
+- Use routing to complete the following paths
+  - users (show list of users)
+  - users/:id/about_me
+  - users/:id/resume
+  - users/:id/portfolio
+  - users/:id/blog
+  - users/:id/contact_me
+- Changing :id should show a different user's information
 
 ---
 
@@ -218,7 +273,29 @@ ngOnInit() {
   const userId = const userId = this.route.snapshot.params.userId
   this.service.getUserImages(userId).subscribe(response => {
     console.log(response)
-    debugger
   })
 }
 ```
+
++++
+
+### Exercise
+- Access data from the provided API endpoints and use the provided data to display on resume
+
+---
+
+### Culmination: To Do List
+Using the provided ToDoList template
+- Separate into 
+  1. ListsIndex (Shows all the list titles, onClick navigate to ShowList)
+  2. ShowList (Shows a specific list and it's todo's, onClick todo go to ShowToDo)
+  3. List (Component to display a List with title and Todos)
+  4. ToDo (Component to display task description, and whether it is completed)
+  5. ShowToDo (Shows a specific todo)
+
++++
+
+- Data must be stored in a service
+- User must be able to edit the todo to be completed or not completed
+- Have a button to change user viewing the list
+- Different user can view different lists, or view some shared lists.
