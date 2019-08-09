@@ -214,19 +214,32 @@ public class CheckerTest {
 
 ### Exercise
 
+Try doing the first 3 exercises [here](https://projecteuler.net/archives)
+
+Use tests!
+
+You can find the answers for your tests [here](https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt)
+
+---
+
+### Exercise
+
 - create the tests for a Tic Tac Toe board checker
 - write the code to fulfill the tests
 - run the tests to make sure your code works
 
 ---
 
-### Exercise
+### Exercise: Sudoku Solver
 
-Try doing the first 3 exercises [here](https://projecteuler.net/archives)
+- create the tests for a SudokuSolver
+- it will check a blank cell on a Sudoku board
+- it will show the potential solutions for row, column, and box
+- board: 
 
-Use tests!
-
-You can find the answers for your tests [here](https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt)
+```
+105802000090076405200400819019007306762083090000061050007600030430020501600308900
+```
 
 ---
 
