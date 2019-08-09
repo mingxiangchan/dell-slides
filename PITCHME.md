@@ -6,8 +6,8 @@
 
 - Clone [this repository](https://github.com/matyb/java-koans)
 - Open the folder in VS Code
-- cd into the <span class="text-blue">koans</span> folder
-- run the command <span class="text-blue">Start-Process run.bat</span>
+- cd into the <span class="text-gold">koans</span> folder
+- run the command <span class="text-gold">Start-Process run.bat</span>
 
 +++
 
@@ -78,39 +78,33 @@
 
 +++
 
-### Successful Login Example
-
-@snap[west span-35]
-@box[bg-blue text-white box-padding](1. Given#User inputs correct username and password)
+@snap[west span-25]
+@box[bg-blue text-white rounded box-padding](1. Given#Correct username and password)
 @snapend
 
-@snap[midpoint span-35]
+@snap[midpoint span-25]
 @box[bg-orange text-white rounded box-padding](2. When#User tries to log in)
 @snapend
 
-@snap[east span-35]
-@box[bg-pink text-white box-padding](3. Then#User is logged in)
+@snap[east span-25]
+@box[bg-pink text-white rounded box-padding](3. Then#User is logged in)
 @snapend
 
 +++
 
-### Unsuccessful Login Example
-
-@snap[west span-35]
-@box[bg-blue text-white box-padding](1. Given#User inputs incorrect username and password)
+@snap[west span-25]
+@box[bg-blue text-white rounded box-padding](1. Given#Incorrect username and password)
 @snapend
 
-@snap[midpoint span-35]
+@snap[midpoint span-25]
 @box[bg-orange text-white rounded box-padding](2. When#User tries to log in)
 @snapend
 
-@snap[east span-35]
-@box[bg-pink text-white box-padding](3. Then#Show error message to user)
+@snap[east span-25]
+@box[bg-pink text-white rounded box-padding](3. Then#Show error message to user)
 @snapend
 
 +++
-
-### Example: Order Cancellation 
 
 - e.g. Grab cancellation
 - who cancelled? driver or passenger?
@@ -231,6 +225,8 @@ public class CheckerTest {
 Try doing the first 3 exercises [here](https://projecteuler.net/archives)
 
 Use tests!
+
+You can find the answers for your tests [here](https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt)
 
 
 
