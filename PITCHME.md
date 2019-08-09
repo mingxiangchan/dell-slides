@@ -228,6 +228,34 @@ Use tests!
 
 You can find the answers for your tests [here](https://github.com/nayuki/Project-Euler-solutions/blob/master/Answers.txt)
 
+---
+
+### Assignment: Discount System
+
+Build a discount app using a test driven app approach
+
++++
+
+### Process
+
+**Given** a product and discount
+
+**When** applying the discount
+
+**Then** what is the total price
+
++++
+
+### Requirements
+
+1. Absolute discounts
+2. Percentage discounts
+3. Validity period
+4. Product-specific discounts
+5. Applying discount on shopping cart
+
+
+
 
 
 
