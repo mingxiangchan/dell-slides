@@ -122,6 +122,38 @@ public class MainControllerTest {
 
 ---
 
+### Configuring Test DB in Spring
+
+- use a different DB when running tests
+- clean up the DB at the end of every test
+
+---
+
+```java
+@ActiveProfiles("test")
+@SpringBootTest
+public class UserRepositoryTest {
+    // ...
+}
+```
+
+```yml
+# application-test.properties
+# set db url
+# set db username
+# set db password
+```
+
++++
+
+```java
+class DatabaseCleaner {
+    
+}
+```
+
+---
+
 ### Types of Tests
 
 - unit
