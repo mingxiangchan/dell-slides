@@ -52,7 +52,7 @@ public class UserServiceTest {
 
 ### Exercise
 
-- Clone [this] repository
+- Clone [this](https://github.com/mingxiangchan/dell-spring-junit) repository
 
 +++
 
