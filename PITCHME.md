@@ -73,15 +73,19 @@ this.age.next(newAge)
 ### Exercise
 
 - create a slack clone
-- left side: list of users
-- right side: list of messages for the current conversation
-- a conversation: chat between current user and another user
 
 +++
 
 ### Features
 
-- bottom: text form to create a new message
-- submitting the form will add it to the conversation
-- message cannot be blank, cannot exceed 255 characters
-- show the total number of messages per chat in the left side
+- can view list of users
+- can view list of messages for a chat
+- can write a new message in the chat
+    - validate blank, cannot exceed 255 chars
+- can see total number of messages per chat
+
++++
+
+### Layout
+
+![chatroom](./chatroom.jpg)
