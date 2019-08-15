@@ -7,6 +7,7 @@
 1. Clone [this repository](https://github.com/mingxiangchan/dell-observables)
 2. Change the checkboxes to use Angular Forms
 3. Add a feature to rename the list (use a text form)
+4. Add the features to change the user details (using text forms)
 
 +++
 
@@ -22,7 +23,7 @@
 
 - data can be stored in services
 - updates to that data is not always reflected
-- can manually control how to access data in service
+- can manually control how to read/write data in service
 
 ---
 
@@ -42,49 +43,45 @@ this.service.age.subscribe(age => {
 })
 ```
 
-### Writing (In Service)
+#### Writing (In Service)
 
 ```ts
 const newAge = 23
-this.age.next(23)
+this.age.next(newAge)
 ```
 
 ---
 
-### Used when dealing with
-- Asynchronous data
-- Multiple data values
-
-+++
-
-## Asynchronous
-
-+++
-
-![asynchrosity](./asynchrosity.png)
-
-+++
-
-![async_req](./async_req.png)
-
----
-
-### Observable is a notifier to all observers watching a particular value
-
-+++
+### Concept
 
 - an observer <b>subscribes</b> to an observable
-- when a change is identified to the value
+- when a change is performed on the observable
 - a notification will be <b>published</b> to all <b>subscribed</b> observers
-
-+++
-
-![single-obs](./single-observable-flow.png)
 
 ---
 
-### Chained Observables
+### Exercise
+
+- convert employee details changing to observables
+    - name
+    - role
+    - id
+- convert list renaming feature to observables
+
+---
+
+### Exercise
+
+- create a slack clone
+- left side: list of users
+- right side: list of messages for the current conversation
+- a conversation: chat between current user and another user
 
 +++
 
-![chained-obs](./handling-chained-observables.png)
+### Features
+
+- bottom: text form to create a new message
+- submitting the form will add it to the conversation
+- message cannot be blank, cannot exceed 255 characters
+- show the total number of messages per chat in the left side
