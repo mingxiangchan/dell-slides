@@ -89,3 +89,45 @@ this.age.next(newAge)
 ### Layout
 
 ![chatroom](./chatroom.jpg)
+
++++
+
+### Layout CSS
+
+```html
+<div id="chatroom">
+    <div class="left"></div>
+    <div class="right">
+        <div class="messages"></div>
+        <div class="form"></div>
+    </div>
+</div>
+```
+
+```css
+#chatroom {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.left {
+    width: 30%;
+    margin-right: 10px;
+    color: white;
+    background-color: #68002b;
+}
+
+.right {
+    width: 65%;
+}
+
+.messages {
+    height: 80%;
+}
+
+.form {
+    border: 1px solid black;
+    height: 20%;
+}
+```
