@@ -11,34 +11,7 @@
 
 ### Setup
 
-- exclude default junit (4.0)
-- add junit 5.0
-
-+++
-
-#### pom.xml
-
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-test</artifactId>
-    <scope>test</scope>
-    <exclusions>
-        <exclusion>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-```
-
-```xml
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-engine</artifactId>
-    <version>5.5.1</version>
-</dependency>
-```
+- no setup needed! Spring Boot already comes wth JUnit 4 preinstalled.
 
 ---
 
@@ -52,7 +25,9 @@
 ### Repository Tests
 
 ```java
-@SpringBootTest
+@RunWith(SpringRunner.class)
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
 public class UserServiceTest {
 
     @Autowired
@@ -78,8 +53,26 @@ public class UserServiceTest {
 ### Exercise
 
 - Clone [this] repository
-- Write tests for the BookingRepository
-- Write tests for the ReviewRepository
+
++++
+
+### EmployeeRepositoryTest
+
+- test <span class="text-blue">findAll</span>
+- test <span class="text-blue">findById</span>
+- test <span class="text-blue">findByEmail</span>
+- test <span class="text-blue">findByName</span>
+- test <span class="text-blue">findAll/span> with <span class="text-blue">sorting</span>
+
++++
+
+### AppointmentRepositoryTest
+
+- test <span class="text-blue">findAll</span>
+- test <span class="text-blue">findByTimeslotBetween</span>
+    - happy
+    - unhappy
+- test <span class="text-blue">findByEmployeeEmailContains</span>
 
 ---
 
@@ -92,7 +85,10 @@ public class UserServiceTest {
 
 +++
 
+#### GET Tests
+
 ```java
+@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class MainControllerTest {
     @LocalServerPort
@@ -103,7 +99,7 @@ public class MainControllerTest {
 
     @Test
     public void getHello() throws Exception {
-        String url = new URL("http://localhost:" + port + "/").toString()
+        String url = new URL("http://localhost:" + port + "/").toString();
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
@@ -112,13 +108,46 @@ public class MainControllerTest {
 }
 ```
 
++++
+
+#### POST Tests
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class EmployeeControllerTest {
+    @Test
+    public void postHello() throws Exception {
+        String url = new URL("http://localhost:" + port + "/employees").toString();
+
+        Employee employee = new Employee();
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<Employee> request = new HttpEntity<>(employee, headers);
+
+        ResponseEntity<String> response = this.restTemplate.postForEntity(url, request, String.class);
+
+        assertEquals(201, response.getStatusCode());
+        assertEquals("[]", response.getBody());
+    }
+}
+```
+
 ---
 
 ### Exercise
 
-- Clone [this] repository
-- Write tests for the BookingRepository
-- Write tests for the ReviewRepository
+- Write tests for the EmployeeController
+- Write tests for the AppointmentsController
+
++++
+
+
+### EmployeeControllerTest
+
+- test GET <span class="text-blue">/employees</span>
+- test GET <span class="text-blue">/employees?email=<email></span>
+- test GET <span class="text-blue">/employees/{id}</span>
+- test POST <span class="text-blue">/employees</span>
 
 ---
 
@@ -138,17 +167,26 @@ public class UserRepositoryTest {
 ```
 
 ```yml
-# application-test.properties
-# set db url
-# set db username
-# set db password
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.datasource.url=jdbc:sqlserver://localhost;databaseName=<name>
+spring.datasource.username=<name>
+spring.datasource.password=<password>
 ```
 
 +++
 
+### Cleaning Up Database Before/After Tests
+
+- not needed for repository/service tests (they are transactional)
+- required for controller tests
+
++++
+
 ```java
-class DatabaseCleaner {
-    
+@AfterEach
+public void cleanDB() {
+    userRepo.deleteAll();
+    appointmentRepo.deleteAll()
 }
 ```
 
