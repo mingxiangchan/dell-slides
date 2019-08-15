@@ -2,6 +2,13 @@
 
 ---
 
+### VSCode Extensions
+
+1. [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
+2. [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+
+---
+
 ### Recap Exercise
 
 1. Clone [this repository](https://github.com/mingxiangchan/dell-observables)
