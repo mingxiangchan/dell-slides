@@ -5,9 +5,8 @@
 ### Recap Exercise
 
 1. Clone [this repository](https://github.com/mingxiangchan/dell-observables)
-2. Change the checkboxes to use Angular Forms
-3. Add a feature to rename the list (use a text form)
-4. Add the features to change the user details (using text forms)
+2. Add a feature to rename the list (use a text form)
+3. Add the features to change the user details (using text forms)
 
 +++
 
