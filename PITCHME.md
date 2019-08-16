@@ -119,13 +119,17 @@ public class EmployeeControllerTest {
         String url = new URL("http://localhost:" + port + "/employees").toString();
 
         Employee employee = new Employee();
+        employee.setName("John");
+        employee.setEmail("john@gmail.com");
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<Employee> request = new HttpEntity<>(employee, headers);
 
         ResponseEntity<String> response = this.restTemplate.postForEntity(url, request, String.class);
+        String responseBody = response.getBody()
+        Employee createdEmployee = new ObjectMapper().readValue(responseBody, Employee.class);
 
         assertEquals(201, response.getStatusCode());
-        assertEquals("[]", response.getBody());
+        assertEquals("John", createdEmployee.getName());
     }
 }
 ```
@@ -146,6 +150,15 @@ public class EmployeeControllerTest {
 - test GET <span class="text-blue">/employees?email=<email></span>
 - test GET <span class="text-blue">/employees/{id}</span>
 - test POST <span class="text-blue">/employees</span>
+
++++
+
+### AppointmentsController
+
+- test GET <span class="text-blue">/appointments</span>
+- test GET <span class="text-blue">/employees/{id}/appointments</span>
+- test GET <span class="text-blue">/appointments/{id}</span>
+- test POST <span class="text-blue">/appointments</span>
 
 ---
 
