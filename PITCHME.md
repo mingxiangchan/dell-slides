@@ -62,7 +62,7 @@ public class UserServiceTest {
 - test <span class="text-blue">findById</span>
 - test <span class="text-blue">findByEmail</span>
 - test <span class="text-blue">findByName</span>
-- test <span class="text-blue">findAll/span> with <span class="text-blue">sorting</span>
+- test <span class="text-blue">findAll</span> with <span class="text-blue">sorting</span>
 
 +++
 
@@ -70,8 +70,6 @@ public class UserServiceTest {
 
 - test <span class="text-blue">findAll</span>
 - test <span class="text-blue">findByTimeslotBetween</span>
-    - happy
-    - unhappy
 - test <span class="text-blue">findByEmployeeEmailContains</span>
 
 ---
