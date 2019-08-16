@@ -108,7 +108,7 @@ public class BookingService {
 
 <span class="text-blue">bookAppointment(timeslot, employee)</span>
 - 1 timeslot is 2 hours
-- check whether intended timeslot conflicts with an existing appointment
+- check whether intended timeslot [conflicts with an existing appointment](https://stackoverflow.com/questions/46942351/checking-if-localdatetime-falls-within-a-time-range)
 - if success, save appointment into DB
 - if failure, return <span class="text-blue">null</span>
 
