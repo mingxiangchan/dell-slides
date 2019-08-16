@@ -282,3 +282,33 @@ public void cleanDB() {
 
 - only set up customer's order
 - setup 
+
+---
+
+### Assignment: Order Creation
+
+- products
+- orders
+- line_items_
+- payments
+
++++
+
+### Features
+
+- create an order with line_items
+    - product, customer are set up before order creation
+- pay for an order
+    - order is set up before payment creation
+- refund an order
+    - payment is set up before refund processing
+
++++
+
+### Instructions
+
+1. create the tables needed
+2. create a <span class="text-blue">ShoppingService`</span>
+3. create tests for the 3 features
+4. write code to make the 3 features work!
+
