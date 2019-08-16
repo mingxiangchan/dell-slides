@@ -74,6 +74,47 @@ public class UserServiceTest {
 
 ---
 
+### Services
+
+- intermediary between <span class="text-blue">controller</span> and <span class="text-blue">repository</span>
+- can do more complex logic
+- can interact with multiple repositories
+
++++
+
+```java
+@Service
+public class BookingService {
+    @Autowired
+    EmployeeRepository employeeRepo;
+
+    @Autowired
+    AppointmentRepository appointmentRepo;
+}
+```
+
+---
+
+### Exercise: BookingService
+
+<span class="text-blue">checkAppointment(Employee employee)</span>
+- get all appointments for a user
+- go through each appointment and get the timeslot, extract into array
+- return `List<LocalDateTime>` 
+
++++
+
+### Exercise: BookingService
+
+<span class="text-blue">bookAppointment(timeslot, employee)</span>
+- 1 timeslot is 2 hours
+- check whether intended timeslot conflicts with an existing appointment
+- if success, save appointment into DB
+- if failure, return <span class="text-blue">null</span>
+
+
+---
+
 ### Controller Tests
 
 - test HTTP requests
