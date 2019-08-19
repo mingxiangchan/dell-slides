@@ -333,9 +333,32 @@ Response Header
 
 ---
 
+### Encryption
+
+- check the password column in DB
+- is it the password you entered?
+
++++
+
+### One Way vs Two Way Encryption
+
+- what are they?
+- which one is more secure
+- is Bcrypt a 1 way or 2 way encryption method
+
+
+
+---
+
 ### Final Exercise
 
 1. Add email to <span class="text-blue">users</span> table (migration)
 2. Log in with <span class="text-blue">email</span> and password
 2. Store email inside JWT instead of <span class="text-blue">users.id</span>
 3. Change code to use <span class="text-blue">users.email</span> to identify current user
+
++++
+
+### Documentation
+
+[Read the docs here](https://gist.github.com/mingxiangchan/eb3a5388e93182d7c8cc5c6263b378c2)
