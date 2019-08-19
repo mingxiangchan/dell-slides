@@ -304,7 +304,7 @@ Response Body
 ### Login Endpoint
 
 ```
-localhost:8080/authenticate
+localhost:8080/api/authenticate
 ```
 
 Request Body
