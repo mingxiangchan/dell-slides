@@ -20,8 +20,7 @@
 ### Further requirements
 
 1. Refactor the list data to come from the <span class="text-gold">TodosService</span>
-2. Add a new feature, when clicking a list on the left side
-    - right side will change to that list and its items
+2. Check whether edits to variables affect left and right side data
 
 ---
 
@@ -73,6 +72,12 @@ this.age.next(newAge)
     - role
     - id
 - convert list renaming feature to observables
+
++++
+### New feature
+
+- When clicking a list on the left side
+- right side will change to that list and its items
 
 ---
 
