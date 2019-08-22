@@ -48,7 +48,17 @@
 - each example has a <span class="text-gold">Markup</span> and <span class="text-gold">TypeScript</span> section
 
 ---
+### Exercise
 
+- implement a basic pie chart
+
+```ts
+laptop: 50
+handphone: 20
+tablets: 40
+```
+
++++
 ### Exercise
 
 - implement a basic line chart
@@ -72,17 +82,7 @@ series 1: {a: 5, b: 15, c: 14, d: 7}
 series 2:  {a: 10, b: 12, c: 8, d: 8}
 ```
 
-+++
 
-### Exercise
-
-- implement a basic pie chart
-
-```ts
-laptop: 50
-handphone: 20
-tablets: 40
-```
 
 ---
 
@@ -107,6 +107,16 @@ export class TodosItemsComponent implements OnInit {
 
 ---
 
+### Pie Chart
+
+- number of images per tag
+
++++
+
+![chart](pie_chart_1.png)
+
+---
+
 ### Bar Chart
 
 - number of likes per tag
@@ -125,12 +135,4 @@ export class TodosItemsComponent implements OnInit {
 
 ![chart](line_chart.png)
 
----
 
-### Pie Chart
-
-- number of images per tag
-
-+++
-
-![chart](pie_chart_1.png)
