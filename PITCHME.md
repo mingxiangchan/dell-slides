@@ -74,7 +74,7 @@ series 2:  {a: 10, b: 12, c: 8, d: 8}
 
 +++
 
-1### Exercise
+### Exercise
 
 - implement a basic pie chart
 
@@ -92,6 +92,18 @@ tablets: 40
 - import [this](https://gist.github.com/mingxiangchan/e62818b558c28d61c412cd8362a4a200) data into the project
 - you can check [this docs](https://devdocs.io/javascript/global_objects/array) for docs on how to manipulate arrays
 - build the following 3 charts
+
++++
+
+### Importing the data
+
+```ts
+import * as Data from '../data'
+
+//...
+export class TodosItemsComponent implements OnInit {
+  data = Data.default;
+```
 
 ---
 
