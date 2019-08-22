@@ -82,13 +82,48 @@ series 1: {a: 5, b: 15, c: 14, d: 7}
 series 2:  {a: 10, b: 12, c: 8, d: 8}
 ```
 
+---
 
+### Exercise: Laptop Sales
+
+- Clone [this](https://github.com/cmh114933/data-dashboard-example) template repository
+- add the <span class="text-gold">ng2-charts</span> package to it
+
+---
+
+### Importing Data
+
+- you can import data from a separate file
+
+```ts
+import * as Data from '../../moviePreferenceStats.js'
+
+// ...
+export class BarChartComponent implements OnInit {
+  data = Data.default
+```
+
+---
+
+### Pie Chart: 
+
+- chart: <span class='text-gold'>Laptop Sales By Model</span>
+- use <span class='text-gold'>multiYearLaptopSales.js</span>
+
+---
+
+### Bar Chart: 
+
+- chart: <span class='text-gold'>Laptop Sales by year by model</span>
+- use <span class='text-gold'>multiYearLaptopSales.js</span>
+- series: model
+- horizontal-axis: year
 
 ---
 
 ### Assignment
 
-- clone [this](https://github.com/cmh114933/data-dashboard-example) template repository
+- Start a new Angular Project, add charts to it
 - import [this](https://gist.githubusercontent.com/mingxiangchan/e62818b558c28d61c412cd8362a4a200/raw/c1939a60186d4587b182c0d8e2ebcf0dd34e5a35/data.js) data into the project
 - you can check [this docs](https://devdocs.io/javascript/global_objects/array) for docs on how to manipulate arrays
 - build the following 3 charts
