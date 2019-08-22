@@ -112,19 +112,18 @@ import data from '../../multiYearLaptopSales'
 
 +++
 
-### Bar Chart: 
-
-- <span class='text-gold'>laptop Sales by year by model</span>
-- use <span class='text-gold'>multiYearLaptopSales.js</span>
-- series: model
-- horizontal-axis: year
-
-+++
-
 ### Bar Chart
 
 - <span class='text-gold'>total no. of ppl who liked each movie</span>
 - use <span class='text-gold'>moviePreferenceStats.js</span>
+
+
++++
+
+### Pie Chart
+
+- <span class='text-gold'>total no. of ppl who liked each movie</span>
+- use <span class='text-gold'>movieUserPreference.js</span>
 
 ---
 
@@ -135,17 +134,25 @@ import data from '../../multiYearLaptopSales'
 ### Pie Chart
 
 - <span class='text-gold'>total no. of ppl who liked each movie</span>
-- use <span class='text-gold'>movieUserPreference.js</span>
+- use <span class='text-gold'>moviePreferenceComplicated.js</span>
 
 +++
 
-### Bar Chart
+### Bar Chart: 
 
-- <span class='text-gold'>total no. of ppl who liked each movie</span>
-- use <span class='text-gold'>moviePreferenceComplicated.js</span>
+- <span class='text-gold'>laptop Sales by year by model</span>
+- use <span class='text-gold'>multiYearLaptopSales.js</span>
+- series: model
+- horizontal-axis: year
 
++++
 
+### Bar Chart: 
 
+- <span class='text-gold'>profit per model per month</span>
+- use <span class='text-gold'>multiYearLaptopSales.js</span>
+- series: model
+- horizontal-axis: month
 
 ---
 
