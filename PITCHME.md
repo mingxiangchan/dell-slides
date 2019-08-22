@@ -43,9 +43,9 @@
 ### How to use external packages
 
 - read the [docs](https://valor-software.com/ng2-charts)
-- check the <span class="text-blue">General Info -> Usage</span> section
+- check the <span class="text-gold">General Info -> Usage</span> section
 - check the examples
-- each example has a <span class="text-blue">Markup</span> and <span class="text-blue">TypeScript</span> section
+- each example has a <span class="text-gold">Markup</span> and <span class="text-gold">TypeScript</span> section
 
 ---
 
@@ -61,6 +61,9 @@ series 2:  {x: 5, y: 30, z: 15}
 
 +++
 
+### Exercise
+
+
 - implement a basic bar chart
 
 ```ts
@@ -70,6 +73,8 @@ series 2:  {a: 10, b: 12, c: 8, d: 8}
 ```
 
 +++
+
+1### Exercise
 
 - implement a basic pie chart
 
