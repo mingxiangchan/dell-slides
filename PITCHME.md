@@ -89,7 +89,7 @@ tablets: 40
 ### Assignment
 
 - clone [this](https://github.com/cmh114933/data-dashboard-example) template repository
-- import [this](https://gist.github.com/mingxiangchan/e62818b558c28d61c412cd8362a4a200) data into the project
+- import [this](https://gist.githubusercontent.com/mingxiangchan/e62818b558c28d61c412cd8362a4a200/raw/c1939a60186d4587b182c0d8e2ebcf0dd34e5a35/data.js) data into the project
 - you can check [this docs](https://devdocs.io/javascript/global_objects/array) for docs on how to manipulate arrays
 - build the following 3 charts
 
