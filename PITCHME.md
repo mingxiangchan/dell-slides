@@ -96,11 +96,7 @@ series 2:  {a: 10, b: 12, c: 8, d: 8}
 - you can import data from a separate file
 
 ```ts
-import * as Data from '../../moviePreferenceStats.js'
-
-// ...
-export class BarChartComponent implements OnInit {
-  data = Data.default
+import data from '../../multiYearLaptopSales'
 ```
 
 ---
@@ -133,11 +129,7 @@ export class BarChartComponent implements OnInit {
 ### Importing the data
 
 ```ts
-import * as Data from '../data'
-
-//...
-export class TodosItemsComponent implements OnInit {
-  data = Data.default;
+import data from '../data'
 ```
 
 ---
