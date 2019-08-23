@@ -127,10 +127,11 @@ public class EmployeeControllerTest {
 
 ---
 
-### Configuring Test DB in Spring
+### Refactorings
 
-- use a different DB when running tests
-- clean up the DB at the end of every test
+- configure different DB for tests vs dev
+- use inheritance to make your tests DRY
+- cleaning up data in DB before/after tests
 
 ---
 
@@ -149,6 +150,61 @@ spring.datasource.url=jdbc:sqlserver://localhost;databaseName=<name>
 spring.datasource.username=<name>
 spring.datasource.password=<password>
 ```
+
+---
+
+### Tests Inheritance
+
+- share similar DB
+- share similar profiles
+- share simiar before/after methods
+
++++
+
+### Parent
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public abstract class BaseControllerTest {
+    @LocalServerPort
+    protected int port;
+
+    @Autowired
+    protected TestRestTemplate restTemplate;
+}
+```
+
++++
+
+### Child
+
+```java
+public class EmployeeControllerTest extends BaseControllerTest {
+
+    @Test
+    public void getHello() throws Exception {
+        String url = new URL("http://localhost:" + port + "/").toString();
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        assertEquals("{}", response.getBody());
+    }
+}
+```
+
++++
+
+What is the diff between <span class="text-blue">protected</span> and <span class="text-blue">private</span>?
+
+---
+
+### Configuring Test DB in Spring
+
+- use a different DB when running tests
+- clean up the DB at the end of every test
+
+
 
 +++
 
