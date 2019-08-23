@@ -61,7 +61,7 @@ public class MainControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void getHello() throws Exception {
+    public void testGetIndex() throws Exception {
         String url = new URL("http://localhost:" + port + "/").toString();
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
@@ -80,7 +80,7 @@ public class MainControllerTest {
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class EmployeeControllerTest {
     @Test
-    public void postHello() throws Exception {
+    public void testPostIndex() throws Exception {
         String url = new URL("http://localhost:" + port + "/employees").toString();
 
         Employee employee = new Employee();
