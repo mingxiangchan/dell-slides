@@ -143,6 +143,7 @@ public class UserRepositoryTest {
 ```
 
 ```yml
+# application-test.properties
 spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
 spring.datasource.url=jdbc:sqlserver://localhost;databaseName=<name>
 spring.datasource.username=<name>
