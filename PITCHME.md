@@ -267,7 +267,7 @@ public void teardown() {
 
 - add login to the app
 
-+++iti
++++
 
 ### Exercise
 
