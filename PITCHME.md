@@ -216,10 +216,48 @@ What is the diff between <span class="text-blue">protected</span> and <span clas
 +++
 
 ```java
-@AfterEach
+@After
 public void cleanDB() {
     userRepo.deleteAll();
     appointmentRepo.deleteAll()
+}
+```
+
++++
+
+### For All Tables
+
+```java
+@PersistenceContext(type = PersistenceContextType.EXTENDED)
+private EntityManager entityManager;
+
+@After
+public void teardown() {
+    List<String> tableNames = new ArrayList<>();
+    Session session = entityManager.unwrap(Session.class);
+    Set<EntityType<?>> entities = session.getEntityManagerFactory().getMetamodel().getEntities();
+    
+    for (EntityType<?> entity: entities) { 
+        String tablename = entity.getJavaType().getAnnotation(Table.class).name();
+        tableNames.add(tablename);
+    }
+
+    Transaction txn = session.beginTransaction();
+    entityManager.flush();
+
+    for (String tableName: tableNames) {
+        entityManager.createNativeQuery("ALTER TABLE " + tableName + " NOCHECK CONSTRAINT all").executeUpdate();
+    }
+
+    for (String tableName: tableNames) {
+        entityManager.createNativeQuery("DELETE FROM " + tableName).executeUpdate();
+    }
+
+    for (String tableName: tableNames) {
+        entityManager.createNativeQuery("ALTER TABLE " + tableName + " WITH CHECK CHECK CONSTRAINT all").executeUpdate();
+    }
+
+    txn.commit();
 }
 ```
 
@@ -229,7 +267,7 @@ public void cleanDB() {
 
 - add login to the app
 
-+++
++++iti
 
 ### Exercise
 
