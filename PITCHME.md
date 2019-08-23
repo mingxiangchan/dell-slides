@@ -1,3 +1,14 @@
+## Testing-3
+
+---
+
+### Today's topics
+- controller testing
+- testing environments
+
+---
+
+
 ### Controller Tests
 
 - test HTTP requests
@@ -5,7 +16,37 @@
 - set request body (json)
 - assert the response
 
+---
+
+### Concept
+
+- Given
+- When
+
 +++
+
+### Given:
+
+- which endpoint
+- which request method (GET/POST)
+- what request body (json?)
+- which request params
+- any existing data in DB?
+
++++
+
+### When
+
+- executing the request
+
++++
+
+### Then
+
+- what kind of response?
+- any changes in the DB?
+
+---
 
 #### GET Tests
 
@@ -126,3 +167,15 @@ public void cleanDB() {
 ```
 
 ---
+
+### Exercise
+
+- add login to the app
+
++++
+
+### Exercise
+
+- test user login
+- test user signup
+- test <span class="text-blue">/employees/1/appointments</span> with authorization
