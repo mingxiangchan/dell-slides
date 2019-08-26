@@ -54,8 +54,7 @@ cf logout
 
 manifest.yml
 
-```
----yml
+```yml
 applications:
 - name: app-name
 ```
