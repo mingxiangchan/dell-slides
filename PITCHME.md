@@ -1,300 +1,413 @@
-## Assignment Review: Shopping Cart
+## Node Web Apps (With Express)
 
 ---
 
-#### Clone the following links and run npm install
-```
-https://github.com/mingxiangchan/angular-resume
-```
-
----
-
-### Resume App
-![resume-site](./resume.jpg)
-
----
-
-### Multi Components
+### How the web works
+- browser sends request to server
+- server checks data in DB
+- server sends response to browser
 
 +++
 
-#### Recap: Creating New Components
+### Responses can be 
+- a web page of:
+  - HTML
+  - JS
+  - CSS
+- OR data of various types:
+  - text
+  - json
+  - etc...
+
++++
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+    participant D as Database
+
+
+    C->>S: GET /users
+    S->>D: SELECT * FROM users
+    D-->>S: user rows
+    S-->>C: HTML/JSON data
+```
+
+---
+
+### GET Request
+- used to `GET`/obtain data
+
++++
+
+### Exercise
+- use `Postman` to make a `GET` request to obtain chat data from PLACEHOLDER_LINK
+
++++
+
+### POST Request
+- used to `POST` data, i.e make changes to a database within an application
+
++++
+
+### Exercise
+- use `Postman` to make a `POST` request to add a new message to the chat storage at PLACEHOLDER_LINK
+
+---
+
+## Express JS
+- a framework to build simple web applications
+
+---
+
+### Barebones Express App
+- Clone from [this](PLACEHOLDER_LINK)
+
++++
+
+```javascript
+app.get("/helloWorld", (req: Request, res: Response) => {
+    res.json({
+        message: "Hello World"
+    })
+});
+
+app.<action>("/<path>", (req: Request, res: Response) => {
+  // retrieve information from req
+  req.params
+  req.query
+  // send response using res
+  res.send(data) // sends data
+  res.json(data) // sends json
+  res.sendStatus(statusCode) // sends status
+  res.status(statusCode).send(data) // sends data with status
+
+})
+```
+
+---
+
+### Basic Express template 
+- Clone [here](PLACEHOLDER_LINK)
+
++++
+
+### Folder Structure
+- ![](PLACEHOLDER_SCREENSHOT_IMG)
+
++++
+
+- `controller` stores the logic for each route
+- `routes` stores the configuration for all the routes
+
+---
+
+### Nextagram
+- v1: show homepage displaying all images (GET)
+- v2: return json data of all users (GET)
+- v3: add data to application (POST)
+
+---
+
+### Phase 1: Render Static Pages (Homepage)
+- render a HTML page with CSS styles
+
++++
+
+### Controller
+```javascript
+// controller/HomePageController.ts
+export class HomePageController {
+    async home(request: Request, response: Response, next: NextFunction) {
+        response.sendFile(ABSOLUTE_HTML_FILEPATH)
+    }
+}
+```
+
++++
+
+```javascript
+// routes.ts
+export const Routes = [{
+    method: "get", // request method
+    route: "/home", // path
+    controller: HomePageController, // controller
+    action: "home" // controller method name
+}];
+```
+
++++
+
+### Exercise
+- /about-us
+- /contact-us
+
+---
+
+### Phase 2: Return data (Raw JSON String)
+- hardcodes users data
+  ```javascript
+    [
+      {
+        "id": 1,
+        "avatar": "http://img_store/test_user_1.img",
+        "username": "Test User 1"
+      },
+      {
+        "id": 2,
+        "avatar": "http://img_store/test_user_2.img",
+        "username": "Test User 2"
+      },
+      // ...
+    ]
+  ```
+- return raw json data
+
++++
+
+#### Defining Parameters
+```javascript
+// routes
+export const Routes = [{
+    method: "get",
+    route: "/testing/:testValue",
+    controller: TestController,
+    action: "test"
+}]
+```
+
++++
+
+#### Setting Parameters/Query Strings
 ```bash
-ng generate component <name>
+# Parameters: sets parameter key testValue as 1
+localhost:3000/testing/1
+
+# Query String: sets query string key testValue as 1
+localhost:3000/testing?testValue=1
 ```
 
 +++
 
-Components are arranged in HTML.
-
-```html
-<!-- app.component.html -->
-<app-parent></app-parent>
-```
-
-```html
-<!-- parent.component.html -->
-<app-child1></app-child1>
-<app-child2></app-child2>
-```
-
-+++
-
-Parent-Child components communicate via inputs
-
-```ts
-// child.component.ts
-// make sure Input is imported
-import { Component, OnInit, Input } from '@angular/core'
-```
-
-```ts
-// child.component.ts
-@Input isHidden = false
-```
-
-```ts
-// parent.component.ts
-firstChildHidden = false
-secondChildHidden = false
-```
-
-```html
-<!-- parent.component.html -->
-<app-child [isHidden]="firstChildHidden"></app-child>
-<app-child [isHidden]="secondChildHidden"></app-child>
-```
-
-+++
-
-Can render multiple of the same component with for loops
-
-```html
-<div *ngFor="let pokemon of pokemons;">
-  <app-child [pokemon]="pokemon"></app-child>
-</div>
-```
-
-+++
-
-#### Exercise
-
-1. Convert the current app to multiple components
-2. Store the data at the highest parent
-3. Pass the data down to each child component
-
----
-
-### Passing Events From Child to Parent
-
-+++
-
-```js
-class ChildComponent {
-  @Output eventName = new EventEmitter<type>()
-
-  // varName must be the same type specified in eventEmitter 
-  methodName(varName){
-    this.eventName.emit(varName)
+#### Using Parameters/Query Strings
+```javascript
+  // controller
+  class TestController {
+    async test(request: Request, response: Response, next: NextFunction) {
+        // Getting path variables
+        request.params[path_key] // request.params.path_key
+        // Getting query strings
+        request.query[query_key] // request.query.query_key
+    }
   }
-}
-```
-
-+++
-```html
-<!-- Parent component template -->
-  <app-child (eventName)="eventHandler($event)"></app-child>
-```
-```js
-class ParentComponent{
-  eventHandler(varName){
-    // The varName received is what you send in child component
-  }
-}
 ```
 
 +++
 
 ### Exercise
+- /api/users/1
+  ```javascript
+    {
+      "id": 1,
+      "username": "Test User 1",
+      "avatar": "http://img_store/test_user_1.img",
+      "images": [
+        "http://img_store/users/1/img_1",
+        "http://img_store/users/1/img_2",
+        "http://img_store/users/1/img_3",
+      ]
+    }
+  ```
 
-1. On click `edit resume` (Which is a child component, change the information in for `About Me`)
-2. Add a button to toggle navbar display as a child component of `AboutMe`
-3. On click NavBar Item, change the page displayed.
++++
+- /api/messages
+  ```javascript
+    [
+      {
+        "id":1,
+        "text": "Hello world!",
+        "user_id": 1,
+        "datetime": "2019/08/19 16:01:37"
+      },
+      // ...
+    ]
+  ```
 
 ---
 
-### Services
+### Phase 3: Add data (POST)
+- POST /api/sign_up
+  ```javascript
+    {
+      "username": "Test User 3",
+      "avatar": "http://test_image_link.jpg"
+    }
+  ```
 
 +++
 
+#### Reading request body data
+```javascript
+  // controller
+  class TestController {
+    async testPost(request: Request, response: Response, next: NextFunction) {
+        // returns the body in POST request
+        request.body
+    }
+  }
+```
++++
+
+### Exercise
+- POST /api/messages
+  ```javascript
+    {
+      "text": "Hello!!!",
+      "user_id": 1,
+      "datetime": "2019/08/19 16:01:37"
+    }
+  ```
+
++++
+- POST /api/users/1/images
+  ```javascript
+    {
+      "image_url": "http://image_link.jpg"
+    }
+  ```
+
+---
+
+## Deployment: Part 1
+
+---
+
+### What is a Live Site?
+- running on a server
+- accessible on a public URL
+- connected to LiveDB and other services
+
+---
+
+### Heroku
+- Cloud Provider
+- provides servers running 24/7
+
+Link: https://devcenter.heroku.com/articles/getting-started-with-nodejs
+
++++
+
+### Setup
+- Download CLI
+  ```bash
+    npm install -g heroku
+  ```
+- Sign up Account @ 
+  - https://signup.heroku.com
+
++++
+
+### CLI Login
 ```bash
-ng generate service <name>
+  # Enter the following and follow instructions
+  heroku login
 ```
+
+---
+
+### Basic Express App Deployment
+<!-- TODO -->
+- Modify app template
+- 
+
+---
+
+### Environment Variables (env)
 
 +++
 
-- holds certain data
-- can provide ways to access that data
-- can provide ways to change that data
-- independent of componeny hierarchy
+### Why use env?
+<!-- TODO -->
 
 +++
 
-```ts
-export class MiscService {
-  isRed = false // data, can be accessed
+### How
+<!-- TODO -->
 
-  constructor() {}
-
-  // ways to change the data
-  changeToRed() {
-    this.isRed = true
-  }
-}
-```
-
-+++
-
-Can be injected into a component
-
-```ts
-  // firstChild.component.ts
-  constructor(private miscService: MiscService)
-
-  clickedButton() {
-    this.miscService.changeToRed()
-  }
-```
-
-```ts
-// secondChild.component.ts
-  constructor(public miscService: MiscService)
-```
-
-```html
-<!-- secondChild.component.html -->
-<div [style.color]="miscService.isRed"></div>
-```
-
-+++
+---
 
 ### Exercise
-1. Store the data specific to user in a UserService
-2. Inject the service in to components that use User data
-3. Access the User data in these components through service
-4. On click edit resume, change User data in the service
+<!-- TODO -->
+<!-- Different messages for different environments -->
 
 ---
 
-#### Routing
-
-+++
-
-```ts
-// app.module.ts
-import { AppRoutingModule } from './app-routing.module'
-
-// add AppRoutingModule under the existing imports
-{
-  imports: [BrowserModule, AppRoutingModule],
-}
-```
-
-+++
-
-```ts
-// app-routing.module.ts
-
-const routes: Routes = [
-  { path: 'user/:userId', component: UserProfileComponent },
-  { path: '', component: HomePageComponent },
-]
-// make sure you type out your component manually, and use autocomplete, so the component is imported
-```
-
-```ts
-// user-profile.component.ts
-import { ActivatedRoute } from '@angular/router'
-
-constructor( private route: ActivatedRoute ) {}
-
-ngOnInit() {
-  const userId = this.route.snapshot.params.userId
-  console.log(userId)
-}
-
-```
-
-+++
-
-### Exercise 
-
-- Use routing to complete the following paths
-  - users (show list of users)
-  - users/:id/about_me
-  - users/:id/resume
-  - users/:id/portfolio
-  - users/:id/blog
-  - users/:id/contact_me
-- Changing :id should show a different user's information
+## Object Relational Mapping
 
 ---
 
-### HTTP
+### DB Setup
+- Setting up Postgresql Locally
 
 ---
 
-```ts
-// app.module.ts
-import { HttpClientModule } from '@angular/common/http'
+### TypeORM
 
-{
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-}
-```
 
-```ts
-// user.service.ts
-import { HttpClient } from '@angular/common/http'
+---
 
-constructor(private http: HttpClient)
+### Migration Management
 
-getUserImages(userId) {
-  return this.http.get(`https://insta.nextacademy.com/api/v1/images?userId=${userId}`)
-}
-```
+---
 
-```ts
-// user-profile.component.ts
-constructor(private service: UserService) {}
+### Entities
 
-ngOnInit() {
-  const userId = const userId = this.route.snapshot.params.userId
-  this.service.getUserImages(userId).subscribe(response => {
-    console.log(response)
-  })
-}
-```
+---
 
-+++
+### Relationships
+
+---
+
+### Commands
+
+---
 
 ### Exercise
-- Access data from the provided API endpoints and use the provided data to display on resume
 
 ---
 
-### Culmination: To Do List
-Using the provided ToDoList template
-- Separate into 
-  1. ListsIndex (Shows all the list titles, onClick navigate to ShowList)
-  2. ShowList (Shows a specific list and it's todo's, onClick todo go to ShowToDo)
-  3. List (Component to display a List with title and Todos)
-  4. ToDo (Component to display task description, and whether it is completed)
-  5. ShowToDo (Shows a specific todo)
+### JSON Serialization ( Returning JSON data from TypeORM)
+
+---
+
+## Deployment: Part 2
+
+---
+
+### Cloud DB
+- a database running on the cloud
+- not on your computer
 
 +++
 
-- Data must be stored in a service
-- User must be able to edit the todo to be completed or not completed
-- Have a button to change user viewing the list
-- Different user can view different lists, or view some shared lists.
+### Provision DB
+<!-- TODO -->
+
++++
+
+### Create TypeORM Postgresql Project
+
+---
+
+### Attach DB to Prod Application
+- provision cloud service
+- get url, username, password, db_name
+- set credentials in spring app
+
++++
+
+### How
+<!-- TODO -->
+
+---
