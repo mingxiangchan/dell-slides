@@ -48,19 +48,21 @@
 
 ---
 
-### How to use external packages
-
-- read the [docs](https://valor-software.com/ng2-charts)
-- check the <span class="text-gold">General Info -> Usage</span> section
-- check the examples
-- each example has a <span class="text-gold">Markup</span> and <span class="text-gold">TypeScript</span> section
-
 ### Exercise: Laptop Sales
 
 - Clone [this](https://github.com/cmh114933/data-dashboard-example) template repository
 - run <span class="text-gold">npm install</span>
 - try removing the <span class="text-gold">ng2-charts</span> dependency
 - try re-adding the <span class="text-gold">ng2-charts</span> dependency
+
+---
+
+### How to use external packages
+
+- read the [docs](https://valor-software.com/ng2-charts)
+- check the <span class="text-gold">General Info -> Usage</span> section
+- check the examples
+- each example has a <span class="text-gold">Markup</span> and <span class="text-gold">TypeScript</span> section
 
 ---
 ### Exercise
