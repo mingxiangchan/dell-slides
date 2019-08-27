@@ -1,3 +1,66 @@
+### How the web works
+- browser sends request to server
+- server checks data in DB
+- server sends response to browser
+
++++
+
+### Responses can be 
+- a web page of:
+  - HTML
+  - JS
+  - CSS
+- OR data of various types:
+  - text
+  - json
+  - etc...
+
+---
+
+## What is HTTP?
+
++++
+
+### Hyper Text Transfer Protocol
+- A standard/format of requests used to communicate across computers
+
+---
+
+### Using 
+- Postman
+- Angular
+
+---
+
+### HTTP GET
+| field  | required | example                      |
+| ------ | -------- | ---------------------------- |
+| url    | yes      | http://insta.nextacademy.com |
+| header |          | `{string: string}`           |
+
++++
+
+```
+GET /docs/index.html HTTP/1.1
+Host: www.nowhere123.com
+Accept: image/gif, image/jpeg, */*
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
+```
+
++++
+
+### Exercise: Query the following
+- https://pokeapi.co/api/v2/pokemon
+- https://api.chucknorris.io/jokes/random?category=movie
+- https://insta.nextacademy.com/api/v1/users
+- https://insta.nextacademy.com/api/v1/images?userId=3
+- https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec
+
+
+---
+
 ### HTTP POST
 
 +++
@@ -7,6 +70,24 @@
 | url    | yes      | http://insta.nextacademy.com |
 | header |          | `{string: string}`           |
 | body   |          | `{string: any}`              |
+
++++
+
+```
+POST /bin/login HTTP/1.1
+Host: 127.0.0.1:8000
+Accept: image/gif, image/jpeg, */*
+Referer: http://127.0.0.1:8000/login.html
+Accept-Language: en-us
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
+Content-Length: 37
+Connection: Keep-Alive
+Cache-Control: no-cache
+   
+User=Peter+Lee&pw=123456&action=login
+```
 
 +++
 
@@ -37,6 +118,15 @@ this.http.post(url, params, httpOptions).subscribe(response => {
   console.log(response)
 })
 ```
+
+---
+
+### Exercise: Post Data
+- https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec
+  ```
+    {"name": "abc", "message": "abc"}
+  ```
+
 
 ---
 
