@@ -1,5 +1,13 @@
 ### Building Charts
 
++++
+
+### Topics
+
+- how to use 3rd party packages
+- how to build charts (line, bar, pie)
+- how to convert data to form the correct chart
+
 ---
 
 ### External Libraries
@@ -47,6 +55,13 @@
 - check the examples
 - each example has a <span class="text-gold">Markup</span> and <span class="text-gold">TypeScript</span> section
 
+### Exercise: Laptop Sales
+
+- Clone [this](https://github.com/cmh114933/data-dashboard-example) template repository
+- run <span class="text-gold">npm install</span>
+- try removing the <span class="text-gold">ng2-charts</span> dependency
+- try re-adding the <span class="text-gold">ng2-charts</span> dependency
+
 ---
 ### Exercise
 
@@ -81,13 +96,6 @@ horizontal: a, b, c, d
 series 1: {a: 5, b: 15, c: 14, d: 7}
 series 2:  {a: 10, b: 12, c: 8, d: 8}
 ```
-
----
-
-### Exercise: Laptop Sales
-
-- Clone [this](https://github.com/cmh114933/data-dashboard-example) template repository
-- add the <span class="text-gold">ng2-charts</span> package to it
 
 ---
 
