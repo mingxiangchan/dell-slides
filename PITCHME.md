@@ -83,7 +83,8 @@
 
 1. Create a new folder
 2. add a new file <span class="text-gold">message.txt</span>
-3. run <span class="text-blue">Git: Commit All</span> via <span class="text-blue">Ctrl Shift P</span>
+3. edit its contents with some message
+4. run <span class="text-blue">Git: Commit All</span> via <span class="text-blue">Ctrl Shift P</span>
 
 +++
 
@@ -119,10 +120,10 @@
 
 +++
 
-#### Exercise
+### Exercise
 
 - create a repo on github
-- run the <span class="text-blue">git remote add origin <your-url></span> in terminal
+- run the <span class="text-blue">git remote add origin your-url</span> in terminal
 - push branches <span class="text-blue">master</span>, <span class="text-blue">x</span>, <span class="text-blue">y</span>, <span class="text-blue">z</span> to github
 
 +++
