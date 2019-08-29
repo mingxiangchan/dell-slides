@@ -135,4 +135,37 @@
 - git clone it
 - pull each branch from origin
 
+---
+
+### Assignment
+
++++
+
+### Create an angular app
+
+- similar to [this](https://coinmarketcap.com/)
+- have a [homepage](https://coinmarketcap.com/) displaying a list of items
+- have a [page](https://coinmarketcap.com/currencies/bitcoin/) displaying stats for a specific item
+- don't need to replicate everything(e.g. nested tabs)
+
++++
+
+### Requirements
+
+- use Bootstrap to do the styling
+- use 1 branch per page
+- at least 2 commits per branch
+- at least 1 chart 
+- at least 1 table per page
+
++++
+
+### Tips
+
+- just hardcode the data
+- don't replicate everything
+- main goal is bootstrap + git and angular recap
+
+
+
 
