@@ -154,6 +154,7 @@
 
 - use Bootstrap to do the styling
 - use 1 branch per page
+- merging should happen via pull requests
 - at least 2 commits per branch
 - at least 1 chart 
 - at least 1 table per page
