@@ -1,5 +1,20 @@
 ### Collaborating with Git
 
++++
+
+### Topics
+
+- what is git
+- why do we use git
+- how do we use git
+
+---
+
+### Links
+
+- [Visualizing Git](https://git-school.github.io/visualizing-git/)
+- [VSCode Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+
 ---
 
 #### So Far
@@ -58,6 +73,37 @@
 
 ![commit-3](./exercise-3.png)
 
+---
+
+### Exercise
+
++++
+
+### Instructions
+
+1. Create a new folder
+2. add a new file <span class="text-gold">message.txt</span>
+3. run <span class="text-blue">Git: Commit All</span> via <span class="text-blue">Ctrl Shift P</span>
+
++++
+
+### Branch Creation
+
+1. in terminal, run <span class="text-blue">git branch -b <branch-name></span>
+2. via <span class="text-blue">Ctrl Shift P</span> -> <span class="text-blue">Git: Create Branch</span>
+3. in VSCode, lower left corner indicates current branch
+
++++
+
+### Instructions
+
+1. Create 3 branchs, <span class="text-blue">x</span>, <span class="text-blue">y</span>, <span class="text-blue">z</span>
+2. add 2 commits on <span class="text-blue">x</span>
+3. add 3 commits on <span class="text-blue">y</span>
+4. add 1 commit on <span class="text-blue">z</span>
+5. merge <span class="text-blue">x</span> into <span class="text-blue">master</span>
+6. merge <span class="text-blue">y</span> into <span class="text-blue">master</span>
+7. merge <span class="text-blue">z</span> into <span class="text-blue">master</span>
 
 ---
 
@@ -75,50 +121,16 @@
 
 #### Exercise
 
-- init a repo and link to github
-- create several branches
-- add different code on each branch
-- push each branch to origin
+- create a repo on github
+- run the <span class="text-blue">git remote add origin <your-url></span> in terminal
+- push branches <span class="text-blue">master</span>, <span class="text-blue">x</span>, <span class="text-blue">y</span>, <span class="text-blue">z</span> to github
 
 +++
+
+### Instructions
 
 - delete your folder
 - git clone it
 - pull each branch from origin
 
----
 
-#### Team Collab
-
-1. multiple people can code at once
-2. code can be merged from different people
-3. can trace who wrote what
-4. can fix conflicts
-
-+++
-
-#### Exercise: Phase 1
-
-1. each table pick 1 person as the leader
-2. leader creates a new folder
-3. leader opens folder in vscode
-4. leader runs `git init`
-5. leader writes a file (just write some text in it)
-6. leader commits and push
-
-+++
-
-#### Exercise: Phase 2
-
-1. one team member pulls, then pushes
-2. next team member does it, etc until everyone has done it
-3. all team members pull
-
-+++
-
-#### Exercise: Phase 3
-
-1. each team member checks out to a new branch
-2. make 2 commits each, push
-3. each person goes to github and makes a pull request
-4. fix as needed
