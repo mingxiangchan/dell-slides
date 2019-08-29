@@ -84,13 +84,14 @@
 1. Create a new folder
 2. add a new file <span class="text-gold">message.txt</span>
 3. edit its contents with some message
-4. run <span class="text-blue">Git: Commit All</span> via <span class="text-blue">Ctrl Shift P</span>
+4. run <span class="text-blue">Git: Initialize</span> via <span class="text-blue">Ctrl Shift P</span>
+5. run <span class="text-blue">Git: Commit All</span> via <span class="text-blue">Ctrl Shift P</span>
 
 +++
 
 ### Branch Creation
 
-1. in terminal, run <span class="text-blue">git branch -b <branch-name></span>
+1. in terminal, run <span class="text-blue">git checkout -b <branch-name></span>
 2. via <span class="text-blue">Ctrl Shift P</span> -> <span class="text-blue">Git: Create Branch</span>
 3. in VSCode, lower left corner indicates current branch
 
