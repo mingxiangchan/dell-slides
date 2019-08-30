@@ -110,9 +110,9 @@ print(results2)
 
 ### Pig Latin
 
-1. finds the first vowel
-2. shifts all non-vowels behind the section starting from the first vowel and adds <span class="text-gold">ay</span>
-3. if the word starts with vowel, doesn't change it
+1. find the first vowel
+2. shift all non-vowels behind the section starting from the first vowel and adds <span class="text-gold">ay</span>
+3. if the word starts with vowel, don't change it
 4. if there is no vowel in the word, add <span class="text-gold">ay</span> behind.
 
 +++
@@ -217,4 +217,25 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     return f'Hello World'
+```
+
+---
+
+### Assignment
+
+- build a sudoku solver web app
+- it receives a json
+
+```python
+{
+    "board": "105802000090076405200400819019007306762083090000061050007600030430020501600308900"
+}
+```
+
+- it will solve the board and return in response
+
+```python
+{
+    "board": "145892673893176425276435819519247386762583194384961752957614238438729561621358947"
+}
 ```
