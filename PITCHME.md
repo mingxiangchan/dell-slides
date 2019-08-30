@@ -175,6 +175,14 @@ print(x)
 
 ---
 
+### Add in VSCode Settings.json
+
+```json
+"python.venvPath": "~\\AppData\\Local\\pypoetry\\Cache\\virtualenvs",
+```
+
+---
+
 ### Basic Web App
 
 ---
