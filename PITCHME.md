@@ -218,14 +218,32 @@ poetry add flask
 ```python
 # app.py
 
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
     return f'Hello World'
+
+@app.route('/test')
+def test():
+    return jsonify({
+        "message": "hello world"
+    })
 ```
+
++++
+
+### Run Server
+
+```
+poetry run flask run
+```
+
+---
+
+### Exercise
 
 ---
 
