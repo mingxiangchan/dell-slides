@@ -237,13 +237,66 @@ def test():
 
 ### Run Server
 
+If running from powershell
+
 ```
 poetry run flask run
+```
+
+If running from VSCode terminal
+
+```
+flask run
 ```
 
 ---
 
 ### Exercise
+
++++
+
+create a <span class="text-blue">/public</span> endpoint
+
+return the following json
+
+```json
+{
+    "id": 123,
+    "locked": false,
+    "name": "John",
+    "roles": [
+        "admin",
+        "employee"
+    ]
+}
+```
+
+---
+
+### Importing other code
+
+```python
+# from <filename> import <variable/function_name>
+from something import some_thing
+```
+
++++
+
+Main file <span class="text-blue">app.py</span>
+
+```python
+from hello import greeting
+
+greeting()
+```
+
+Second file <span class="text-blue">hello.py</span>
+
+```python
+
+def greeting():
+    print("hello world")
+```
 
 ---
 
