@@ -76,7 +76,7 @@ for idx, x in enumerate(arr):
 
 data = {"message": "hello world"}
 
-for key, value in data.items:
+for key, value in data.items():
     print(key)
     print(value)
 
