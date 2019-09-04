@@ -31,23 +31,34 @@
 +++
 
 ### Exercise: Make a GET Request with Postman
-- `https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec`
 
-+++
+```bash
+# url
+https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec
+```
+
+---
 
 ### POST Request
-- used to `POST` data, i.e make changes to a database within an application
+- use to submit data, i.e make changes to a database within an application
 
 +++
 
 ### Exercise: Post Data to storage
-- `https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec`
-  ```json
-    {
-        "name": "abc", 
-        "message": "abc"
-    }
-  ```
+
+```bash
+# url
+https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec
+```
+
+Body:
+
+```json
+{
+    "name": "abc", 
+    "message": "abc"
+}
+```
 ---
 
 ## Express JS
@@ -190,7 +201,7 @@ localhost:3000/testing?testValue=1
   }
 ```
 
-+++
+---
 
 ### Exercise
 - /api/users/1
