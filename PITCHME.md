@@ -317,97 +317,38 @@ Link: https://devcenter.heroku.com/articles/getting-started-with-nodejs
 ---
 
 ### Basic Express App Deployment
-<!-- TODO -->
-- Modify app template
-- 
-
----
-
-### Environment Variables (env)
 
 +++
 
-### Why use env?
-<!-- TODO -->
+Stop push `node_modules` and `build` folder to heroku
+```javascript
+// .gitignore
+node_modules/*
+build/*
+```
 
 +++
 
-### How
-<!-- TODO -->
-
----
-
-### Exercise
-<!-- TODO -->
-<!-- Different messages for different environments -->
-
----
-
-## Object Relational Mapping
-
----
-
-### DB Setup
-- Setting up Postgresql Locally
-
----
-
-### TypeORM
-
-
----
-
-### Migration Management
-
----
-
-### Entities
-
----
-
-### Relationships
-
----
-
-### Commands
-
----
-
-### Exercise
-
----
-
-### JSON Serialization ( Returning JSON data from TypeORM)
-
----
-
-## Deployment: Part 2
-
----
-
-### Cloud DB
-- a database running on the cloud
-- not on your computer
+Specify commands to run server
+```javascript
+  // Procfile
+  web: node build/index.js
+```
 
 +++
 
-### Provision DB
-<!-- TODO -->
+Use `process.env.PORT` instead of directly writing the port.
 
 +++
 
-### Create TypeORM Postgresql Project
-
----
-
-### Attach DB to Prod Application
-- provision cloud service
-- get url, username, password, db_name
-- set credentials in spring app
+Create a heroku app using terminal command
+```bash
+heroku create
+```
 
 +++
 
-### How
-<!-- TODO -->
-
----
+After commiting all changes to git, push to heroku
+```bash
+git push heroku master
+```
