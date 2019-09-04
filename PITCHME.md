@@ -21,18 +21,7 @@
 
 +++
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    participant D as Database
-
-
-    C->>S: GET /users
-    S->>D: SELECT * FROM users
-    D-->>S: user rows
-    S-->>C: HTML/JSON data
-```
+<img src="https://kroki.io/mermaid/svg/eNpljUEKwjAURPc9xayF0n0W3SRRkdaCyQW-9SMBTWuS6vVNFHHRmd17DBP5sbAfWTm6BrpXyJkpJDe6mXyCBEXIm2OfVs4UZzg8OaycKk5RojNFrlCaI-u2NQI7bdEskUP8UJOpEjC609Jig-1p6PHXqv6uCkGYXr9RplJgb_uuOZjhiEt-ewPywDw6">
 
 ---
 
@@ -41,8 +30,8 @@ sequenceDiagram
 
 +++
 
-### Exercise
-- use `Postman` to make a `GET` request to obtain chat data from PLACEHOLDER_LINK
+### Exercise: Make a GET Request with Postman
+- `https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec`
 
 +++
 
@@ -51,9 +40,14 @@ sequenceDiagram
 
 +++
 
-### Exercise
-- use `Postman` to make a `POST` request to add a new message to the chat storage at PLACEHOLDER_LINK
-
+### Exercise: Post Data to storage
+- `https://script.google.com/macros/s/AKfycbxFHnzXZn95MraVopLjA5Rfx5JInmuJ105yJpQ4EuyNEvG29tt3/exec`
+  ```json
+    {
+        "name": "abc", 
+        "message": "abc"
+    }
+  ```
 ---
 
 ## Express JS
@@ -62,7 +56,7 @@ sequenceDiagram
 ---
 
 ### Barebones Express App
-- Clone from [this](PLACEHOLDER_LINK)
+- Clone from [this](https://github.com/cmh114933/express-barebones)
 
 +++
 
@@ -89,12 +83,12 @@ app.<action>("/<path>", (req: Request, res: Response) => {
 ---
 
 ### Basic Express template 
-- Clone [here](PLACEHOLDER_LINK)
+- Clone [here](https://github.com/cmh114933/express-basic)
 
 +++
 
 ### Folder Structure
-- ![](PLACEHOLDER_SCREENSHOT_IMG)
+<img src="./folder_structure.png">
 
 +++
 
@@ -104,11 +98,31 @@ app.<action>("/<path>", (req: Request, res: Response) => {
 ---
 
 ### Nextagram
-- v1: show homepage displaying all images (GET)
-- v2: return json data of all users (GET)
-- v3: add data to application (POST)
+- v1: return json data of all users (GET)
+- v2: add data to application (POST)
 
 ---
+
+### Phase 1: Return data (Raw JSON String)
+- hardcodes users data
+  ```javascript
+    [
+      {
+        "id": 1,
+        "avatar": "http://img_store/test_user_1.img",
+        "username": "Test User 1"
+      },
+      {
+        "id": 2,
+        "avatar": "http://img_store/test_user_2.img",
+        "username": "Test User 2"
+      },
+      // ...
+    ]
+  ```
+- return raw json data
+
++++
 
 ### Phase 1: Render Static Pages (Homepage)
 - render a HTML page with CSS styles
@@ -136,33 +150,6 @@ export const Routes = [{
     action: "home" // controller method name
 }];
 ```
-
-+++
-
-### Exercise
-- /about-us
-- /contact-us
-
----
-
-### Phase 2: Return data (Raw JSON String)
-- hardcodes users data
-  ```javascript
-    [
-      {
-        "id": 1,
-        "avatar": "http://img_store/test_user_1.img",
-        "username": "Test User 1"
-      },
-      {
-        "id": 2,
-        "avatar": "http://img_store/test_user_2.img",
-        "username": "Test User 2"
-      },
-      // ...
-    ]
-  ```
-- return raw json data
 
 +++
 
@@ -236,7 +223,7 @@ localhost:3000/testing?testValue=1
 
 ---
 
-### Phase 3: Add data (POST)
+### Phase 2: Add data (POST)
 - POST /api/sign_up
   ```javascript
     {
@@ -352,3 +339,19 @@ After commiting all changes to git, push to heroku
 ```bash
 git push heroku master
 ```
+
+---
+
+### Angular Deployment: Netlify
+
+---
+
+### Exercise/ Assignment: Bitly Clone
+- Deploy an Angular App on Netlify that queries an express backend
+- Express backend:
+  - `POST bit.ly/urls`: receive new urls for shorten
+  - `GET bit.ly/urls`: view lists of urls
+  - `GET bit.ly/urls/<id>`: Redirect to shortened link destination
+- Angular App:
+  - A form to add new links for shortening
+  - A lists to show all urls
