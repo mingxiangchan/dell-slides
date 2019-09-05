@@ -204,49 +204,56 @@ localhost:3000/testing?testValue=1
 ---
 
 ### Exercise
-- /api/users/1
-  ```javascript
-    {
-      "id": 1,
-      "username": "Test User 1",
-      "avatar": "http://img_store/test_user_1.img",
-      "images": [
-        "http://img_store/users/1/img_1",
-        "http://img_store/users/1/img_2",
-        "http://img_store/users/1/img_3",
-      ]
-    }
-  ```
+
+GET <span class="text-blue">/api/users/1</span>
+
+```javascript
+{
+    "id": 1,
+    "username": "Test User 1",
+    "avatar": "http://img_store/test_user_1.img",
+    "images": [
+    "http://img_store/users/1/img_1",
+    "http://img_store/users/1/img_2",
+    "http://img_store/users/1/img_3",
+    ]
+}
+```
 
 +++
-- /api/messages
-  ```javascript
-    [
-      {
-        "id":1,
-        "text": "Hello world!",
-        "user_id": 1,
-        "datetime": "2019/08/19 16:01:37"
-      },
-      // ...
-    ]
-  ```
+
+GET <span class="text-blue">/api/messages</span>
+
+```javascript
+[
+    {
+    "id":1,
+    "text": "Hello world!",
+    "user_id": 1,
+    "datetime": "2019/08/19 16:01:37"
+    },
+    // ...
+]
+```
 
 ---
 
 ### Phase 2: Add data (POST)
-- POST /api/sign_up
-  ```javascript
-    {
-      "username": "Test User 3",
-      "avatar": "http://test_image_link.jpg"
-    }
-  ```
+
+POST <span class="text-blue">/api/sign_up</span>
+
+```json
+{
+    "username": "Test User 3",
+    "avatar": "http://test_image_link.jpg"
+}
+```
 
 +++
 
 #### Reading request body data
-```javascript
+
+```ts
   // controller
   class TestController {
     async testPost(request: Request, response: Response, next: NextFunction) {
@@ -258,22 +265,26 @@ localhost:3000/testing?testValue=1
 +++
 
 ### Exercise
-- POST /api/messages
-  ```javascript
-    {
-      "text": "Hello!!!",
-      "user_id": 1,
-      "datetime": "2019/08/19 16:01:37"
-    }
-  ```
+
+POST <span class="text-blue">/api/messages</span>
+
+```json
+{
+    "text": "Hello!!!",
+    "user_id": 1,
+    "datetime": "2019/08/19 16:01:37"
+}
+```
 
 +++
-- POST /api/users/1/images
-  ```javascript
-    {
-      "image_url": "http://image_link.jpg"
-    }
-  ```
+
+POST <span class="text-blue">/api/users/1/images</span>
+
+```json
+{
+    "image_url": "http://image_link.jpg"
+}
+```
 
 ---
 
@@ -291,22 +302,24 @@ localhost:3000/testing?testValue=1
 ### Heroku
 - Cloud Provider
 - provides servers running 24/7
-
-Link: https://devcenter.heroku.com/articles/getting-started-with-nodejs
+- Visit [this](https://devcenter.heroku.com/articles/getting-started-with-nodejs) link to learn more
 
 +++
 
 ### Setup
+
+
+- Sign up Account [here](https://signup.heroku.com)
 - Download CLI
-  ```bash
-    npm install -g heroku
-  ```
-- Sign up Account @ 
-  - https://signup.heroku.com
+
+```bash
+npm install -g heroku
+```
 
 +++
 
 ### CLI Login
+
 ```bash
   # Enter the following and follow instructions
   heroku login
@@ -319,6 +332,7 @@ Link: https://devcenter.heroku.com/articles/getting-started-with-nodejs
 +++
 
 Stop push `node_modules` and `build` folder to heroku
+
 ```javascript
 // .gitignore
 node_modules/*
@@ -360,9 +374,9 @@ git push heroku master
 ### Exercise/ Assignment: Bitly Clone
 - Deploy an Angular App on Netlify that queries an express backend
 - Express backend:
-  - `POST bit.ly/urls`: receive new urls for shorten
-  - `GET bit.ly/urls`: view lists of urls
-  - `GET bit.ly/urls/<id>`: Redirect to shortened link destination
+  - <span class="text-blue">POST bit.ly/urls</span>: receive new urls for shorten
+  - <span class="text-blue">GET bit.ly/urls</span>: view lists of urls
+  - <span class="text-blue">GET bit.ly/urls/{id}</span>: Redirect to shortened link destination
 - Angular App:
   - A form to add new links for shortening
   - A lists to show all urls
