@@ -135,11 +135,6 @@ app.<action>("/<path>", (req: Request, res: Response) => {
 
 +++
 
-### Phase 1: Render Static Pages (Homepage)
-- render a HTML page with CSS styles
-
-+++
-
 ### Controller
 ```javascript
 // controller/HomePageController.ts
