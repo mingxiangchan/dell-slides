@@ -1,9 +1,3 @@
-
-- class syntax
-- sql alchemy
-- alembic
-- flask cookiecutter
-
 ## Python 2
 
 +++
@@ -11,8 +5,7 @@
 ### Topics
 
 - Python classes
-- SQLAlchemy
-- Alembic
+- SQLAlchemy, Alembic
 - Flask Templates
 - Scripting in Python
 
@@ -87,32 +80,194 @@ print(f"The average size of the oranges on this tree is { total_size / length(ba
 ```
 ---
 
-### SQLAlchemy + Alembic
+### Database-Webserver Libraries
 
 - SQL Alchemy: ORM (e.g. Hibernate, JDBC)
 - Alembic: Migration tool (e.g. TypeORM, Flyaway)
+- Marshmallow: Serializing/Deserializing data (e.g. Hibernate)
 
 +++
 
-- add sqlalchemy + alembic to flask
-- add some sample classes
-- run some queries
-- exercise: airbnb db, properties, bookings, reviews, users
+### Installation
+
+```bash
+poetry add flask-sqlalchemy
+poetry add marshmallow-sqlalchemy
+poetry add flask-migrate 
+```
 
 ---
 
-### Flask Templates
+### SQLAlchemy: Setup
 
-- python is fragmented, pip, poetry, pipenv etc.
-- application factory pattern to split up files
+```python
+from flask_sqlalchemy import SQLAlchemy
+
+url = "postgres://localhost:5432/db_name"
+app.config["SQLALCHEMY_DATABASE_URI"] = url
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app)
+```
+
++++
+
+### SQLAlchemy: Model
+
+```python
+from datetime import datetime
+
+class User(db.Model):
+    # column_name = db.Column(column_type, **options)
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+```
+
++++
+
+### SQLAlchemy: Querying
+
+```python
+# set the SELECT field
+query = db.session.query(User)
+query = User.query
+query = db.session.query(User.id, User.email)
+
+# add filters and ordering
+query.filter_by(User.id==123).one()
+query.filter_by(User.id.like('%John%')).all()
+```
+
+You can read up more [here](https://docs.sqlalchemy.org/en/13/orm/tutorial.html#querying)
+
++++
+
+### SQLAlchemy: CRUD
+
+```python
+# insert/update
+user = User()
+user.email = 'john@example.com'
+user.age = 15
+
+db.session.add(user)
+db.session.commit()
+
+# delete
+db.session.delete(user)
+```
 
 ---
 
-### Scripting Tools
+### Alembic: Setup
 
-- CSV parsing
-- reading json files
-- writing to a CSV file
-- creating charts
-- using CLIs
+```python
+from flask_migrate import Migrate
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+```
+
++++
+
+### Alembic: Commands
+
+```bash
+# initialize migration folder
+flask db init
+
+# generate a migration from models
+flask db migrate
+
+# run the pending migrations
+flask db upgrade
+```
+
+---
+
+### Marshmallow: Schemas
+
+```python
+class UserSchema(ModelSchema):
+    class Meta:
+        model = User
+```
+
++++
+
+### Mashmallow: Convert to JSON
+
+```python
+@app.route("/users")
+def users():
+    users = User.query.all()
+    users_json = UserSchema(many=True).dump(users)
+    return jsonify(users_json)
+```
+
+---
+
+### Exercise
+
+<span class="text-blue">GET /users</span>
+
+- return a json array of users
+- each user should have:
+    - id
+    - email
+    - username
+
++++
+
+<span class="text-blue">GET /bookings/{id}</span>
+
+- return a single booking json for booking with the correct id
+
++++
+
+<span class="text-blue">POST /users</span>
+
+- will create a user in the DB
+
+```json
+{
+    "email": email,
+    "username": username
+}
+```
+
++++
+
+<span class="text-blue">POST /users/{id}</span>
+
+- will update a user with ID in the DB
+
+```json
+{
+    "email": email,
+    "username": username
+}
+```
+
++++
+
+<span class="text-blue">GET /bookings</span>
+
+- return a json array of bookings
+- each booking should have:
+    - id
+    - checkin_date
+    - checkout_date
+    - payment_amount
+    - confirmed (boolean)
+
++++
+
+<span class="text-blue">GET /bookings</span>
+
+- can search using query params (e.g. <span class="text-blue">?min_payment_amount=2000)
+- min_payment_amount
+- max_payment_amount
+- confirmed
 
