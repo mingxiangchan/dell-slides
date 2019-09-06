@@ -139,7 +139,7 @@ query.filter_by(User.id==123).one()
 query.filter_by(User.id.like('%John%')).all()
 ```
 
-You can read up more [here](https://docs.sqlalchemy.org/en/13/orm/tutorial.html#querying)
+You can read more [here](https://docs.sqlalchemy.org/en/13/orm/tutorial.html#querying)
 
 +++
 
@@ -210,6 +210,8 @@ def users():
 
 ### Exercise
 
++++
+
 <span class="text-blue">GET /users</span>
 
 - return a json array of users
@@ -271,3 +273,55 @@ def users():
 - max_payment_amount
 - confirmed
 
+---
+
+### Scripting in Python
+
++++
+
+### Reading CSV
+
+```python
+import csv
+
+with open('employees.csv', mode='r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    line_count = 0
+    for row in csv_reader:
+        if line_count == 0:
+            print(row)
+        else:
+            print(row["name"])
+            print(row["id"])
+        line_count+= 1
+```
+
++++
+
+### Writing CSV
+
+```python
+import csv
+
+with open('employees_2.csv', mode='w') as csv_file:
+    fieldnames = ['name', 'dept', 'birth_month']
+    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+    writer.writeheader()
+    writer.writerow({'name': 'John Smith', 'dept': 'Accounting', 'birth_month': 'November'})
+    writer.writerow({'name': 'Erica Meyers', 'dept': 'IT', 'birth_month': 'March'
+```
+
+---
+
+### Exercise
+
+1. Download [this](https://people.sc.fsu.edu/~jburkardt/data/csv/hw_200.csv) csv of height data
+2. get the average height and weight of all participants
+3. write the results into a <span class="text-blue">hw_results.csv</span> file
+
++++
+
+1. Download [this](https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv) csv of city data
+2. check how many cities are there per state
+3. write the results into a <span class="text-blue">cities_results.csv</span> file
