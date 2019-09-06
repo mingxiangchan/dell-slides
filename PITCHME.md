@@ -94,6 +94,7 @@ print(f"The average size of the oranges on this tree is { total_size / length(ba
 poetry add flask-sqlalchemy
 poetry add marshmallow-sqlalchemy
 poetry add flask-migrate 
+poetry add psycopg2 
 ```
 
 ---
@@ -325,3 +326,12 @@ with open('employees_2.csv', mode='w') as csv_file:
 1. Download [this](https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv) csv of city data
 2. check how many cities are there per state
 3. write the results into a <span class="text-blue">cities_results.csv</span> file
+
+---
+
+## Assignment: 
+
+1. read [this](https://people.sc.fsu.edu/~jburkardt/data/csv/homes.csv) file
+2. use the data to seed your database
+3. create a flask webserver that allows you to query homes by attributes
+4. write documentation about how to use the flask api
