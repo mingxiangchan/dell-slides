@@ -1,354 +1,217 @@
-## Node Web Apps (With Express)
+## Express 2: Database
 
 ---
 
-### How the web works
-- browser sends request to server
-- server checks data in DB
-- server sends response to browser
+### How to store information persistently?
+- Text File
+- Tables (Excel/ Google Sheet)
+- Databases
 
 +++
 
-### Responses can be 
-- a web page of:
-  - HTML
-  - JS
-  - CSS
-- OR data of various types:
-  - text
-  - json
-  - etc...
+### Database Basics
+- Database is an **organized collection** of data
+- i.e: Data stored in a specific structure, commonly in the form of `Columns/Field` and `Rows/Records`
+- Database become more organized and versatile when you include relationships
+
+---
+
+### DB Setup
+- Setting up Postgresql Locally
+```bash
+scoop install postgresql@10.9
+ 
+# start postgresql
+pg_ctl -D "C:\Users\<your-windows-user>\scoop\apps\postgresql\current\data" -l logfile start
+
+# create a databse under postgresql
+psql -c "CREATE DATABASE <db_name>" -U postgres
+```
 
 +++
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-    participant D as Database
+It's possible to use direct SQL queries to create and alter tables, but we usually migration managers to handle it.
 
+---
 
-    C->>S: GET /users
-    S->>D: SELECT * FROM users
-    D-->>S: user rows
-    S-->>C: HTML/JSON data
+### Exercise: dbdiagram.io
+- Bitly: Urls
+- Quora: Questions
+- [PropertyGuru](https://www.propertyguru.com.my): Property
+
+---
+
+## Object Relational Mapping: Type ORM
+
++++
+
+<img src="https://kroki.io/mermaid/svg/eNpNjksOgkAQRPeeonauuAALFobExISoxAsMQ4NjhMHuHom3d5jgp7f9XlUJPQKNlkpnejbDBvEO5mnEsps0K4rLa6JjXeXYk6I1atCxH9A2CV2_iCBOXrRnkhznQOxIUO7QeQb7OZnJ-FDIFuebXplJFnArsP4ehlGgHr65kVUYVXZNUJL_0iXgNzVHTRo4eqs0O73Gman5DSCoTLU=">
+---
+
+### Migration Management
+
++++
+
+#### Migrations are changes to your database that are:
+- Incremental
+- Reversible
+- Separate
+
++++
+
+#### Setup
+```bash
+# installs typeorm commands
+npm install -g typeorm
+# initializes a typeorm project with postgres db
+typeorm init --name ProjectName --database postgres
 ```
 
 ---
 
-### GET Request
-- used to `GET`/obtain data
+#### Entities
 
 +++
 
-### Exercise
-- use `Postman` to make a `GET` request to obtain chat data from PLACEHOLDER_LINK
+```js
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-+++
+@Entity()
+export class User {
 
-### POST Request
-- used to `POST` data, i.e make changes to a database within an application
+    @PrimaryGeneratedColumn()
+    id: number
 
-+++
+    @Column()
+    name: string
 
-### Exercise
-- use `Postman` to make a `POST` request to add a new message to the chat storage at PLACEHOLDER_LINK
+    @Column("datetime")
+    created_at
+}
+```
 
----
-
-## Express JS
-- a framework to build simple web applications
-
----
-
-### Barebones Express App
-- Clone from [this](PLACEHOLDER_LINK)
-
-+++
-
-```javascript
-app.get("/helloWorld", (req: Request, res: Response) => {
-    res.json({
-        message: "Hello World"
-    })
-});
-
-app.<action>("/<path>", (req: Request, res: Response) => {
-  // retrieve information from req
-  req.params
-  req.query
-  // send response using res
-  res.send(data) // sends data
-  res.json(data) // sends json
-  res.sendStatus(statusCode) // sends status
-  res.status(statusCode).send(data) // sends data with status
-
-})
+### TypeORM Commands
+```bash
+# Generate Migration
+ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationFileName
+# Execute Migrations
+ts-node ./node_modules/typeorm/cli.js migration:run
+# Revert Migrations
+ts-node ./node_modules/typeorm/cli.js migration:revert
 ```
 
 ---
 
-### Basic Express template 
-- Clone [here](PLACEHOLDER_LINK)
+### Exercise
+- Generate the following tables in postgres database using typeorm
+    - Urls
+    - Questions
+    - Properties
+
+--- 
+
+### Accessing DB in Express
+- Read and find the differences
+```
+typeorm init --name MyProject --database postgres --express
+```
 
 +++
 
-### Folder Structure
-- ![](PLACEHOLDER_SCREENSHOT_IMG)
+### Exercises
+- Bitly
+    - GET /urls
+    - GET /urls/1
+    - GET /urls/1/redirect
+    - POST /urls
+    - POST /urls/1
+    - DELETE /urls/1
+- Quora
+    - GET /questions
+    - GET /questions/1
+    - POST /questions
+    - POST /questions/1
+    - DELETE /questions
+- Properties
+    - GET /properties
+    - GET /properties/1
+    - POST /properties
+    - POST /properties/1
+    - DELETE /properties
 
 +++
 
-- `controller` stores the logic for each route
-- `routes` stores the configuration for all the routes
+### Separate each entity to different apps
 
 ---
 
-### Nextagram
-- v1: show homepage displaying all images (GET)
-- v2: return json data of all users (GET)
-- v3: add data to application (POST)
+## Deployment: Part 2
 
 ---
 
-### Phase 1: Render Static Pages (Homepage)
-- render a HTML page with CSS styles
+### Cloud DB
+- a database running on the cloud
+- not on your computer
 
 +++
 
-### Controller
-```javascript
-// controller/HomePageController.ts
-export class HomePageController {
-    async home(request: Request, response: Response, next: NextFunction) {
-        response.sendFile(ABSOLUTE_HTML_FILEPATH)
-    }
+### Provision DB
+On heroku dashboard
+- Go to your app
+- Select Resources tab
+- In search bar, type `Heroku Postgres` and add to your app
+- Settings, click `Reveal Config Vars`
+- You will see a DATABASE_URL
+
++++
+
+### Attach DB to Prod Application
+- provision cloud service
+- get url, username, password, db_name
+- set credentials in ormconfig
+
++++
+
+### How
+From the DATABASE_URL, get the credentials and replace in your ormconfig
+`username:password@host:port/databasename`
+```json
+{
+   "host": host,
+   "port": port,
+   "username": username,
+   "password": password,
+   "database": databasename,
+   "entities": [
+      "build/entity/**{.ts,.js}"
+   ],
+   "migrations": [
+      "build/migration/**{.ts,.js}"
+   ],
+   ...
 }
 ```
 
 +++
 
-```javascript
-// routes.ts
-export const Routes = [{
-    method: "get", // request method
-    route: "/home", // path
-    controller: HomePageController, // controller
-    action: "home" // controller method name
-}];
-```
+### Ensure
+1. use `const PORT = process.env.PORT || 3000`
+2. have a Procfile
+3. add to package.json
+   ```json 
+    "scripts": {
+      "build-ts": "tsc",
+      "postinstall": "npm run build-ts",
+      "start": "ts-node src/index.ts"
+    }
+   ```
 
 +++
 
-### Exercise
-- /about-us
-- /contact-us
-
+## Exercise
+Deploy your Bitly, Quora and PropertyGuru clones.
 ---
 
-### Phase 2: Return data (Raw JSON String)
-- hardcodes users data
-  ```javascript
-    [
-      {
-        "id": 1,
-        "avatar": "http://img_store/test_user_1.img",
-        "username": "Test User 1"
-      },
-      {
-        "id": 2,
-        "avatar": "http://img_store/test_user_2.img",
-        "username": "Test User 2"
-      },
-      // ...
-    ]
-  ```
-- return raw json data
 
-+++
 
-#### Defining Parameters
-```javascript
-// routes
-export const Routes = [{
-    method: "get",
-    route: "/testing/:testValue",
-    controller: TestController,
-    action: "test"
-}]
-```
 
-+++
-
-#### Setting Parameters/Query Strings
-```bash
-# Parameters: sets parameter key testValue as 1
-localhost:3000/testing/1
-
-# Query String: sets query string key testValue as 1
-localhost:3000/testing?testValue=1
-```
-
-+++
-
-#### Using Parameters/Query Strings
-```javascript
-  // controller
-  class TestController {
-    async test(request: Request, response: Response, next: NextFunction) {
-        // Getting path variables
-        request.params[path_key] // request.params.path_key
-        // Getting query strings
-        request.query[query_key] // request.query.query_key
-    }
-  }
-```
-
-+++
-
-### Exercise
-- /api/users/1
-  ```javascript
-    {
-      "id": 1,
-      "username": "Test User 1",
-      "avatar": "http://img_store/test_user_1.img",
-      "images": [
-        "http://img_store/users/1/img_1",
-        "http://img_store/users/1/img_2",
-        "http://img_store/users/1/img_3",
-      ]
-    }
-  ```
-
-+++
-- /api/messages
-  ```javascript
-    [
-      {
-        "id":1,
-        "text": "Hello world!",
-        "user_id": 1,
-        "datetime": "2019/08/19 16:01:37"
-      },
-      // ...
-    ]
-  ```
-
----
-
-### Phase 3: Add data (POST)
-- POST /api/sign_up
-  ```javascript
-    {
-      "username": "Test User 3",
-      "avatar": "http://test_image_link.jpg"
-    }
-  ```
-
-+++
-
-#### Reading request body data
-```javascript
-  // controller
-  class TestController {
-    async testPost(request: Request, response: Response, next: NextFunction) {
-        // returns the body in POST request
-        request.body
-    }
-  }
-```
-+++
-
-### Exercise
-- POST /api/messages
-  ```javascript
-    {
-      "text": "Hello!!!",
-      "user_id": 1,
-      "datetime": "2019/08/19 16:01:37"
-    }
-  ```
-
-+++
-- POST /api/users/1/images
-  ```javascript
-    {
-      "image_url": "http://image_link.jpg"
-    }
-  ```
-
----
-
-## Deployment: Part 1
-
----
-
-### What is a Live Site?
-- running on a server
-- accessible on a public URL
-- connected to LiveDB and other services
-
----
-
-### Heroku
-- Cloud Provider
-- provides servers running 24/7
-
-Link: https://devcenter.heroku.com/articles/getting-started-with-nodejs
-
-+++
-
-### Setup
-- Download CLI
-  ```bash
-    npm install -g heroku
-  ```
-- Sign up Account @ 
-  - https://signup.heroku.com
-
-+++
-
-### CLI Login
-```bash
-  # Enter the following and follow instructions
-  heroku login
-```
-
----
-
-### Basic Express App Deployment
-
-+++
-
-Stop push `node_modules` and `build` folder to heroku
-```javascript
-// .gitignore
-node_modules/*
-build/*
-```
-
-+++
-
-Specify commands to run server
-```javascript
-  // Procfile
-  web: node build/index.js
-```
-
-+++
-
-Use `process.env.PORT` instead of directly writing the port.
-
-+++
-
-Create a heroku app using terminal command
-```bash
-heroku create
-```
-
-+++
-
-After commiting all changes to git, push to heroku
-```bash
-git push heroku master
-```
