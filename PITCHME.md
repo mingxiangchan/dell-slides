@@ -128,12 +128,18 @@ typeorm init --name MyProject --database postgres --express
     - POST /urls
     - POST /urls/1
     - DELETE /urls/1
+
++++
+
 - Quora
     - GET /questions
     - GET /questions/1
     - POST /questions
     - POST /questions/1
     - DELETE /questions
+
++++
+
 - Properties
     - GET /properties
     - GET /properties/1
