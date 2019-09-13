@@ -228,3 +228,12 @@ namespace WebApplication2.Controllers
 - can auto-convert to json
 - can convert class to json
 - getter methods is not required
+
+---
+
+### Exercise: Todos
+
+- GET <span class="text-blue">/todos?completed=true</span>
+- GET <span class="text-blue">/todos/{id}</span>
+- GET <span class="text-blue">/users?active=true</span>
+- GET <span class="text-blue">/todos/{id}</span>
