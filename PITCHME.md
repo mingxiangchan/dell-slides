@@ -180,11 +180,9 @@ print(bsearch(x, 9) == 1)
 
 ### Exercise: Tic Tac Toe
 
-- 2 players
-- display board in terminal
-- player can enter board idx to place piece
-- can switch to second player and vice versa
+- Able to check a given tic tac toe board
 - will show who won or if its a draw
+- no player interaction required
 - write unit tests for the win/loss/draw conditions
 
 ---
