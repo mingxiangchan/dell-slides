@@ -235,3 +235,26 @@ namespace WebApplication2.Controllers
 - GET <span class="text-blue">/todos/{id}</span>
 - GET <span class="text-blue">/users?active=true</span>
 - GET <span class="text-blue">/todos/{id}</span>
+
+---
+
+---
+
+### Assignment
+
+- build a sudoku solver web app
+- it receives a json
+
+```json
+{
+    "board": "105802000090076405200400819019007306762083090000061050007600030430020501600308900"
+}
+```
+
+- it will solve the board and return in response
+
+```json
+{
+    "board": "145892673893176425276435819519247386762583194384961752957614238438729561621358947"
+}
+```
