@@ -1,225 +1,190 @@
-## Express 2: Database
+### About Ionic
+- [Documentation](https://ionicframework.com/docs/components)
+- [Icons](https://ionicons.com/)
++++
+
+### What
+- A library of reusable components, built using HTML, CSS, and JS
+- Highly customizable
+- Provides access to native functionality (Mobile Notifications, Camera)
+- Navigation with Angular
+
++++
+
+### Why: One For All
+- One single codebase for all platforms (Android, IOS, Web)
+
++++
+
+### Additional
+- Themes
 
 ---
 
-### How to store information persistently?
-- Text File
-- Tables (Excel/ Google Sheet)
-- Databases
+### Ionic Setup
+- Download the `Ionic DevApp` from the store of your choice
+- Run the following commands:
+    ```bash
+    npm install -g ionic
+    ionic start <app-name> template
+    # template options: blank, tabs, sidemenu
+    ionic serve
 
+    # To test on mobile
+    ionic cordova prepare <platform>
+    # platform options: ios, android
+    ionic serve --devapp
+
+    ionic generate <schema> <name>
+    ```
+---
+
+### What makes up an Ionic Project?
+- Your app
+  - Your Code
+  - Frontend Framework (Angular)
+  - Ionic Framework
+- Bridge: Cordova
+- Targeted Host: Android/IOS
 +++
 
-### Database Basics
-- Database is an **organized collection** of data
-- i.e: Data stored in a specific structure, commonly in the form of `Columns/Field` and `Rows/Records`
-- Database become more organized and versatile when you include relationships
+### Bridge: Cordova
+- Web to Native application bridge
+- Allows you to trigger native functions through web application
+- Functions such as:
+  - Open Camera
+  - Get user location
+  - Show notification
 
 ---
 
-### DB Setup
-- Setting up Postgresql Locally
-```bash
-scoop install postgresql@10.9
- 
-# start postgresql
-pg_ctl -D "C:\Users\<your-windows-user>\scoop\apps\postgresql\current\data" -l logfile start
-
-# create a databse under postgresql
-psql -c "CREATE DATABASE <db_name>" -U postgres
-```
+### Compile VS Web View
 
 +++
 
-It's possible to use direct SQL queries to create and alter tables, but we usually migration managers to handle it.
+### Compile
+- converts code to native code for platform
+- ios: objective C
+- android: java
+
++++
+
+### Web View
+- runs a Web View within the app shell and loads your app
+- uses Cordova to enable the web app to access native device feature
+- a normal website run in a browser does not have this capability
 
 ---
 
-### Exercise: dbdiagram.io
-- Bitly: Urls
-- Quora: Questions
-- [PropertyGuru](https://www.propertyguru.com.my): Property
+### Core Concepts
+- Components
+- Layouts
+- Routing/Navigation
+
++++
+
+### Components
+- Ionic Components function the same as Angular Components
+- Except that they are :
+  - built to be able to respond to platform differences
+  - have additional functionality related to mobile apps
+- E.g: ion-button, etc
+
++++
+
+### Layout
+- Mobile applications have different layout, though in general:
+  - Header
+  - Footer
+  - Tabs
+  - Menu
+- Ionic uses a 12 column grid format for layouts
+  - ion-grid, ion-row, ion-col
+
++++
+
+### Navigation
+- Ionic extends upon the Angular Routing module
+- Functions mostly the same, but introduces the concept of Stacks
 
 ---
 
-## Object Relational Mapping: Type ORM
+### Component and Layout Demo
+- change toolbar background color
+- show an alert before changing box colors
 
 +++
 
-<img src="https://kroki.io/mermaid/svg/eNpNjksOgkAQRPeeonauuAALFobExISoxAsMQ4NjhMHuHom3d5jgp7f9XlUJPQKNlkpnejbDBvEO5mnEsps0K4rLa6JjXeXYk6I1atCxH9A2CV2_iCBOXrRnkhznQOxIUO7QeQb7OZnJ-FDIFuebXplJFnArsP4ehlGgHr65kVUYVXZNUJL_0iXgNzVHTRo4eqs0O73Gman5DSCoTLU=">
----
-
-### Migration Management
-
-+++
-
-#### Migrations are changes to your database that are:
-- Incremental
-- Reversible
-- Separate
-
-+++
-
-#### Setup
-```bash
-# installs typeorm commands
-npm install -g typeorm
-# initializes a typeorm project with postgres db
-typeorm init --name ProjectName --database postgres
-```
+<img src="demo.png">
 
 ---
 
-#### Entities
+### Exercise 1: Tic Tac Toe
+- Header: Tic Tac Toe game
+  - Add a header button to toggle side menu
+- Footer: Win Ratio - 100%
+- Build a tic tac toe board
+  - click on cell to play move
+- Side Menu
+  - `New Game` menu option to reset the board
+  - `Give up` to disable tapping on the board
 
 +++
 
-```js
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-
-@Entity()
-export class User {
-
-    @PrimaryGeneratedColumn()
-    id: number
-
-    @Column()
-    name: string
-
-    @Column("datetime")
-    created_at
-}
-```
-
-+++
-
-### TypeORM Commands
-```bash
-# Generate Migration
-ts-node ./node_modules/typeorm/cli.js migration:generate -n MigrationFileName
-# Execute Migrations
-ts-node ./node_modules/typeorm/cli.js migration:run
-# Revert Migrations
-ts-node ./node_modules/typeorm/cli.js migration:revert
-```
+<img src="tictactoe.png">
 
 ---
 
-### Exercise
-- Generate the following tables in postgres database using typeorm
-    - Urls
-    - Questions
-    - Properties
-
---- 
-
-### Accessing DB in Express
-- Read and find the differences
-```
-typeorm init --name MyProject --database postgres --express
-```
-
-+++
-
-### Exercises
-- Bitly
-    - GET /urls
-    - GET /urls/1
-    - GET /urls/1/redirect
-    - POST /urls
-    - POST /urls/1
-    - DELETE /urls/1
-
-+++
-
-- Quora
-    - GET /questions
-    - GET /questions/1
-    - POST /questions
-    - POST /questions/1
-    - DELETE /questions
-
-+++
-
-- Properties
-    - GET /properties
-    - GET /properties/1
-    - POST /properties
-    - POST /properties/1
-    - DELETE /properties
-
-+++
-
-### Separate each entity to different apps
+### Routing/Navigation Demo
+- ToDoList
+- Navigate to specific task
+- Introducing Action Sheet
 
 ---
 
-## Deployment: Part 2
+### Exercise 2: Recipe Application
+- Build 2 pages
+- 1st page: RecipeList
+  - List of recipes
+  - Each list item should show a thumbnail of the food, a label, and a button
+  - Tapping on button will open an action sheet
+    - Go To : Navigate to specific recipe
+    - Remove : Remove from list of recipes
+    - Favourite : Highlights the recipe
+
++++
+
+<img src="recipe.png">
+
++++
+
+- 2nd page: RecipeDetail
+  - detail of a specific recipe
+  - Has an enlarged image
+  - has a list of ingredient and step by step instructions
+  - Back button on header
+  - Delete button on header
+    - will prompt an alert to confirm delete
+    - will redirect to RecipeList after delete
 
 ---
 
-### Cloud DB
-- a database running on the cloud
-- not on your computer
+### Tab Layout Demo
 
-+++
-
-### Provision DB
-On heroku dashboard
-- Go to your app
-- Select Resources tab
-- In search bar, type `Heroku Postgres` and add to your app
-- Settings, click `Reveal Config Vars`
-- You will see a DATABASE_URL
-
-+++
-
-### Attach DB to Prod Application
-- provision cloud service
-- get url, username, password, db_name
-- set credentials in ormconfig
-
-+++
-
-### How
-From the DATABASE_URL, get the credentials and replace in your ormconfig
-`username:password@host:port/databasename`
-```json
-{
-   "host": host,
-   "port": port,
-   "username": username,
-   "password": password,
-   "database": databasename,
-   "entities": [
-      "build/entity/**{.ts,.js}"
-   ],
-   "migrations": [
-      "build/migration/**{.ts,.js}"
-   ],
-   ...
-}
-```
-
-+++
-
-### Ensure
-1. use `const PORT = process.env.PORT || 3000`
-2. have a Procfile
-3. add to package.json
-   ```json 
-    "scripts": {
-      "build-ts": "tsc",
-      "postinstall": "npm run build-ts",
-      "start": "ts-node src/index.ts"
-    }
-   ```
-
-+++
-
-## Exercise
-Deploy your Bitly, Quora and PropertyGuru clones.
 ---
 
-
-
+### Exercise 3: Shopping Cart
+- Has 3 tabs
+- Tab 1: Homepage
+  - Shows total purchase amount
+- Tab 2: Product Page
+  - Shows list of products
+    - Each product has an image, a quantity, a + button and - button to modify quantity, pirce, and an Add to Cart button
+    - On tap add to cart, add the product to user's shopping cart
+    - On tap product, navigate to product details page
+- Tab 3: My Shopping Cart Page
+  - Shows list of items in shopping
+    - Each list item only shows label, quantity, single price, and a delete button
+    - on tap delete button, remove item from shopping cart 
+  
 
