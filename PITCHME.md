@@ -177,11 +177,17 @@
 - Has 3 tabs
 - Tab 1: Homepage
   - Shows total purchase amount
+
++++
+
 - Tab 2: Product Page
   - Shows list of products
     - Each product has an image, a quantity, a + button and - button to modify quantity, pirce, and an Add to Cart button
     - On tap add to cart, add the product to user's shopping cart
     - On tap product, navigate to product details page
+
++++
+
 - Tab 3: My Shopping Cart Page
   - Shows list of items in shopping
     - Each list item only shows label, quantity, single price, and a delete button
