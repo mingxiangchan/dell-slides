@@ -274,15 +274,28 @@ Update-Database
 ### Entity
 
 ```csharp
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+
+[Table("blogs")]
 public class Blog
 {
-    public int id { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Column("id")]
+    public int Id { get; set; }
+
+    [Column("url")]
     public string Url { get; set; }
 
     // for one to many
     public ICollection<Post> Posts { get; set; }
 }
 ```
+
++++
+
+[Here](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/data-annotations) are the docs for more data annotations
 
 ---
 
@@ -305,12 +318,54 @@ public class MyContext : DbContext
 ```
 ---
 
+### Using Context
+
+```csharp
+ using (var db = new MyContext())
+{
+    db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+    var count = db.SaveChanges();
+
+    Console.WriteLine("All blogs in database:");
+    foreach (var blog in db.Blogs)
+    {
+        Console.WriteLine(" - {0}", blog.Url);
+    }
+}
+```
+
+---
+
 ### Exercise: Todo List
 
 - able to view list of todos
 - able to create a new todo
 - able to edit a todo
 - able to delete a todo
+- write a test for each action
+
++++
+
+### Todo Entity
+
+- id: int
+- description: string
+- completed: boolean
+
+---
+
+### Assignment: Booking Service
+
+- create an API endpoint
+- allow you to check
+    - list of hotels
+    - list of flights
+- allow you to book
+    - a hotel stay
+    - a one way or return flight
+- all data should be stored in DB
+
+
 
 
 
