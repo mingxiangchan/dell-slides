@@ -14,7 +14,7 @@
 
 ```csharp
 public class User {
-    // properties
+    // fields
     public string username;
 
     // methods
@@ -40,13 +40,13 @@ public class User {
 
 ```csharp
 public class User {
-    // convention for private properties, start with underscore
-    private string _username;
+    // convention for private fields, start with underscore
+    private string _Username;
 
     // getter/setters
-    public string username {
-        get { return _username; }
-        set { _username = value; }
+    public string Username {
+        get { return _Username; }
+        set { _Username = value; }
     }
 }
 ```
@@ -55,9 +55,30 @@ AutoImplemented Getter/Setters
 
 ```csharp
 public class User {
-    public string username { get; set; } 
+    public string Username { get; set; } 
 }
 ```
+
+---
+
+### Exercise: Book Class
+
+- fields:
+    1. title
+    2. pageNum
+- properties:
+    1. Content: getter only
+    2. Author: setter only
+    3. Publisher: both (long form)
+    4. Rating: both (short form)
+
+---
+
+### Discussion
+
+Read [this](https://dev.to/scottshipp/avoid-getters-and-setters-whenever-possible-c8m) article 
+
+Write 200 words on what you understand from it.
 
 ---
 
@@ -105,6 +126,31 @@ class Employee : User
 
 ---
 
+### Exercise: Book Class
+- Virtual Property
+    - Fun: return true
+    - Knowledge: return true
+- Virtual Method
+    - Read -> write a print statement
+
++++
+
+### Exercise: StoryBook
+- inherits from Book
+- Knowledge returns false
+- Fun returns true
+- change the Read method to print something else
+
++++
+
+### Exercise: TextBook
+- inherits from Book
+- Knowledge returns true
+- Fun returns false
+- change the Read method to print something else
+
+---
+
 ### Abstract
 
 ```csharp
@@ -138,7 +184,7 @@ struct User
 
 +++
 
-- class is a reference type, struc is a value type
+- class is a reference type, struct is a value type
 - structs cannot implement inheritance
 - structs are more lightweight than classes
 - only use structs if the data doesn't change
@@ -146,14 +192,120 @@ struct User
 
 ---
 
-### Reference vs Value Types
+### Exercise: MapData
 
-- PENDING
-- pointers vs values
-- find some graphs
-- some exercises on what are pointers and what aren't
+- a struct containing
+    - lng
+    - lat
+    - altitude
+
+- construct 3 instances of MapData for:
+    - Kuala Lumpur
+    - New York
+    - Mount Everest
 
 ---
+
+### Reference vs Value Types
+
+- value types are stored directly in memory
+- references types store the pointer to the value
+
+---
+
+### Value Types
+
+- all primitives
+- int
+- char
+- boolean
+
++++
+
+![val](value-types.jpg)
+
+---
+
+### Reference Types
+
+- strings
+- arrays
+- objects
+- dictionaries
+
++++
+
+![val](reference-types.jpg)
+
+---
+
+## Entity Framework
+
++++
+
+## Topics
+
+- connecting to DB
+- entities
+- queries
+- updating
+- associations
+
+---
+
+### Commands
+
+- run from `Package Manager Console`
+
+```powershell
+# installing packages
+Install-Package Microsoft.EntityFrameworkCore.Design
+Install-Package Microsoft.EntityFrameworkCore.SQLServer
+
+# generate migrations
+add-migration MigrationName
+
+# run migration
+Update-Database
+```
+
+---
+
+### Entity
+
+```csharp
+public class Blog
+{
+    public int id { get; set; }
+    public string Url { get; set; }
+
+    // for one to many
+    public ICollection<Post> Posts { get; set; }
+}
+```
+
+---
+
+### Context
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+public class MyContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        var connectionString = "<your-connection-string>"
+        optionsBuilder.UseSqlServer(connectionString);
+    }
+}
+```
+---
+
+### Exercise
 
 
 
