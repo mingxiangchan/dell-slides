@@ -305,7 +305,12 @@ public class MyContext : DbContext
 ```
 ---
 
-### Exercise
+### Exercise: Todo List
+
+- able to view list of todos
+- able to create a new todo
+- able to edit a todo
+- able to delete a todo
 
 
 
