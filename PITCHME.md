@@ -28,7 +28,7 @@
 
 ### Laptop Builder Prototype
 - Group Activity (3 per group)
-- OS, Model, RAM, HDD, Graphics Card, Design
+- OS, CPU, Model, RAM, HDD, Graphics Card, Design
 
 +++
 
