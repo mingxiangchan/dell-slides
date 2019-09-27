@@ -2,7 +2,7 @@
 marp: true
 ---
 
-# Software Dev Project
+# Software Development Project
 
 ---
 
@@ -91,8 +91,8 @@ marp: true
     2. DB structure
         - dbdiagram.io
     3. API endpoints
-        - Swagger, Postman, stoplight.io
-- all of the above documentation should be added to pivotal and/or the repo directly
+        - Swagger, Postman, stoplight.io, apiary.io
+- for now, keep all documentation in pivotal and stoplight.io
 
 ---
 
@@ -118,4 +118,10 @@ marp: true
 - merge `release/<version-number>` into master when all ready
 
 ---
+
+## Exercise
+
+- Write documentation on what kinds of integration you will need for each external job listings site
+- documentation should be in API format
+- the endpoints you need most likely do not exist, the purpose of documenting this is to send to them and request for these endpoints
 
