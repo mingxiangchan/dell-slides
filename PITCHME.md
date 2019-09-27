@@ -1,6 +1,10 @@
+---
+marp: true
+---
+
 ### .NET 2
 
-+++
+---
 
 ### Topics
 
@@ -26,7 +30,7 @@ public class User {
 }
 ```
 
-+++
+---
 
 ### Constructors
 
@@ -118,7 +122,7 @@ class Employee : User
 }
 ```
 
-+++
+---
 
 - can declare properties and methods to be virtual
 - only virtual methods can be overriden
@@ -133,7 +137,7 @@ class Employee : User
 - Virtual Method
     - Read -> write a print statement
 
-+++
+---
 
 ### Exercise: StoryBook
 - inherits from Book
@@ -141,7 +145,7 @@ class Employee : User
 - Fun returns true
 - change the Read method to print something else
 
-+++
+---
 
 ### Exercise: TextBook
 - inherits from Book
@@ -165,7 +169,7 @@ class Employee : User
 }
 ```
 
-+++
+---
 
 - abstract classes cannot be instantiated
 - abstract methods MUST be implemented by child class
@@ -182,7 +186,7 @@ struct User
 }
 ```
 
-+++
+---
 
 - class is a reference type, struct is a value type
 - structs cannot implement inheritance
@@ -220,7 +224,7 @@ struct User
 - char
 - boolean
 
-+++
+---
 
 ![val](value-types.jpg)
 
@@ -233,7 +237,7 @@ struct User
 - objects
 - dictionaries
 
-+++
+---
 
 ![val](reference-types.jpg)
 
@@ -241,7 +245,7 @@ struct User
 
 ## Entity Framework
 
-+++
+---
 
 ## Topics
 
@@ -293,7 +297,7 @@ public class Blog
 }
 ```
 
-+++
+---
 
 [Here](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/data-annotations) are the docs for more data annotations
 
@@ -344,7 +348,7 @@ public class MyContext : DbContext
 - able to delete a todo
 - write a test for each action
 
-+++
+---
 
 ### Todo Entity
 
