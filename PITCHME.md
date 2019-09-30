@@ -1,28 +1,32 @@
-### Automated Testing: Spring
+---
+marp: true
+---
+
+# Automated Testing: Spring
 
 ---
 
-### Spring vs No Spring
+## Spring vs No Spring
 
 - testing HTTP requests
 - testing DB interactions
 
 ---
 
-### Setup
+## Setup
 
 - no setup needed! Spring Boot already comes wth JUnit 4 preinstalled.
 
 ---
 
-### Data Layer Testing
+## Data Layer Testing
 
 - test DB repositories
 - test services that use repositories
 
-+++
+---
 
-### Repository Tests
+## Repository Tests
 
 ```java
 @RunWith(SpringRunner.class)
@@ -50,37 +54,37 @@ public class UserServiceTest {
 
 ---
 
-### Exercise
+## Exercise
 
 - Clone [this](https://github.com/mingxiangchan/dell-spring-junit) repository
 
-+++
+---
 
-### EmployeeRepositoryTest
+## EmployeeRepositoryTest
 
-- test <span class="text-blue">findAll</span>
-- test <span class="text-blue">findById</span>
-- test <span class="text-blue">findByEmail</span>
-- test <span class="text-blue">findByName</span>
-- test <span class="text-blue">findAll</span> with <span class="text-blue">sorting</span>
-
-+++
-
-### AppointmentRepositoryTest
-
-- test <span class="text-blue">findAll</span>
-- test <span class="text-blue">findByTimeslotBetween</span>
-- test <span class="text-blue">findByEmployeeEmailContains</span>
+- test `findAll`
+- test `findById`
+- test `findByEmail`
+- test `findByName`
+- test `findAll` with `sorting`
 
 ---
 
-### Services
+## AppointmentRepositoryTest
 
-- intermediary between <span class="text-blue">controller</span> and <span class="text-blue">repository</span>
+- test `findAll`
+- test `findByTimeslotBetween`
+- test `findByEmployeeEmailContains`
+
+---
+
+# Services
+
+- intermediary between `controller` and `repository`
 - can do more complex logic
 - can interact with multiple repositories
 
-+++
+---
 
 ```java
 @Service
@@ -97,20 +101,20 @@ public class BookingService {
 
 ### Exercise: BookingService
 
-<span class="text-blue">checkAppointment(Employee employee)</span>
+`checkAppointment(Employee employee)`
 - get all appointments for a user
 - go through each appointment and get the timeslot, extract into array
 - return `List<LocalDateTime>` 
 
-+++
+---
 
 ### Exercise: BookingService
 
-<span class="text-blue">bookAppointment(timeslot, employee)</span>
+`bookAppointment(timeslot, employee)`
 - 1 timeslot is 2 hours
 - check whether intended timeslot [conflicts with an existing appointment](https://stackoverflow.com/questions/46942351/checking-if-localdatetime-falls-within-a-time-range)
 - if success, save appointment into DB
-- if failure, return <span class="text-blue">null</span>
+- if failure, return `null`
 
 
 ---
@@ -122,7 +126,7 @@ public class BookingService {
 - set request body (json)
 - assert the response
 
-+++
+---
 
 #### GET Tests
 
@@ -147,9 +151,9 @@ public class MainControllerTest {
 }
 ```
 
-+++
+---
 
-#### POST Tests
+## POST Tests
 
 ```java
 @RunWith(SpringRunner.class)
@@ -177,33 +181,33 @@ public class EmployeeControllerTest {
 
 ---
 
-### Exercise
+## Exercise
 
-- Write tests for the EmployeeController
-- Write tests for the AppointmentsController
-
-+++
-
-
-### EmployeeControllerTest
-
-- test GET <span class="text-blue">/employees</span>
-- test GET <span class="text-blue">/employees?email=<email></span>
-- test GET <span class="text-blue">/employees/{id}</span>
-- test POST <span class="text-blue">/employees</span>
-
-+++
-
-### AppointmentsController
-
-- test GET <span class="text-blue">/appointments</span>
-- test GET <span class="text-blue">/employees/{id}/appointments</span>
-- test GET <span class="text-blue">/appointments/{id}</span>
-- test POST <span class="text-blue">/appointments</span>
+- Write tests for the `EmployeeController`
+- Write tests for the `AppointmentsController`
 
 ---
 
-### Configuring Test DB in Spring
+
+## EmployeeControllerTest
+
+- test `GET /employees`
+- test `GET /employees?email=<email>`
+- test `GET /employees/{id}`
+- test `POST /employees`
+
+---
+
+## AppointmentsController
+
+- test `GET /appointments`
+- test `GET /employees/{id}/appointments`
+- test `GET /appointments/{id}`
+- test `POST /appointments`
+
+---
+
+## Configuring Test DB in Spring
 
 - use a different DB when running tests
 - clean up the DB at the end of every test
@@ -225,14 +229,14 @@ spring.datasource.username=<name>
 spring.datasource.password=<password>
 ```
 
-+++
+---
 
-### Cleaning Up Database Before/After Tests
+## Cleaning Up Database Before/After Tests
 
 - not needed for repository/service tests (they are transactional)
 - required for controller tests
 
-+++
+---
 
 ```java
 @AfterEach
@@ -244,30 +248,29 @@ public void cleanDB() {
 
 ---
 
-### Types of Tests
+## Types of Tests
 
 - unit
 - integration
 - feature
 
-+++
+---
 
-### Cost vs Benefit
+## Cost vs Benefit
 
 - Integration tests have most value
 - Integration tests are hardest to set up
-- 
 
 ---
 
-### Example: Grab Order Cancellation
+## Example: Grab Order Cancellation
 
 - customer cancelling an order
 - test how much is the cancellation fee
 
-+++
+---
 
-### Integration Test Setup
+## Integration Test Setup
 
 - service
 - customer
@@ -276,25 +279,25 @@ public void cleanDB() {
 - discovery sent to driver
 - driver confirmation for order
 
-+++
+---
 
-### Unit Test Setup
+## Unit Test Setup
 
 - only set up customer's order
 - setup 
 
 ---
 
-### Assignment: Order Creation
+## Assignment: Order Creation
 
 - products
 - orders
-- line_items_
+- line_items
 - payments
 
-+++
+---
 
-### Features
+## Features
 
 - create an order with line_items
     - product, customer are set up before order creation
@@ -303,12 +306,12 @@ public void cleanDB() {
 - refund an order
     - payment is set up before refund processing
 
-+++
+---
 
 ### Instructions
 
 1. create the tables needed
-2. create a <span class="text-blue">ShoppingService`</span>
+2. create a `ShoppingService`
 3. create tests for the 3 features
 4. write code to make the 3 features work!
 
