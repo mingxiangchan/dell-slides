@@ -1,142 +1,175 @@
-### Ionic-2 
-- Forms
-- HTTP
+### Ionic-3
+- Push Notifications
+  - `ionic start OnboardApp blank`
+- Publishing your App (Android)
+
+---
+
+### Android Studio Setup
+- Install Android Studio
+- [Gradle](https://gradle.org/next-steps/?version=4.10.3&format=all) 
+- To add new Environment variables:
+  - Right click on `Computer/This PC`
+  - Open `Properties` and select `Advanced System Settings`
+  - Open `Environment Variables`
+- Add the following to file path (your path may vary):
+  - ANDROID_SDK: C:\Users\<windows-user>\AppData\Local\Android\sdk
+  - PATH: 
+    - %ANDROID_HOME%\tools
+    - %ANDROID_HOME%\tools\bin
+    - %ANDROID_HOME%\platform-tools;
+    - %ANDROID_HOME%\build-tools\<your-version>
+    - <your-gradle-location>\bin
+
 
 +++
 
-- Generate a demo project
+### You may need the following:
+- ```bash
+  npm install -g native-run
+  scoop install ojdkbuild8
+  npm install -g cordova-res
   ```
-    ionic start Demo2 tabs
+
+---
+
+### Push Notifications
+- In essence, a message/alert sent by an app installed on your phone
+- Similar to text messages, yet different
+- Common Examples (Grab, Uber)
+
++++
+
+### About Push notifications
+- A way to engage/interact your users
+- Redirects to the app sending push notifications (Call To Actoins)
+- Can be muted by users
+
+---
+
+### Setting up your app with Push Notifications enabled
+- In your `config.xml`
   ```
-- Generate project for exercise
-  ```
-    ionic start LaptopBuilder blank
-  ```
+    <widget id="write-your-own-package-name"></widget>
+  ``` 
+- e.g `com.push.testapp`
+- `ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated`
+- `npm install @ionic-native/fcm`
+
++++
+
+```javascript
+// app.module.ts
+import {FCM} from '@ionic-native/fcm/ngx'
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    FCM,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
+})
+```
+
++++
+
+### Running your app
+- `ionic cordova platform add android`
+- If you have an emulator setup:
+  - `ionic cordova run android`
+- If you are using your mobile:
+  - `ionic cordova build android --release`
+
 
 ---
 
-### Tools
-
-+++
-
-### To view ios and android view
-- `npm install @ionic/lab`
-- `ionic serve --lab`
-- open `localhost:8200`
-
----
-
-### Laptop Builder Prototype
-- Group Activity (3 per group)
-- OS, CPU, Model, RAM, HDD, Graphics Card, Design
-
-+++
-
-- Design the app page (draw.io)
-- Decide on the available options
-- Find images
+### Setting up Push Notifications(Firebase)
+- Sign up to [Firebase](https://console.firebase.google.com)
+- Create a project with a name and enter the project
+- On your project, setup an android app, and provide a package name
+  - do not leave it as `com.example`
+  - download the `google-service.json` and put in the `root` of your app.
+- Send a push notification through Cloud Messaging on Firebase Dashboard
+  - You may also send using a POST request
 
 ---
 
-### User Input via Forms
-
-+++
-
-### Angular Reactive Form Module
-- Add the ReactiveFormModule to the app module
-- Create FormControl/ FormGroup in component/page.ts
-- Create `<form>`/`<ion-input>` tags to retrieve user input
-
-+++
-
-### Demo: Profile Form
-- Create page to display profile
-- On Click Edit button, navigate to profile edit form
-
-+++
-
-### Exercise: LaptopBuilder - (OS)
-- Create a home page
-  - Has a `Build Laptop` button, on click navigates to OS selection page
-- Create a OS selection form page
-  - Shows `Phase 1: OS Selection` as title
-  - Has a list of Operating System for User to select
-  - Has `OS Notes` section for user input
-  - On Footer has a Submit button to confirm selection
-    - If OS not selected, Submit button is disabled  
+### Different handling of Push Notifications
+- Foreground (silent notification)
+- Background (standrad notification)
+- Closed (standrad notification)
 
 ---
 
-### Form Wizard - Multi Page Forms
-
-+++ 
-
-### Demo: LaptopBuilder - (CPU)
-- Use service to store component selections
-- Update service with component selection on submit
-- Filter selection on page based on previous option selected
-
-+++ 
-
-### Exercise: LaptopBuilder
-- Model
-  - Brand: Inspiron, Latitude, XPS
-  - Description: What are you looking for?
-- RAM
-  - Amount of RAM per stick
-  - Quantity of sticks
-- HDD
-  - Type: HDD, SSD
-  - Storage Amount(Number Input)
+### Publishing Your App
+```bash
+# Build the apk file 
+# You can find it in: platforms/android/app/build/outputs/release
+ionic cordova build android --release
+```
 
 +++
 
-- Graphics Card
-  - Brand: AMD, NVIDIA, Intel
-  - Model Options
-- Design
-  - Casing Color
-  - Keyboard (Mechanic/Butterfly/Backlight)
-  - Notes
+### App Signing (Self signing)
+- To publish your app, you will need to provide a signed certificate
+- This is used to validate yourself as the author of this app
+- You will need the Android SDK to use these functions
 
 +++
 
-- Customer Details
-  - Shipping Address
-  - Name
-  - Contact
-  - Email
+```bash
+# Generate a keystore
+# You will be prompted to provide password
+keytool -genkey -v -keystore <name-of-keystore>.keystore -alias <alias_name> -keyalg RSA -keysize 2048 -validity 10000
 
-+++
+# Sign your application
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore <name-of-keystore>.keystore .\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk <alias_name>
 
-- After Design, complete laptop building and navigate back to homepage
-  - display laptop created
-  - on tap laptop created, navigate to laptop built
+# Optimize the apk file
+zipalign -v 4 .\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk <final-apk-filename>.apk
+```
+
+--- 
+
+### Publishing an App (Android)
+- [Google Play Store Console](https://play.google.com/apps/publish/) 
+- Create an application
+- You will need to provide:
+  - Listing details
+  - Content Details and Rating
+  - Price and Distribution Details
+  - APK file
+- You can publish to internal testers, or as production
+
+--- 
+
+### Exercise: Onboard
+- Start a new ionic app
+- Allow it to receive a welcome push notifications
+  - `Welcome <app-name>, Thank you for installing our app`
+- Display different on foreground, background, closed
+- Show a Toast in when receiving the message
+
 
 ---
 
-### Backend Integration - HTTP
-- 2 options: Native HTTP vs Angular HTTP
-- We'll focus on Angular HTTP
+### Project Requirements
+- Create a mobile app
+- Enable push notifications
+- Create a backend to store/process data from mobile app
+- Optional:
+  - Find and use a native mobile functionality within your app
+- A good rule of thumb is to consider what problems/incoveniences the company has
 
 +++
 
-### Angular HTTP
-- Add HTTP Client Module to app modules
-- Inject HttpClient into component
-- Subscribe to request results
-
-+++
-
-### Demo: Pokedex
-- Display list of pokemon
-- On tap pokemon, display pokemon specific details
-
-+++
-
-### Exercise: Build your backend
-You will need to provide the following APIs:
-- list of available options for each form
-- get all laptops
-- save laptop to DB
-
+### Proejct Suggestions
+- Budget App
+- Visitor Registration (QR code)
+- Food Advisor
+- Event/MeetUps (Mark Available timeslots)
