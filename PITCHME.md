@@ -12,6 +12,9 @@
   - Right click on `Computer/This PC`
   - Open `Properties` and select `Advanced System Settings`
   - Open `Environment Variables`
+
++++
+
 - Add the following to file path (your path may vary):
   - ANDROID_SDK: C:\Users\<windows-user>\AppData\Local\Android\sdk
   - PATH: 
