@@ -1,11 +1,15 @@
-### SQL
+---
+marp: true
+---
+
+## SQL
 
 - Structured Query Language
 - a language for dealing with relational databases
 
 ---
 
-#### CRUD
+## CRUD
 
 - Create
 - Read
@@ -14,7 +18,7 @@
 
 ---
 
-### Keyword Hierarchy
+## Keyword Hierarchy
 
 - SELECT
 - FROM
@@ -24,13 +28,13 @@
 - HAVING
 - ORDER BY
 
-+++
+---
 
 Have to follow this exact order
 
 ---
 
-### SELECT
+## SELECT
 
 - specifies the column names in the final result
 
@@ -39,9 +43,9 @@ SELECT id, name, email
 FROM users
 ```
 
-+++
+---
 
-### FROM
+## FROM
 
 - specifies source of the data
 
@@ -50,9 +54,9 @@ SELECT id, name, email
 FROM users
 ```
 
-+++
+---
 
-### JOIN ... ON
+## JOIN ... ON
 
 - joins multiple data sources based on a criteria
 - refer to different data source by table name
@@ -63,9 +67,9 @@ FROM users
 JOIN permissions ON users.id = permissions.user_id
 ```
 
-+++
+---
 
-### WHERE
+## WHERE
 
 - filters data according to condition
 - can add `ON` or `AND`
@@ -77,9 +81,9 @@ FROM users
 WHERE email LIKE '%gmail%'
 ```
 
-+++
+---
 
-### GROUP BY
+## GROUP BY
 
 - aggregrates rows into grouped rows based on condition
 
@@ -89,9 +93,9 @@ FROM users
 GROUP BY role
 ```
 
-+++
+---
 
-### HAVING
+## HAVING
 
 - WHERE filter but on the grouped conditions
 - can only be used together with GROUP BY
@@ -104,9 +108,9 @@ GROUP BY role
 HAVING email LIKE '%gmail%'
 ```
 
-+++
+---
 
-### ORDER BY
+## ORDER BY
 
 - sort the final data in a particular order
 
@@ -118,7 +122,7 @@ ORDER BY name
 
 ---
 
-### Complex JOINS
+## Complex JOINS
 
 ---
 
@@ -126,84 +130,95 @@ Default JOIN is INNER JOIN
 
 ---
 
-### LEFT JOIN
+## LEFT JOIN
 
 - allow right side to be NULL
 
-+++
-
-
-### LEFT JOIN
-
-![left-join](./left-join.png)
-
-
 ---
 
-### RIGHT JOIN
+
+## LEFT JOIN
+
+| `users.name` | `users.country_id` | `country.id` | `country.name` |
+|--------------|--------------------|--------------|----------------|
+| Ming Xiang   | 1                  | 1            | Malaysia       |
+| John         | 5                  |              |                |
+| Jane         | 6                  |              |                |
+---
+
+## RIGHT JOIN
 
 - allow left side to be NULL
 
-+++
-
-### RIGHT JOIN
-
-![right-join](./right-join.png)
-
 ---
 
-### FULL OUTER JOIN
+## RIGHT JOIN
+
+| `users.name` | `users.country_id` | `country.id` | `country.name` |
+|--------------|--------------------|--------------|----------------|
+| Ming Xiang   | 1                  | 1            | Malaysia       |
+|              |                    | 2            | America        |
+|              |                    | 3            | Japan          |
+---
+
+## FULL OUTER JOIN
 
 - allow either side to be null
 
-+++
+---
 
-### FULL OUTER JOIN
+## FULL OUTER JOIN
 
-![outer-join](./outer-join.png)
+
+| `users.name` | `users.country_id` | `country.id` | `country.name` |
+|--------------|--------------------|--------------|----------------|
+| Ming Xiang   | 1                  | 1            | Malaysia       |
+|              |                    | 2            | America        |
+| John         | 5                  |              |                |
+
 
 ---
 
-### JOIN Exercises
+## JOIN Exercises
 
-+++
+---
 
-##### Employee Table
+### Employee Table
 
 | id | name     | department_id |
 |----|----------|---------------|
-|  1 |   John   |       1       |
-|  2 |   Jane   |       2       |
-|  3 |   Kevin  |       3       |
-|  4 | Nicholas |       5       |
-|  5 |   Lily   |       2       |
-|  6 |   Riley  |       1       |
-
-+++
-
-##### Department Table
-
-| id | name          | manager_id |
-|----|---------------|------------|
-|  1 |    Finance    |      1     |
-|  2 | Manufacturing |      2     |
-|  3 |     Sales     |      3     |
-
-+++
-
-### Exercises
-
-- JOIN ON employee.department_id = department.id
-- JOIN ON department.manager_id = employee.id
-- LEFT JOIN ON employee.department_id = department.id
+| 1  | John     | 1             |
+| 2  | Jane     | 2             |
+| 3  | Kevin    | 3             |
+| 4  | Nicholas | 5             |
+| 5  | Lily     | 2             |
+| 6  | Riley    | 1             |
 
 ---
 
-## Many To Many Exercise
+### Department Table
 
-+++
+| id | name          | manager_id |
+|----|---------------|------------|
+| 1  | Finance       | 1          |
+| 2  | Manufacturing | 2          |
+| 3  | Sales         | 3          |
 
-### Exercise
+---
+
+## Exercises
+
+- `JOIN ON employee.department_id = department.id`
+- `JOIN ON department.manager_id = employee.id`
+- `LEFT JOIN ON employee.department_id = department.id`
+
+---
+
+# Many To Many Exercise
+
+---
+
+## Exercise
 
 - teachers
     - id, name
@@ -213,7 +228,7 @@ Default JOIN is INNER JOIN
     - teacher_id
     - student_id
 
-+++
+---
 
 1. Create 3 teachers, John, Jane, Ken
 2. Create 3 students, Ryan, Chris, Kelly
