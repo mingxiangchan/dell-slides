@@ -1,10 +1,19 @@
+---
+marp: true
+---
+
 ### Intro to Java
 
 ---
 
 #### Instructions
 
-1. Install Java (check school)
+1. Install Java
+
+    ```bash
+    scoop bucket add java
+    scoop install ojdkbuild8
+    ```
 2. Create a folder for today's java projects
 
 ---
@@ -31,7 +40,7 @@ Running file
 java <filename>
 ```
 
-+++
+---
 
 #### Variables
 
@@ -43,7 +52,7 @@ char y = 'a'
 boolean z = true
 ```
 
-+++
+---
 
 #### Strings vs Chars
 
@@ -52,7 +61,6 @@ char x = 'a'
 String name = "abc"
 ```
 
-+++
 
 #### Arrays
 
@@ -61,7 +69,7 @@ int[] x = {1,2,3}
 Array<String> y = {"abc", "def"}
 ```
 
-+++
+---
 
 #### Maps
 
@@ -93,7 +101,7 @@ Boolean z = true;
 String name = "John";
 ```
 
-+++
+---
 
 #### Array vs ArrayList
 
@@ -113,7 +121,7 @@ Array<Integer> x = {1,2,3};
 ArrayList<Integer> y = Arrays.asList(x);
 ```
 
-+++
+---
 
 `ArrayList` allows you to modify the array
 
@@ -127,7 +135,7 @@ x.remove(1); // => {'a', 'c'}
 x.isEmpty(); // => false
 ```
 
-+++
+---
 
 #### Nested Arrays
 
@@ -171,7 +179,7 @@ if (x == y) {
 }
 ```
 
-+++
+---
 
 ```java
 if (123) { } // this will fail
@@ -222,14 +230,14 @@ function sum(x: number, y: number): number {
 
 ### Exercises
 
-+++
+---
 
 #### Todo List
 
 1. print a list of todos
 2. for each todo, show whether it is completed or not
 
-+++
+---
 
 #### Tic Tac Toe
 
@@ -238,10 +246,4 @@ function sum(x: number, y: number): number {
 3. check whether there is a winner/loser/draw
 4. print message saying who won / its a draw
 
-+++
-
-#### Pokemon
-
-1. 2 pokemon are sent out
-2. they take turns attacking each other
-3. use user input to select move
+---
