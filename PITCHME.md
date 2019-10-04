@@ -1,15 +1,19 @@
-## Intro to OOP
+---
+marp: true
+---
+
+# Intro to OOP
 
 ---
 
-### What is OOP
+## What is OOP
 
 - Object Oriented Programming
 - build programs using objects that interact with each other
 
-+++
+---
 
-#### Programming Fundamentals
+## Programming Fundamentals
 
 **Data** -> variables
 
@@ -25,13 +29,13 @@ int sum(int x, int y) {
 }
 ```
 
-+++
+---
 
 OOP tries to merge **data** and **operations** into **objects**
 
 ---
 
-### OOP in java
+## OOP in java
 
 - class
 - methods
@@ -42,30 +46,31 @@ OOP tries to merge **data** and **operations** into **objects**
 
 ---
 
-### Class
+## Class
 
 - in Java, all code must be in a class
 - the `class` contains `methods` and `properties`
 
-+++
 
 ```java
 class User {
-  String name;
-  bool isStudent;
+    // properties
+    String name;
+    bool isStudent;
 
-  void sayHello() {
-    System.out.println("Hello, my name is" + this.name)
-  }
+    // methods
+    void sayHello() {
+        System.out.println("Hello, my name is" + this.name)
+    }
 }
 ```
 
-+++
+---
 
-### Properties
+## Properties
 
 - must declare property type
-- initial value can be declared, is optional
+- initial value can be declared, is **optional**
 
 ```Java
 String name;
@@ -74,7 +79,7 @@ bool isStudent = false;
 
 ---
 
-### Constructors
+## Constructors
 
 - used to construct an instance of a class
 - construct using `new` keyword
@@ -91,11 +96,29 @@ class User {
 User newUser = new User();
 ```
 
-+++
+---
 
 Can accept arguments
 
 ```java
+class User {
+  String name;
+
+  User(String inputName) {
+    this.name = inputName;
+  }
+}
+
+User userOne = new User("Ming Xiang");
+User userTwo = new User("Ming Hao");
+User userThree = new User("Evelyn");
+```
+
+---
+
+There can be multiple constructors
+
+```Java
 class User {
   String name;
 
@@ -108,32 +131,23 @@ class User {
   }
 }
 
-User userOne = new User("Ming Xiang");
-User userTwo = new User("Ming Hao");
-User userThree = new User("Evelyn");
-```
-
-+++
-
-There can be multiple constructors
-
-```Java
-class User {
-  String name;
-
-  User(String inputName) {
-    this.name = inputName;
-  }
-}
-
 User userOne = new User();
 User userTwo = new User("Ming Hao");
 ```
 
+
+
 ---
 
-### Object Interaction
+## Exercise 1
 
+- create Player and Monster class
+- implement the following properties for them
+  - HP
+  - Atk
+- implement the following interactions for them
+  - hit
+---
 ```java
 Player player = new Player("John")
 Monster monster = new Monster("Ogre")
@@ -142,7 +156,14 @@ player.hit(monster)
 // prints out "The Ogre has 20 HP remaining"
 ```
 
-+++
+---
+
+## Exercise 2
+
+- create OrangeTree and Orange class
+- from the previous example, figure out what properties and methods you need
+
+---
 
 ```java
 OrangeTree tree = new OrangeTree();
@@ -155,25 +176,7 @@ orange.state // => fresh
 
 ---
 
-### Exercise 1
-
-- create Player and Monster class
-- implement the following properties for them
-  - HP
-  - Atk
-- implement the following interactions for them
-  - hit
-
-+++
-
-### Exercise 2
-
-- create OrangeTree and Orange class
-- from the previous example, figure out what properties and methods you need
-
-+++
-
-### Exercise 3
+## Exercise 3
 
 - create Car, Bus, Airplane, Engine, Wheel class
 - Engine has `horsepower` property
@@ -182,9 +185,9 @@ orange.state // => fresh
 - airplane is initialized with 3 wheels
 - the engine for each vehicle has different horsepower
 
-+++
+---
 
-### Exercise 4
+## Exercise 4
 
 - create class for the following Dell products
   - desktop
@@ -193,7 +196,7 @@ orange.state // => fresh
   - keyboard
   - monitor
 
-+++
+---
 
 - create child components for your primary product classes
   - e.g.
