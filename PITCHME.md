@@ -1,3 +1,7 @@
+---
+marp: true
+---
+
 ### Java Web Apps
 
 ---
@@ -8,20 +12,18 @@
 - server checks data in DB
 - server sends response to browser
 
-+++
+---
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant C as Client
     participant S as Server
     participant D as Database
-
-
     C->>S: GET /users
     S->>D: SELECT * FROM users
     D-->>S: user rows
     S-->>C: HTML/JSON data
-```
+</div>
 
 ---
 
@@ -30,7 +32,7 @@ sequenceDiagram
 - Framework for building apps in Java
 - Powerful ecosystem with many extensions/libraries
 
-+++
+---
 
 ### Why use a Framework
 
@@ -38,7 +40,7 @@ sequenceDiagram
 - reusue existing code
 - speed up development
 
-+++
+---
 
 ### Example
 - receive request/send response using Spring Web
@@ -65,7 +67,7 @@ sequenceDiagram
 - create GET endpoint returning HTML
 - create HTML template for homepage
 
-+++
+---
 
 ### Initialization
 
@@ -73,7 +75,7 @@ sequenceDiagram
 - Spring Dev Tools
 - ThymeleafT
 
-+++
+---
 
 ### Hardcode Images Data
 
@@ -81,7 +83,7 @@ sequenceDiagram
 - properties: `id`, `url`
 - hardcode 12 images
 
-+++
+---
 
 ### GET endpoint
 
@@ -89,7 +91,7 @@ sequenceDiagram
 - add required annotations
 - import hardcoded images
 
-+++
+---
 
 ```java
 // PublicController.java
@@ -130,7 +132,7 @@ public class PublicController {
 - add mappings in controller
 - use mappings in html file
 
-+++
+---
 
 Map Java variables to Thymeleaf Variables
 
@@ -143,7 +145,7 @@ public String users(Model model) {
 }
 ```
 
-+++
+---
 
 Use Thymeleaf variables in HTML
 
@@ -160,7 +162,7 @@ Use Thymeleaf variables in HTML
 - based on URL (e.g. /uses/1)
 - based on URL params (e.g. /users?name=mingxiang)
 
-+++
+---
 
 ### Based on URL Path
 
@@ -172,7 +174,7 @@ public String user(@PathVariable("name") String name) {
 }
 ```
 
-+++
+---
 
 ### Based on URL Params
 
@@ -193,7 +195,7 @@ Add your css/js under
 `resources/static/{css | js}`
 
 
-+++
+---
 
 ```html
 <link href="css/main.css" rel="stylesheet" type="text/css">
@@ -216,3 +218,19 @@ Add your css/js under
 - hardcode users -> images data
 - create GET endpoint returning JSON
 - process user ID to get correct list of images
+
+<!-- mermaid.js -->
+<script src="https://unpkg.com/mermaid@8.1.0/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ startOnLoad: true})
+</script>
+<script>
+setTimeout(function() {
+    const graphs = document.querySelectorAll(".mermaid");
+    for (graph of graphs) {
+        const elems = graph.getElementsByTagName("*")
+        debugger
+    }
+}, 1000);
+
+</script>
