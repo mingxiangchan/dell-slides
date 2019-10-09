@@ -17,6 +17,7 @@ marp: true
     ```
 2. Instal [VS Code Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
 2. Create a folder for today's java projects
+4. Download [STS](https://download.springsource.com/release/STS4/4.4.0.RELEASE/dist/e4.13/spring-tool-suite-4-4.4.0.RELEASE-e4.13.0-win32.win32.x86_64.zip) (for 2 weeks later)
 
 ---
 
@@ -230,14 +231,114 @@ function sum(x: number, y: number): number {
 
 ---
 
-### Exercises
-
----
-
-#### Todo List
+### Exercise: Todo List
 
 1. print a list of todos
 2. for each todo, show whether it is completed or not
+
+*Expected Result:*
+
+```txt
+1. [ ] Shop for Groceries
+2. [X] Analyze Oct sales data
+3. [ ] Prepare project brief 
+```
+
+---
+
+### Exercise: Pig Latin
+
+1. create a function convert
+2. it accepts a word string as an argument
+3. finds the first vowel
+4. shifts all non-vowels behind the section starting from the first vowel and adds ay
+5. if the word starts with vowel, doesn't change it
+6. if there is no vowel in the word, add ay behind.
+
+---
+
+| Word  | Pig Latin Version |
+|-------|-------------------|
+| art   | art               |
+| vowel | owelvay           |
+| nginx | inxngay           |
+| hello | ellohay           |
+| Dr    | Dray              |
+
+---
+
+```java
+import java.util.Arrays;
+
+/**
+ * PigLatin
+ */
+public class PigLatin {
+    static String convert(String word){
+       // Your Code
+    }
+
+    public static void main(String[] args){
+        System.out.println(convert("art").equals("art"));
+        System.out.println(convert("vowel").equals("owelvay"));
+        System.out.println(convert("nginx").equals("inxngay"));
+        System.out.println(convert("hello").equals("ellohay"));
+        System.out.println(convert("Dr").equals("Dray"));
+    }
+}
+```
+
+---
+
+### Exercise: Fibonacci
+
+A fibonacci sequence is a sequence of numbers where the 3rd number is always the sumber of the 2 numbers before it.
+
+```
+1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+```
+
+---
+
+Try writing a `findFibonacci` function that does the following
+
+```java
+findFibonacci(0) // => 1
+findFibonacci(1) // => 1
+findFibonacci(2) // => 2
+findFibonacci(3) // => 3
+findFibonacci(4) // => 5
+```
+
+---
+
+
+### Exercise: Binary Search
+
+![bsearch](https://www.mathwarehouse.com/programming/images/binary-vs-linear-search/binary-and-linear-search-animations.gif)
+
+---
+
+### Task
+
+Write a method that takes a target number and a sorted list of numbers in non-decreasing order and returns either the position of the number in the list, or "do not exist" to indicate the target number is not in the list.
+For instance, `binary_search(32, [13, 19, 24, 29, 32, 37, 43])` should return `4`, since `32` is the fourth element of the list (counting from zero).
+
+
+---
+
+```java
+  static int bsearch(int[] array, int target) {
+    // your code
+  }
+
+  public static void main(String[] args) {
+    int[] arr = {7,9,21,42,58,67,88};
+
+    System.out.println(bsearch(arr, 67) == 5);
+    System.out.println(bsearch(arr, 9) == 1);
+  }
+```
 
 ---
 
@@ -247,5 +348,3 @@ function sum(x: number, y: number): number {
 2. no user input
 3. check whether there is a winner/loser/draw
 4. print message saying who won / its a draw
-
----
