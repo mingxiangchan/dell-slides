@@ -13,7 +13,9 @@ marp: true
     ```bash
     scoop bucket add java
     scoop install ojdkbuild8
+    scoop install maven
     ```
+2. Instal [VS Code Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
 2. Create a folder for today's java projects
 
 ---
