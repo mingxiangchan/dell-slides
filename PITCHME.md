@@ -342,9 +342,133 @@ For instance, `binary_search(32, [13, 19, 24, 29, 32, 37, 43])` should return `4
 
 ---
 
-#### Tic Tac Toe
+## Tic Tac Toe
 
 1. print a tic tac toe board (pre filled)
 2. no user input
 3. check whether there is a winner/loser/draw
 4. print message saying who won / its a draw
+
+---
+
+```java
+  static String checkBoard(String board) {
+    // your code
+  }
+
+  public static void main(String[] args) {
+    // row
+    System.out.println(checkBoard("XXX-O-O-O").equals("X"));
+    // col
+    System.out.println(checkBoard("OXXOX-O--").equals("O"));
+    // diagonal
+    System.out.println(checkBoard("XO--XO-OX").equals("X"));
+    // draw
+    System.out.println(checkBoard("XOXOXOXOX").equals("draw"));
+  }
+```
+
+---
+
+## Assignment: Sudoku Checker
+
+1. try it out [here](https://sudoku.game/)
+2. check row for potential sudoku
+3. check column for potential solutions
+4. check 3x3 grid for potential solutions
+5. find intersection all the 3 sets of solutions
+
+---
+
+```java
+import java.util.Arrays;
+
+public class Sudoku {
+    static char[] checkSolution(String board, int cellIdx) {
+        // your code here
+    }
+
+    static void displayBoard(String boardString) {
+        String[] boardRows = { "", "", "", "", "", "", "", "", "" };
+        char[] boardArray = boardString.toCharArray();
+        for (int index = 0; index < boardString.length(); index++) {
+            boardRows[index / 9] = boardRows[index / 9] + " " + boardArray[index];
+            if (index % 9 == 2 || index % 9 == 5) {
+                boardRows[index / 9] = boardRows[index / 9] + " |";
+            }
+        }
+        System.out.println("-------------------------");
+        for (int index = 0; index < 9; index++) {
+            System.out.println("|" + boardRows[index] + " |");
+            if (index == 2 || index == 5) {
+                System.out.println("-------------------------");
+            }
+        }
+        System.out.println("-------------------------");
+    }
+
+    public static void main(String[] args) {
+          String board = "105802000090076405200400819019007306762083090000061050007600030430020501600308900";
+          displayBoard(board);
+
+          char[] solutionOne = {'4','7'};
+          char[] solutionTwo = {'2','7'};
+      
+          boolean solveOne = Arrays.equals(checkSolution(board, 1), solutionOne);
+          boolean solveTwo = Arrays.equals(checkSolution(board, 80), solutionTwo);
+          System.out.println(solveOne);
+          System.out.println(solveTwo);
+      }
+}
+```
+
+---
+
+## Assignment 2: Sudoku Solver
+
+- optional
+- write a program to automatically solve a sudoku board
+- easy board: can solve with only elimination
+- hard board: can solve with guessing/backtracking
+
+---
+
+```java
+public class SudokuSolver {
+    static void displayBoard(String boardString){
+        String[] boardRows = {"", "", "", "", "", "", "", "", ""};
+        char[] boardArray = boardString.toCharArray();
+        for(int index = 0; index < boardString.length(); index ++ ){
+            boardRows[index/9] = boardRows[index/9] + " " + boardArray[index];
+            if(index % 9 == 2 || index % 9 == 5){
+                boardRows[index/9] = boardRows[index/9] + " |";
+            }
+        }
+        System.out.println("-------------------------");
+        for(int index = 0; index < 9; index ++ ){
+            System.out.println("|" + boardRows[index] + " |");
+            if(index == 2 || index == 5){
+                System.out.println("-------------------------");
+            }
+        }
+        System.out.println("-------------------------");
+    } 
+
+    static String solve(String boardString){
+        displayBoard(boardString);
+        return "";
+    }
+
+    public static void main(String[] args) {
+        // Easy Mode
+        String solution = solve("105802000090076405200400819019007306762083090000061050007600030430020501600308900");
+        System.out.println(solution.equals("145892673893176425276435819519247386762583194384961752957614238438729561621358947"));
+
+        // // Hard Mode
+        // String solution = solve("400000805030000000000700000020000060000080400000010000000603070500200000104000000");
+        // System.out.println(solution.equals("417369825632158947958724316825437169791586432346912758289643571573291684164875293"));
+    }
+}
+```
+
+
