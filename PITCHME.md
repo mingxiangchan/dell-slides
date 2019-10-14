@@ -373,7 +373,7 @@ For instance, `binary_search(32, [13, 19, 24, 29, 32, 37, 43])` should return `4
 ## Assignment: Sudoku Checker
 
 1. try it out [here](https://sudoku.game/)
-2. check row for potential sudoku
+2. check row for potential solutions
 3. check column for potential solutions
 4. check 3x3 grid for potential solutions
 5. find intersection all the 3 sets of solutions
