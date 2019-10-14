@@ -1,10 +1,25 @@
-### Python
+---
+marp: true
+---
+
+### Python - Week 1
 
 ---
 
-### Syntax
+### Add in VSCode Settings.json
 
-+++
+```json
+{
+    "python.venvPath": "~\\AppData\\Local\\pypoetry\\Cache\\virtualenvs",
+}
+
+```
+
+---
+
+### Basic Syntax
+
+---
 
 ### Variables 
 
@@ -19,7 +34,7 @@ f = {
 }
 ```
 
-+++
+---
 
 ### Lists and Dicts
 
@@ -44,7 +59,7 @@ data.update({"second_message": "hello me"})
 del data["message"]
 ```
 
-+++
+---
 
 ### Functions
 
@@ -58,7 +73,7 @@ def multiply(x,y):
     return x * y
 ```
 
-+++
+---
 
 ### Loops
 
@@ -86,7 +101,7 @@ for letter in "hello":
     print(letter)
 ```
 
-+++
+---
 
 ### List Comprehensions
 
@@ -111,11 +126,11 @@ print(results2)
 ### Pig Latin
 
 1. find the first vowel
-2. shift all non-vowels behind the section starting from the first vowel and adds <span class="text-gold">ay</span>
+2. shift all non-vowels behind the section starting from the first vowel and adds `ay`
 3. if the word starts with vowel, don't change it
-4. if there is no vowel in the word, add <span class="text-gold">ay</span> behind.
+4. if there is no vowel in the word, add `ay` behind.
 
-+++
+---
 
 ```python
 def convert(word):
@@ -136,7 +151,7 @@ print(convert("Dr") == ("Dray"))
 
 ![image](https://www.mathwarehouse.com/programming/images/binary-vs-linear-search/binary-and-linear-search-animations.gif)
 
-+++
+---
 
 ```python
 def bsearch(arr, target):
@@ -159,7 +174,7 @@ print(bsearch(x, 9) == 1)
 - can switch to second player and vice versa
 - will show who won or if its a draw
 
-+++
+---
 
 ```python
 def play:
@@ -173,13 +188,7 @@ x = input("Please enter the board index to place your piece")
 print(x)
 ```
 
----
 
-### Add in VSCode Settings.json
-
-```json
-"python.venvPath": "~\\AppData\\Local\\pypoetry\\Cache\\virtualenvs",
-```
 
 ---
 
@@ -211,7 +220,7 @@ poetry init
 poetry add flask
 ```
 
-+++
+---
 
 ### Creating the Webserver
 
@@ -233,7 +242,7 @@ def test():
     })
 ```
 
-+++
+---
 
 ### Run Server
 
@@ -253,9 +262,9 @@ flask run
 
 ### Exercise
 
-+++
+---
 
-create a <span class="text-blue">/public</span> endpoint
+create a <span class="text-blue">/public` endpoint
 
 return the following json
 
@@ -280,9 +289,9 @@ return the following json
 from something import some_thing
 ```
 
-+++
+---
 
-Main file <span class="text-blue">app.py</span>
+Main file <span class="text-blue">app.py`
 
 ```python
 from hello import greeting
@@ -290,7 +299,7 @@ from hello import greeting
 greeting()
 ```
 
-Second file <span class="text-blue">hello.py</span>
+Second file <span class="text-blue">hello.py`
 
 ```python
 
