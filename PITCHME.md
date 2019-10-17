@@ -264,7 +264,7 @@ flask run
 
 ---
 
-create a <span class="text-blue">/public` endpoint
+create a `/public` endpoint
 
 return the following json
 
@@ -291,7 +291,7 @@ from something import some_thing
 
 ---
 
-Main file <span class="text-blue">app.py`
+Main file `app.py`
 
 ```python
 from hello import greeting
@@ -299,7 +299,7 @@ from hello import greeting
 greeting()
 ```
 
-Second file <span class="text-blue">hello.py`
+Second file `hello.py`
 
 ```python
 
