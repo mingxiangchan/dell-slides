@@ -51,7 +51,6 @@ OOP tries to merge **data** and **operations** into **objects**
 - in Java, all code must be in a class
 - the `class` contains `methods` and `properties`
 
-
 ```java
 class User {
     // properties
@@ -135,8 +134,6 @@ User userOne = new User();
 User userTwo = new User("Ming Hao");
 ```
 
-
-
 ---
 
 ## Exercise 1
@@ -147,6 +144,7 @@ User userTwo = new User("Ming Hao");
   - Atk
 - implement the following interactions for them
   - hit
+
 ---
 
 ```java
@@ -177,8 +175,8 @@ System.out.println(tree.oranges.size() == 5)
 Orange orange = tree.pickOrange();
 
 System.out.println(tree.oranges.size() == 4)
-System.out.println(oranges.size == 10)
-System.out.println(oranges.state.equals("fresh"))
+System.out.println(orange.size == 10)
+System.out.println(orange.state.equals("fresh"))
 ```
 
 ---
@@ -189,43 +187,50 @@ System.out.println(oranges.state.equals("fresh"))
 
 ## Polymorphism
 
-*English Definition* - Many Forms
+_English Definition_ - Many Forms
 
 ---
 
 ## Similarities and Differences
 
 |                  | Car | Bicycle | Airplane |
-|------------------|-----|---------|----------|
+| ---------------- | --- | ------- | -------- |
 | number of wheels | 4   | 2       | 3        |
 | top speed        | 200 | 25      | 925      |
 | number of wings  |     |         | 2        |
 
 ---
 
-## Inheritance
+## Inheritance - Parent
+
+```java
+class Vehicle {
+    boolean canDrive = true;
+
+    int getNumWheels() { return 0; }
+    int getTopSpeed() { return 0; }
+}
+```
+
+---
+
+## Inheritance - Children
 
 Java uses the `extends` keyword to implement inheritance
 
 ```java
-class Vehicle {
-    int numWheels;
-    int topSpeed;
-}
-```
-
-```java
 class Car extends Vehicle {
-    int numWheels = 4;
-    int topSpeed = 200;
+    int getNumWheels() { return 4; }
+    int getTopSpeed() { return 200; }
 }
 ```
 
 ```java
 class Airplane extends Vehicle {
-    int numWheels = 3;
-    int topSpeed = 925;
     int numWings = 2;
+
+    int getNumWheels() { return 3; }
+    int getTopSpeed() { return 925; }
 }
 ```
 
@@ -240,10 +245,11 @@ vehicles.add(new Airplane());
 
 for(int i=0;i< vehicles.size();i++){
     Vehicle x = vehicles.get(i);
-    System.out.println(x.numWheels);
-    System.out.println(x.topSpeed);
+    System.out.println(x.canDrive);
+    System.out.println(x.getNumWheels());
+    System.out.println(x.getTopSpeed());
     // cannot access numWings, only exists on Airplane
-}  
+}
 ```
 
 ---
@@ -266,8 +272,8 @@ if (x > 25) {
   x = new Airplane();
 }
 
-System.out.println(x.numWheels);
-System.out.println(x.topSpeed);
+System.out.println(x.getNumWheels());
+System.out.println(x.getTopSpeed());
 ```
 
 ---
@@ -275,7 +281,8 @@ System.out.println(x.topSpeed);
 ## Inheritance Characteristics
 
 - children inherit all `properties` and `methods` from parent
-- children can override the inherited `properties`/`methods` if needed
+- children can override the inherited `methods` if needed
+- children cannot override the inherited `properties` from the parent
 - accessing a child via the parent's type
   - can only access shared properties/methods
   - however will execute the child's version
@@ -330,16 +337,18 @@ class ChatService implements OnInit {
 
 **public :** variables/functions are accessible outside of the class and within the class
 
-**private :** variables/functions are only accessible within the class**
+**private :** variables/functions are only accessible within the class\*\*
 
 ---
 
 #### Encapsulation is about
+
 - Controlling access to data and functions within a class
 
 ---
 
 ### Why Encapsulation?
+
 - Prevent access by **class** that should not be concerned with said variable/function
 - Information / functions should be on a need to know/use basis
 - **Classes** should only be concerned with the immediate variables/function they require
@@ -347,12 +356,14 @@ class ChatService implements OnInit {
 ---
 
 #### By default, keep things private
+
 - Only when something else requires access, should you consider making it public, and even then, may need to set a separate layer, e.g: `getUser()`
 - Consider what should become private
 
 ---
 
 ### Exercise 1
+
 User Login
 
 ---
@@ -380,17 +391,29 @@ user.username(); // "newUsername"
 
 ---
 
-### Exercise 2 - Credit card system
+### Exercise 2 - Credit Card System
 
-Making Purchases on Ebay
-- Create Customer, Ebay, Transaction, Visa class
-- When a Customer makes a purchase, Ebay creates a Transaction
-- Transaction has transactionId, platform, status and amountPayable
-- Customer can go to Visa and input transaction details and credit card details
+Customer's perspective
+
+- customer makes an order on `Ebay`
+- customer selects the payment method, e.g. `Visa`
+- customer is redirected to `Visa` to fill in card no., cvc, OTP
+- payment is processed
+- customer's order is marked as paid on Ebay
 
 ---
 
-- Visa executes payment
-- If payment does not exceed credit limit, payment is successful
-- Visa notifies Ebay of payment status
-- Ebay marks transactions as paid
+#### Considerations
+
+1. how many entities are involved?
+2. who generates each set of data (e.g. payable amount, OTP code)
+3. what checks are performed internally? (e.g. customer's credit limit)
+4. what info is passed between entities ? (e.g. what does Visa communicate to Ebay)
+
+---
+
+### Exercise
+
+1. create the test scenario simulating a credit card payment
+2. create the `classes` representing the entities invovled
+3. implement the `public`/`private` `methods` to process the payment flow
