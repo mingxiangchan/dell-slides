@@ -15,8 +15,9 @@ marp: true
     scoop install ojdkbuild8
     scoop install maven
     ```
+
 2. Instal [VS Code Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
-2. Create a folder for today's java projects
+3. Create a folder for today's java projects
 4. Download [STS](https://download.springsource.com/release/STS4/4.4.0.RELEASE/dist/e4.13/spring-tool-suite-4-4.4.0.RELEASE-e4.13.0-win32.win32.x86_64.zip) (for 2 weeks later)
 
 ---
@@ -63,7 +64,6 @@ boolean z = true
 char x = 'a'
 String name = "abc"
 ```
-
 
 #### Arrays
 
@@ -225,7 +225,7 @@ is the same as
 
 ```ts
 function sum(x: number, y: number): number {
-  return x + y
+    return x + y
 }
 ```
 
@@ -236,12 +236,62 @@ function sum(x: number, y: number): number {
 1. print a list of todos
 2. for each todo, show whether it is completed or not
 
-*Expected Result:*
+_Expected Result:_
 
 ```txt
 1. [ ] Shop for Groceries
 2. [X] Analyze Oct sales data
-3. [ ] Prepare project brief 
+3. [ ] Prepare project brief
+```
+
+---
+
+### Exercise: Fibonacci
+
+A fibonacci sequence is a sequence of numbers where the 3rd number is always the sumber of the 2 numbers before it.
+
+```
+1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+```
+
+---
+
+Try writing a `findFibonacci` function that does the following
+
+```java
+findFibonacci(0) // => 1
+findFibonacci(1) // => 1
+findFibonacci(2) // => 2
+findFibonacci(3) // => 3
+findFibonacci(4) // => 5
+```
+
+---
+
+### Exercise: Binary Search
+
+![bsearch](https://www.mathwarehouse.com/programming/images/binary-vs-linear-search/binary-and-linear-search-animations.gif)
+
+---
+
+### Task
+
+Write a method that takes a target number and a sorted list of numbers in non-decreasing order and returns either the position of the number in the list, or "do not exist" to indicate the target number is not in the list.
+For instance, `binary_search(32, [13, 19, 24, 29, 32, 37, 43])` should return `4`, since `32` is the fourth element of the list (counting from zero).
+
+---
+
+```java
+  static int bsearch(int[] array, int target) {
+    // your code
+  }
+
+  public static void main(String[] args) {
+    int[] arr = {7,9,21,42,58,67,88};
+
+    System.out.println(bsearch(arr, 67) == 5);
+    System.out.println(bsearch(arr, 9) == 1);
+  }
 ```
 
 ---
@@ -258,7 +308,7 @@ function sum(x: number, y: number): number {
 ---
 
 | Word  | Pig Latin Version |
-|-------|-------------------|
+| ----- | ----------------- |
 | art   | art               |
 | vowel | owelvay           |
 | nginx | inxngay           |
@@ -286,58 +336,6 @@ public class PigLatin {
         System.out.println(convert("Dr").equals("Dray"));
     }
 }
-```
-
----
-
-### Exercise: Fibonacci
-
-A fibonacci sequence is a sequence of numbers where the 3rd number is always the sumber of the 2 numbers before it.
-
-```
-1, 1, 2, 3, 5, 8, 13, 21, 34, 55
-```
-
----
-
-Try writing a `findFibonacci` function that does the following
-
-```java
-findFibonacci(0) // => 1
-findFibonacci(1) // => 1
-findFibonacci(2) // => 2
-findFibonacci(3) // => 3
-findFibonacci(4) // => 5
-```
-
----
-
-
-### Exercise: Binary Search
-
-![bsearch](https://www.mathwarehouse.com/programming/images/binary-vs-linear-search/binary-and-linear-search-animations.gif)
-
----
-
-### Task
-
-Write a method that takes a target number and a sorted list of numbers in non-decreasing order and returns either the position of the number in the list, or "do not exist" to indicate the target number is not in the list.
-For instance, `binary_search(32, [13, 19, 24, 29, 32, 37, 43])` should return `4`, since `32` is the fourth element of the list (counting from zero).
-
-
----
-
-```java
-  static int bsearch(int[] array, int target) {
-    // your code
-  }
-
-  public static void main(String[] args) {
-    int[] arr = {7,9,21,42,58,67,88};
-
-    System.out.println(bsearch(arr, 67) == 5);
-    System.out.println(bsearch(arr, 9) == 1);
-  }
 ```
 
 ---
@@ -413,7 +411,7 @@ public class Sudoku {
 
           char[] solutionOne = {'4','7'};
           char[] solutionTwo = {'2','7'};
-      
+
           boolean solveOne = Arrays.equals(checkSolution(board, 1), solutionOne);
           boolean solveTwo = Arrays.equals(checkSolution(board, 80), solutionTwo);
           System.out.println(solveOne);
@@ -426,10 +424,10 @@ public class Sudoku {
 
 ## Assignment 2: Sudoku Solver
 
-- optional
-- write a program to automatically solve a sudoku board
-- easy board: can solve with only elimination
-- hard board: can solve with guessing/backtracking
+-   optional
+-   write a program to automatically solve a sudoku board
+-   easy board: can solve with only elimination
+-   hard board: can solve with guessing/backtracking
 
 ---
 
@@ -452,7 +450,7 @@ public class SudokuSolver {
             }
         }
         System.out.println("-------------------------");
-    } 
+    }
 
     static String solve(String boardString){
         displayBoard(boardString);
@@ -470,5 +468,3 @@ public class SudokuSolver {
     }
 }
 ```
-
-
