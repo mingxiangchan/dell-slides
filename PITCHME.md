@@ -198,6 +198,8 @@ _English Definition_ - Many Forms
 | number of wheels | 4   | 2       | 3        |
 | top speed        | 200 | 25      | 925      |
 | number of wings  |     |         | 2        |
+| drive         | true| true    | true     |
+| fly           | | |true|
 
 ---
 
@@ -291,12 +293,15 @@ System.out.println(x.getTopSpeed());
 
 ## Exercise
 
-- discuss the similarities and differences between
+- discuss the **similarities** and **differences** between
   - Human
   - Insect
   - Snake
   - Whale
   - Bird
+- focus on the differences in
+    - adjectives (humans have skin)
+    - verbs (humans can talk)
 - discuss how to categorize the above animals
 
 ---
