@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>API Preview</title>
+    </head>
+    <body>
+    <script src="https://api.apiary.io/seeds/embed.js"></script>
+    <script>
+    var embed = new Apiary.Embed({
+    apiBlueprint: `FORMAT: 1A
+HOST: http://sample.pandurangpatil.com
+
+# Sample API Documentation
+Sample api documentation for sample project.
+
+# Allowed HTTPs requests:
+&lt;pre&gt;
+PUT     : To create resource 
+POST    : Update resource
+GET     : Get a resource or list of resources
+DELETE  : To delete resource
+&lt;/pre&gt;
+
+# Description Of Usual Server Responses:
+- 200 &#96;OK&#96; - the request was successful (some API calls may return 201 instead).
+- 201 &#96;Created&#96; - the request was successful and a resource was created.
+- 204 &#96;No Content&#96; - the request was successful but there is no representation to return (i.e. the response is empty).
+- 400 &#96;Bad Request&#96; - the request could not be understood or was missing required parameters.
+- 401 &#96;Unauthorized&#96; - authentication failed or user doesn&#39;t have permissions for requested operation.
+- 403 &#96;Forbidden&#96; - access denied.
+- 404 &#96;Not Found&#96; - resource was not found.
+- 405 &#96;Method Not Allowed&#96; - requested method is not supported for resource.
+
+# Some sample
+    Test sample                 |   test column two
+    First column sadf asdfads   |   sfsdsadf
+
+---
+    test one                    | Another column    
+---
+
+# Table sample
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt; First Column &lt;/td&gt;
+        &lt;td&gt; Second Column &lt;/td&gt;    
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt; First Column &lt;/td&gt;
+        &lt;td&gt; Second Column &lt;/td&gt; 
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+
+# Code Sample
+&lt;pre&gt;
+    Some code here
+&lt;/pre&gt;
+
+# Group User
+Represents user details. 
+
+---
+**User attributes:**
+
+- id &#96;(Number)&#96; : unique identifier. 
+- fname &#96;(String)&#96; : First Name.
+- lname &#96;(String)&#96; : Last Name.
+- email &#96;(String)&#96; : email id of the user.
+
+---
+## User Collection [/users(?since,limit)]
+### List all users [GET]
+Retrieve paginated list of users.
+
++ Parameters
+    + since (optional, String) ... Timestamp in ISO 8601 format: &#96;YYYY-MM-DDTHH:MM:SSZ&#96; Only users updated at or after this time are returned.
+    + limit (optional, Number) ... maximum number of records expected by client.
+
++ Response 200 (application/json)
+
+        [
+            {
+                &quot;id&quot;: 1,
+                &quot;fname&quot;: &quot;Pandurang&quot;,
+                &quot;lname&quot;: &quot;Patil&quot;,
+                &quot;email&quot;: &quot;pandurang@email.com&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;fname&quot;: &quot;Sangram&quot;,
+                &quot;lname&quot;: &quot;Shinde&quot;,
+                &quot;email&quot;: &quot;sangram@email.com&quot;
+            }
+        ]
+
++ Response 401 (application/json)
+
+        {
+            &quot;error&quot;: &quot;error.unauthorized&quot;
+        }
+
+### Create a User [PUT]
++ Request (application/json)
+
+        {
+            &quot;fname&quot;: &quot;Ram&quot;,
+            &quot;lname&quot;: &quot;Jadhav&quot;,
+            &quot;email&quot;: &quot;ram@email.com&quot;
+        }
+
++ Response 201 (application/json)
+
+        {
+            &quot;id&quot;: 3,
+            &quot;fname&quot;: &quot;Ram&quot;,
+            &quot;lname&quot;: &quot;Jadhav&quot;,
+            &quot;email&quot;: &quot;ram@email.com&quot;
+        }
+
+## User [/users/{id}]
+A single User object with all its details
+
++ Parameters
+    + id (required, Number, &#96;1&#96;) ... Numeric &#96;id&#96; of the User to perform action with.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+                &quot;id&quot;: 1,
+                &quot;fname&quot;: &quot;Pandurang&quot;,
+                &quot;lname&quot;: &quot;Patil&quot;,
+                &quot;email&quot;: &quot;pandurang@email.com&quot;
+            }
+            
++ Response 401 (application/json)
+
+        {
+            &quot;error&quot;: &quot;error.unauthorized&quot;
+        }
+
+### Update a User [POST]
+Update user details
++ Request (application/json)
+
+        {
+            &quot;id&quot;: 1,
+            &quot;fname&quot;: &quot;Pandurang&quot;,
+            &quot;lname&quot;: &quot;Patil&quot;,
+            &quot;email&quot;: &quot;pandurangpatil@email.com&quot;
+        }
+
++ Response 200 (application/json)
+
+        {
+            &quot;id&quot;: 1,
+            &quot;fname&quot;: &quot;Pandurang&quot;,
+            &quot;lname&quot;: &quot;Patil&quot;,
+            &quot;email&quot;: &quot;pandurangpatil@email.com&quot;
+        }
+
++ Response 401 (application/json)
+
+        {
+            &quot;error&quot;: &quot;error.unauthorized&quot;
+        }
+
+### Remove a User [DELETE]
++ Response 204
+
++ Response 401 (application/json)
+
+        {
+            &quot;error&quot;: &quot;error.unauthorized&quot;
+        }
+`,
+    });
+    </script>
+    </body>
+    </html>
